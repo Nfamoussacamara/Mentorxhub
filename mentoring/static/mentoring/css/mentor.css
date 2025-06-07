@@ -1,0 +1,200 @@
+/* Styles communs pour les profils */
+.profile-container {
+    padding: 2rem 0;
+}
+
+.profile-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 2rem;
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-name {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.profile-role {
+    color: #6c757d;
+    margin-bottom: 1rem;
+}
+
+.profile-expertise {
+    color: #4a90e2;
+    font-weight: 500;
+}
+
+/* Styles spécifiques pour les mentors */
+.mentor-profile {
+    composes: profile-container;
+}
+
+.mentor-card {
+    composes: profile-card;
+}
+
+.mentor-header {
+    composes: profile-header;
+}
+
+.mentor-avatar {
+    composes: profile-avatar;
+}
+
+.mentor-info {
+    composes: profile-info;
+}
+
+.mentor-name {
+    composes: profile-name;
+}
+
+.mentor-expertise {
+    composes: profile-expertise;
+}
+
+/* Styles pour la liste des mentors */
+.mentor-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.mentor-item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.mentor-item:hover {
+    transform: translateY(-5px);
+}
+
+.mentor-item-body {
+    padding: 1.5rem;
+}
+
+.mentor-item-name {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.mentor-item-expertise {
+    color: #6c757d;
+    margin-bottom: 1rem;
+}
+
+.mentor-item-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #4a90e2;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.mentor-item-btn:hover {
+    background-color: #357abd;
+    color: white;
+}
+
+/* Styles pour les disponibilités */
+.availability-section {
+    margin-top: 2rem;
+}
+
+.availability-title {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+}
+
+.availability-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.availability-item {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+}
+
+.availability-date {
+    color: #2c3e50;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.availability-time {
+    color: #6c757d;
+}
+
+/* Styles pour les formulaires */
+.mentor-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25);
+}
+
+.form-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #4a90e2;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+}
+
+.form-btn:hover {
+    background-color: #357abd;
+} 

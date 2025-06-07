@@ -1,0 +1,112 @@
+/* Styles communs pour l'authentification */
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+.auth-title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+}
+
+.auth-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.auth-form .form-control {
+    border-radius: 5px;
+    padding: 0.75rem;
+    border: 1px solid #dee2e6;
+}
+
+.auth-form .form-control:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25);
+}
+
+.auth-btn {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1.1rem;
+    background-color: #4a90e2;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.auth-btn:hover {
+    background-color: #357abd;
+}
+
+.auth-links {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.auth-links a {
+    color: #4a90e2;
+    text-decoration: none;
+}
+
+.auth-links a:hover {
+    text-decoration: underline;
+}
+
+/* Styles spécifiques pour la page de connexion */
+.login-container {
+    composes: auth-container;
+}
+
+.login-card {
+    composes: auth-card;
+}
+
+.login-title {
+    composes: auth-title;
+}
+
+.login-form {
+    composes: auth-form;
+}
+
+.login-btn {
+    composes: auth-btn;
+}
+
+.login-links {
+    composes: auth-links;
+}
+
+/* Styles pour les messages d'erreur */
+.alert {
+    border-radius: 5px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+/* Styles pour les champs requis */
+.required-field::after {
+    content: "*";
+    color: #dc3545;
+    margin-left: 4px;
+} 

@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Mon Profil Mentor - MentorXHub{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Informations Personnelles</h4>
+                    <p><strong>Nom:</strong> {{ mentor.user.get_full_name }}</p>
+                    <p><strong>Email:</strong> {{ mentor.user.email }}</p>
+                    <p><strong>Expertise:</strong> {{ mentor.expertise }}</p>
+                    <p><strong>Expérience:</strong> {{ mentor.years_of_experience }} ans</p>
+                    <p><strong>Tarif horaire:</strong> {{ mentor.hourly_rate }}€</p>
+                    <p><strong>Langues:</strong> {{ mentor.languages }}</p>
+                    
+                    <div class="social-links mt-3">
+                        {% if mentor.linkedin_profile %}
+                            <a href="{{ mentor.linkedin_profile }}" class="btn btn-outline-primary me-2" target="_blank">
+                                <i class="fab fa-linkedin"></i> LinkedIn
+                            </a>
+                        {% endif %}
+                        {% if mentor.github_profile %}
+                            <a href="{{ mentor.github_profile }}" class="btn btn-outline-dark me-2" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        {% endif %}
+                        {% if mentor.website %}
+                            <a href="{{ mentor.website }}" class="btn btn-outline-info" target="_blank">
+                                <i class="fas fa-globe"></i> Site Web
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h4 class="card-title">Statistiques</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Note moyenne:</strong> {{ mentor.rating }}/5</p>
+                            <p><strong>Total des sessions:</strong> {{ mentor.total_sessions }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Statut:</strong> 
+                                {% if mentor.is_available %}
+                                    <span class="badge bg-success">Disponible</span>
+                                {% else %}
+                                    <span class="badge bg-danger">Indisponible</span>
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h4 class="card-title">Certifications</h4>
+                    <p>{{ mentor.certifications|linebreaks }}</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Actions</h4>
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'mentoring:mentor_update' %}" class="btn btn-primary">
+                            <i class="fas fa-edit"></i> Modifier le profil
+                        </a>
+                        <a href="{% url 'mentoring:availability_list' %}" class="btn btn-success">
+                            <i class="fas fa-clock"></i> Gérer les disponibilités
+                        </a>
+                        <a href="{% url 'mentoring:session_list' %}" class="btn btn-info">
+                            <i class="fas fa-calendar-alt"></i> Voir mes sessions
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

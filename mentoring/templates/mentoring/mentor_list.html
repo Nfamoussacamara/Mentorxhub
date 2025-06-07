@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Liste des Mentors - MentorXHub{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Nos Mentors</h1>
+    
+    <!-- Filtres -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="get" class="row g-3">
+                <div class="col-md-4">
+                    <input type="text" name="search" class="form-control" placeholder="Rechercher un mentor..." value="{{ search_query }}">
+                </div>
+                <div class="col-md-3">
+                    <select name="expertise" class="form-select">
+                        <option value="">Toutes les expertises</option>
+                        {% for expertise in expertise_list %}
+                            <option value="{{ expertise }}" {% if expertise == selected_expertise %}selected{% endif %}>
+                                {{ expertise }}
+                            </option>
+                {% endfor %}
+            </select>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary w-100">Filtrer</button>
+                </div>
+        </form>
+    </div>
+</div>
+
+    <!-- Liste des mentors -->
+    <div class="row">
+            {% for mentor in mentors %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                {% if mentor.profile_picture %}
+                    <img src="{{ mentor.profile_picture.url }}" class="card-img-top" alt="{{ mentor.user.get_full_name }}">
+                        {% else %}
+                    <img src="{% static 'images/default_profile.png' %}" class="card-img-top" alt="Photo de profil par défaut">
+                        {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ mentor.user.get_full_name }}</h5>
+                    <p class="card-text">
+                        <strong>Expertise:</strong> {{ mentor.expertise }}<br>
+                        <strong>Expérience:</strong> {{ mentor.years_of_experience }} ans<br>
+                        <strong>Tarif:</strong> {{ mentor.hourly_rate }}€/heure
+                    </p>
+                    <p class="card-text">{{ mentor.bio|truncatewords:30 }}</p>
+                    </div>
+                <div class="card-footer">
+                    <a href="{% url 'mentoring:mentor_detail' mentor.id %}" class="btn btn-primary">Voir le profil</a>
+                    {% if user.is_authenticated and user.role == 'student' %}
+                        <a href="{% url 'mentoring:book_session' mentor.id %}" class="btn btn-success">Réserver une session</a>
+                    {% endif %}
+                            </div>
+                        </div>
+                    </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info">
+                Aucun mentor disponible pour le moment.
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    <!-- Pagination -->
+        {% if is_paginated %}
+    <nav aria-label="Page navigation" class="mt-4">
+        <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1{% if search_query %}&search={{ search_query }}{% endif %}{% if expertise %}&expertise={{ expertise }}{% endif %}">&laquo; Première</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if expertise %}&expertise={{ expertise }}{% endif %}">Précédente</a>
+                </li>
+                {% endif %}
+
+            <li class="page-item active">
+                <span class="page-link">
+                    Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}
+                </span>
+            </li>
+
+                {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if expertise %}&expertise={{ expertise }}{% endif %}">Suivante</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}{% if search_query %}&search={{ search_query }}{% endif %}{% if expertise %}&expertise={{ expertise }}{% endif %}">Dernière &raquo;</a>
+                </li>
+                {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+{% endblock %} 

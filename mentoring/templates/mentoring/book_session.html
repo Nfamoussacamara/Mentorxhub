@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Réserver une session - MentorXHub{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Réserver une session avec {{ mentor.user.get_full_name }}</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            <label for="date" class="form-label">Date</label>
+                            <input type="date" class="form-control" id="date" name="date" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="time" class="form-label">Heure</label>
+                            <select class="form-select" id="time" name="time" required>
+                                <option value="">Sélectionnez une heure</option>
+                                {% for slot in available_slots %}
+                                    <option value="{{ slot }}">{{ slot }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="duration" class="form-label">Durée (minutes)</label>
+                            <select class="form-select" id="duration" name="duration" required>
+                                <option value="30">30 minutes</option>
+                                <option value="60">1 heure</option>
+                                <option value="90">1 heure 30</option>
+                                <option value="120">2 heures</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">Sujet</label>
+                            <input type="text" class="form-control" id="subject" name="subject" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">Réserver la session</button>
+                            <a href="{% url 'mentoring:mentor_detail' mentor.id %}" class="btn btn-secondary">Annuler</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

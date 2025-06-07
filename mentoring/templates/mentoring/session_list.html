@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Mes Sessions - MentorXHub{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">Mes Sessions</h4>
+                    <div class="btn-group">
+                        <a href="{% url 'mentoring:session_create' %}" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Nouvelle Session
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul class="nav nav-tabs mb-4">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#upcoming" data-bs-toggle="tab">À venir</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#past" data-bs-toggle="tab">Passées</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="upcoming">
+                            {% if upcoming_sessions %}
+                                <div class="list-group">
+                                    {% for session in upcoming_sessions %}
+                                        <div class="list-group-item">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h5 class="mb-1">{{ session.title }}</h5>
+                                                <small class="text-muted">
+                                                    {{ session.start_time|date:"d/m/Y H:i" }}
+                                                </small>
+                                            </div>
+                                            <p class="mb-1">{{ session.description }}</p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div>
+                                                    <span class="badge bg-primary">{{ session.get_status_display }}</span>
+                                                    <span class="badge bg-info">{{ session.duration }} minutes</span>
+                                                </div>
+                                                <div class="btn-group">
+                                                    <a href="{% url 'mentoring:session_detail' session.id %}" class="btn btn-sm btn-outline-primary">
+                                                        <i class="fas fa-eye"></i> Détails
+                                                    </a>
+                                                    {% if session.status == 'scheduled' %}
+                                                        <a href="{% url 'mentoring:session_update' session.id %}" class="btn btn-sm btn-outline-secondary">
+                                                            <i class="fas fa-edit"></i> Modifier
+                                                        </a>
+                                                        <a href="{% url 'mentoring:session_cancel' session.id %}" class="btn btn-sm btn-outline-danger">
+                                                            <i class="fas fa-times"></i> Annuler
+                                                        </a>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle"></i> Aucune session à venir.
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="tab-pane fade" id="past">
+                            {% if past_sessions %}
+                                <div class="list-group">
+                                    {% for session in past_sessions %}
+                                        <div class="list-group-item">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h5 class="mb-1">{{ session.title }}</h5>
+                                                <small class="text-muted">
+                                                    {{ session.start_time|date:"d/m/Y H:i" }}
+                                                </small>
+                                            </div>
+                                            <p class="mb-1">{{ session.description }}</p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div>
+                                                    <span class="badge bg-secondary">{{ session.get_status_display }}</span>
+                                                    <span class="badge bg-info">{{ session.duration }} minutes</span>
+                                                </div>
+                                                <div class="btn-group">
+                                                    <a href="{% url 'mentoring:session_detail' session.id %}" class="btn btn-sm btn-outline-primary">
+                                                        <i class="fas fa-eye"></i> Détails
+                                                    </a>
+                                                    {% if not session.feedback %}
+                                                        <a href="{% url 'mentoring:feedback_create' session.id %}" class="btn btn-sm btn-outline-success">
+                                                            <i class="fas fa-star"></i> Donner un feedback
+                                                        </a>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle"></i> Aucune session passée.
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

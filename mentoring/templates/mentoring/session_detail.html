@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Session avec {{ session.mentor.user.get_full_name }} - MentorXHub{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'mentoring/css/session.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="session-container">
+    <div class="session-card">
+        <div class="session-header">
+            <h1 class="session-title">Session avec {{ session.mentor.user.get_full_name }}</h1>
+            <span class="session-status status-{{ session.status|lower }}">{{ session.get_status_display }}</span>
+                    </div>
+
+        <div class="session-info">
+            <div class="session-detail">
+                <i class="fas fa-calendar"></i>
+                <span>{{ session.date|date:"l d F Y" }}</span>
+                    </div>
+            <div class="session-detail">
+                <i class="fas fa-clock"></i>
+                <span>{{ session.start_time|time:"H:i" }} - {{ session.end_time|time:"H:i" }}</span>
+                            </div>
+            <div class="session-detail">
+                <i class="fas fa-video"></i>
+                <span>{{ session.get_session_type_display }}</span>
+                        </div>
+            {% if session.meeting_link %}
+            <div class="session-detail">
+                <i class="fas fa-link"></i>
+                <a href="{{ session.meeting_link }}" target="_blank">Lien de la réunion</a>
+                        </div>
+                    {% endif %}
+                </div>
+
+        <div class="session-actions">
+            {% if session.status == 'scheduled' %}
+                {% if user.profile.role == 'mentee' %}
+                    <a href="{% url 'mentoring:cancel_session' session.id %}" class="session-btn session-btn-danger">Annuler la session</a>
+                {% endif %}
+                {% if user.profile.role == 'mentor' %}
+                    <a href="{% url 'mentoring:complete_session' session.id %}" class="session-btn session-btn-primary">Marquer comme terminée</a>
+                {% endif %}
+            {% endif %}
+        </div>
+
+        {% if session.status == 'completed' and not session.feedback %}
+            <div class="feedback-section">
+                <h2 class="feedback-title">Donnez votre avis</h2>
+                <form method="post" action="{% url 'mentoring:add_feedback' session.id %}" class="feedback-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="rating" class="form-label">Note</label>
+                        <select name="rating" id="rating" class="form-control" required>
+                            <option value="">Sélectionnez une note</option>
+                            {% for i in "12345" %}
+                                <option value="{{ forloop.counter }}">{{ forloop.counter }} étoiles</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="comment" class="form-label">Commentaire</label>
+                        <textarea name="comment" id="comment" class="feedback-textarea" required></textarea>
+                    </div>
+                    <button type="submit" class="feedback-btn">Envoyer</button>
+                </form>
+            </div>
+                        {% endif %}
+                        
+        {% if session.feedback %}
+            <div class="feedback-section">
+                <h2 class="feedback-title">Avis</h2>
+                <div class="feedback-content">
+                    <div class="feedback-rating">
+                        {% for i in "12345" %}
+                            {% if forloop.counter <= session.feedback.rating %}
+                                <i class="fas fa-star text-warning"></i>
+                            {% else %}
+                                <i class="far fa-star text-warning"></i>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <p class="feedback-comment">{{ session.feedback.comment }}</p>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'mentoring/js/session.js' %}"></script>
+{% endblock %} 

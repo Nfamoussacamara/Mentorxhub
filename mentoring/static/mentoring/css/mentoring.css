@@ -1,0 +1,175 @@
+/* Styles pour la page d'accueil */
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 4rem 0;
+    margin-bottom: 2rem;
+}
+
+.hero-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Styles pour les cartes de mentors */
+.mentor-card {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.mentor-card:hover {
+    transform: translateY(-5px);
+}
+
+.mentor-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+}
+
+.mentor-card .card-body {
+    padding: 1.5rem;
+}
+
+.mentor-card .card-title {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.mentor-card .card-text {
+    color: #666;
+}
+
+/* Styles pour les badges de compétences */
+.skill-badge {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    margin: 0.25rem;
+    display: inline-block;
+}
+
+/* Styles pour les sections */
+.section-title {
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: var(--primary-color);
+    margin: 1rem auto;
+}
+
+/* Styles pour les formulaires */
+.mentor-form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.mentor-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.mentor-form label {
+    font-weight: 500;
+    color: #333;
+}
+
+.mentor-form .form-control {
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    padding: 0.75rem;
+}
+
+.mentor-form .btn-primary {
+    padding: 0.75rem 2rem;
+}
+
+/* Styles pour les détails du mentor */
+.mentor-profile {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.mentor-profile img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+}
+
+.mentor-profile h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.mentor-profile .bio {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Styles pour les avis */
+.review-card {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.review-card .rating {
+    color: #ffc107;
+    margin-bottom: 0.5rem;
+}
+
+.review-card .review-text {
+    color: #666;
+    font-style: italic;
+}
+
+/* Styles pour le carrousel */
+.carousel-item {
+    height: 400px;
+}
+
+.carousel-item img {
+    object-fit: cover;
+    height: 100%;
+}
+
+/* Styles pour les animations */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+} 

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Inscription - MentorXHub{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'accounts/css/signup.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="signup-title">Inscription</div>
+<div class="signup-container">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if form.errors %}
+        <div class="alert alert-danger">
+            <p>Veuillez corriger les erreurs suivantes :</p>
+            {{ form.non_field_errors }}
+            {% for field in form %}
+                {% if field.errors %}
+                    <p>{{ field.label }} : {{ field.errors|striptags }}</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="{{ form.first_name.id_for_label }}" class="form-label">Prénom</label>
+            {{ form.first_name }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.last_name.id_for_label }}" class="form-label">Nom</label>
+            {{ form.last_name }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
+            {{ form.email }}
+        </div>
+        <div class="form-group password-group">
+            <label for="{{ form.password1.id_for_label }}" class="form-label">Mot de passe</label>
+            {{ form.password1 }}
+        </div>
+        <div class="form-group password-group">
+            <label for="{{ form.password2.id_for_label }}" class="form-label">Confirmer le mot de passe</label>
+            {{ form.password2 }}
+        </div>
+        <div class="form-group">
+            <label class="form-label">Je suis :</label>
+            <div class="role-selector">
+                <label class="role-option">
+                    <input type="radio" name="role" value="mentor" required>
+                    <i class="fas fa-user-tie"></i>
+                    <div>Mentor</div>
+                </label>
+                <label class="role-option">
+                    <input type="radio" name="role" value="student" required>
+                    <i class="fas fa-user-graduate"></i>
+                    <div>Étudiant</div>
+                </label>
+            </div>
+        </div>
+        <button type="submit" class="btn-signup">S'inscrire</button>
+    </form>
+</div>
+    <div class="signup-footer">
+        <p>Déjà inscrit ? <a href="{% url 'accounts:login' %}">Se connecter</a></p>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'accounts/js/signup.js' %}"></script>
+{% endblock %}

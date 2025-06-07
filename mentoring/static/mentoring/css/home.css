@@ -1,0 +1,135 @@
+/* Styles pour la page d'accueil */
+.home-container {
+    padding: 2rem 0;
+}
+
+.home-header {
+    margin-bottom: 3rem;
+}
+
+.home-title {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.home-subtitle {
+    color: #6c757d;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.home-stats {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+}
+
+.home-stats-title {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+}
+
+.stats-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.stats-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: #6c757d;
+}
+
+.stats-item i {
+    margin-right: 0.75rem;
+    color: #4a90e2;
+    font-size: 1.2rem;
+}
+
+/* Section des mentors disponibles */
+.mentors-section {
+    margin-top: 3rem;
+}
+
+.mentors-title {
+    color: #2c3e50;
+    margin-bottom: 2rem;
+}
+
+.mentor-card {
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.mentor-card:hover {
+    transform: translateY(-5px);
+}
+
+.mentor-card-body {
+    padding: 1.5rem;
+}
+
+.mentor-name {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.mentor-expertise {
+    color: #6c757d;
+    margin-bottom: 1.5rem;
+}
+
+.mentor-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #4a90e2;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.mentor-btn:hover {
+    background-color: #357abd;
+    color: white;
+}
+
+/* Styles pour les boutons d'action */
+.action-buttons {
+    margin-top: 2rem;
+}
+
+.action-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.action-btn-primary {
+    background-color: #4a90e2;
+    border: none;
+    color: white;
+}
+
+.action-btn-primary:hover {
+    background-color: #357abd;
+    color: white;
+}
+
+.action-btn-outline {
+    background-color: transparent;
+    border: 2px solid #4a90e2;
+    color: #4a90e2;
+}
+
+.action-btn-outline:hover {
+    background-color: #4a90e2;
+    color: white;
+} 

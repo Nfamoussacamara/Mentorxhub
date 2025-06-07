@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Accueil - MentorXHub{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'mentoring/css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="home-container">
+    <div class="home-header">
+        <h1 class="home-title">Bienvenue sur MentorXHub</h1>
+        <p class="home-subtitle">Connectez-vous avec des mentors expérimentés pour développer vos compétences</p>
+                        </div>
+
+    <div class="home-stats">
+        <h2 class="home-stats-title">Statistiques</h2>
+        <ul class="stats-list">
+            <li class="stats-item">
+                <i class="fas fa-users"></i>
+                <span>{{ total_mentors }} mentors disponibles</span>
+            </li>
+            <li class="stats-item">
+                <i class="fas fa-graduation-cap"></i>
+                <span>{{ total_sessions }} sessions réalisées</span>
+            </li>
+            <li class="stats-item">
+                <i class="fas fa-star"></i>
+                <span>Note moyenne : {{ average_rating }}/5</span>
+            </li>
+                            </ul>
+            </div>
+
+    <div class="mentors-section">
+        <h2 class="mentors-title">Mentors disponibles</h2>
+                    <div class="row">
+            {% for mentor in mentors %}
+            <div class="col-md-4 mb-4">
+                <div class="mentor-card">
+                    <div class="mentor-card-body">
+                        <h3 class="mentor-name">{{ mentor.user.get_full_name }}</h3>
+                        <p class="mentor-expertise">{{ mentor.expertise }}</p>
+                        <a href="{% url 'mentoring:mentor_detail' mentor.id %}" class="mentor-btn">Voir le profil</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+                </div>
+
+    <div class="action-buttons">
+                        {% if user.is_authenticated %}
+            {% if user.profile.role == 'mentor' %}
+                <a href="{% url 'mentoring:mentor_dashboard' %}" class="action-btn action-btn-primary">Mon tableau de bord</a>
+                            {% else %}
+                <a href="{% url 'mentoring:mentor_list' %}" class="action-btn action-btn-primary">Trouver un mentor</a>
+                            {% endif %}
+                        {% else %}
+            <a href="{% url 'accounts:login' %}" class="action-btn action-btn-primary">Se connecter</a>
+            <a href="{% url 'accounts:signup' %}" class="action-btn action-btn-outline">S'inscrire</a>
+                        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'mentoring/js/home.js' %}"></script>
+{% endblock %} 

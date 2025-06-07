@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Plateforme de Mentorat - Accueil{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'core/css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <div class="hero-card">
+        <div class="hero-left">
+            <h1 class="hero-title">Trouver un mentor<br>en informatique</h1>
+            <p class="hero-subtitle">Mettez en relation avec des mentors expérimentés<br>pour développer vos compétences</p>
+            <a href="{% url 'accounts:signup' %}" class="hero-btn">Commencer maintenant</a>
+        </div>
+        <div class="hero-right">
+            <img src="{% static 'core/img/mentoring-illustration.svg' %}" alt="Mentorat" />
+        </div>
+    </div>
+    <div class="features-row">
+        <div class="feature-block">
+            <i class="fas fa-search"></i>
+            <div>Rechercher des mentors</div>
+        </div>
+        <div class="feature-block">
+            <i class="fas fa-calendar-alt"></i>
+            <div>Planifier des sessions</div>
+        </div>
+        <div class="feature-block">
+            <i class="fas fa-comments"></i>
+            <div>Communiquer facilement</div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Ajoute ici des scripts si besoin -->
+{% endblock %}

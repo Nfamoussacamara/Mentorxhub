@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Donner un feedback - MentorXHub{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">Donner un feedback pour la session</h4>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info mb-4">
+                        <h5 class="alert-heading">Session</h5>
+                        <p class="mb-0">
+                            <strong>Titre:</strong> {{ session.title }}<br>
+                            <strong>Date:</strong> {{ session.start_time|date:"d/m/Y" }}<br>
+                            <strong>Mentor:</strong> {{ session.mentor.user.get_full_name }}
+                        </p>
+                    </div>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <div class="mb-4">
+                            <label class="form-label">Note globale</label>
+                            <div class="rating">
+                                {% for i in "54321" %}
+                                    <input type="radio" name="rating" value="{{ i }}" id="star{{ i }}" 
+                                           {% if form.rating.value == i %}checked{% endif %}>
+                                    <label for="star{{ i }}"><i class="fas fa-star"></i></label>
+                                {% endfor %}
+                            </div>
+                            {% if form.rating.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.rating.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="content" class="form-label">Commentaire</label>
+                            <textarea class="form-control" id="content" name="content" rows="4" required
+                                      placeholder="Partagez votre expérience avec cette session...">{{ form.content.value }}</textarea>
+                            {% if form.content.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.content.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="is_anonymous" name="is_anonymous" 
+                                       {% if form.is_anonymous.value %}checked{% endif %}>
+                                <label class="form-check-label" for="is_anonymous">
+                                    Rendre ce feedback anonyme
+                                </label>
+                            </div>
+                            {% if form.is_anonymous.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.is_anonymous.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i> Envoyer le feedback
+                            </button>
+                            <a href="{% url 'mentoring:session_detail' session.id %}" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Retour à la session
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block extra_css %}
+<style>
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    cursor: pointer;
+    font-size: 2rem;
+    color: #ddd;
+    padding: 0 0.1em;
+}
+
+.rating input:checked ~ label,
+.rating label:hover,
+.rating label:hover ~ label {
+    color: #ffd700;
+}
+</style>
+{% endblock %}
+{% endblock %} 
