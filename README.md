@@ -3,6 +3,7 @@ readme_content = """
 # 👥 MentorXHub — Plateforme de Mentorat Informatique
 
 Bienvenue sur le dépôt officiel du projet **MentorXHub**, une initiative portée au sein du **Club des Jeunes Programmeurs (CJP)** de l’Université de Labé.
+lien:https://club-jp.com
 
 ## 📌 À propos
 
