@@ -1,0 +1,13 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}{{ session.title }} - Dashboard{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'dashboard/css/sessions.css' %}?v=1.0">
+{% endblock %}
+
+{% block content %}
+{% include 'dashboard/fragments/session_detail.html' %}
+{% endblock %}
+

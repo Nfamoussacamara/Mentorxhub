@@ -1,0 +1,267 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ page_title }} - MentorXHub{% endblock %}
+
+{% block extra_css %}
+<style>
+    .top-mentors-page {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 3rem 2rem;
+        background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+        min-height: 100vh;
+    }
+
+    .page-header {
+        text-align: center;
+        margin-bottom: 3rem;
+        animation: fadeInDown 0.6s ease-out;
+    }
+
+    .page-header h1 {
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        font-weight: 800;
+        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 1rem;
+        letter-spacing: -0.02em;
+    }
+
+    .page-header p {
+        font-size: 1.25rem;
+        color: #64748b;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .mentors-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .mentor-card {
+        background: white;
+        border-radius: 20px;
+        padding: 2rem;
+        border: 1px solid rgba(59, 130, 246, 0.08);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        animation: fadeInUp 0.6s ease-out backwards;
+    }
+
+    .mentor-card:hover {
+        transform: translateY(-8px) scale(1.01);
+        box-shadow: 0 20px 40px rgba(30, 58, 138, 0.15);
+        border-color: rgba(59, 130, 246, 0.3);
+    }
+
+    .mentor-card-header {
+        display: flex;
+        gap: 1.25rem;
+        margin-bottom: 1.5rem;
+        align-items: flex-start;
+    }
+
+    .mentor-avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+        padding: 3px;
+        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .mentor-avatar-initials {
+        color: white;
+        font-weight: 700;
+        font-size: 1.75rem;
+        text-transform: uppercase;
+    }
+
+    .mentor-info h3 {
+        font-size: 1.375rem;
+        color: #1e293b;
+        margin-bottom: 0.25rem;
+        font-weight: 700;
+    }
+
+    .mentor-title {
+        font-size: 0.9rem;
+        color: #3b82f6;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    .mentor-rating {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        color: #64748b;
+    }
+
+    .rating-stars {
+        color: #fbbf24;
+        font-size: 1rem;
+    }
+
+    .badge-top {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #10b981, #059669);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 100px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-view {
+        width: 100%;
+        padding: 0.875rem 1rem;
+        text-align: center;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+        color: white;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s ease;
+        margin-top: 1rem;
+    }
+
+    .btn-view:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 5rem 2rem;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    .empty-icon {
+        font-size: 5rem;
+        margin-bottom: 1.5rem;
+        opacity: 0.3;
+    }
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .mentor-card:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+
+    .mentor-card:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .mentor-card:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+
+    .mentor-card:nth-child(4) {
+        animation-delay: 0.4s;
+    }
+
+    @media (max-width: 768px) {
+        .top-mentors-page {
+            padding: 2rem 1rem;
+        }
+
+        .mentors-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="top-mentors-page">
+    <div class="page-header">
+        <h1>⭐ {{ page_title }}</h1>
+        <p>Découvrez nos mentors d'exception avec les meilleures évaluations</p>
+    </div>
+
+    {% if mentors %}
+    <div class="mentors-grid">
+        {% for mentor in mentors %}
+        <div class="mentor-card">
+            <span class="badge-top">TOP</span>
+            <div class="mentor-card-header">
+                <div class="mentor-avatar">
+                    {% if mentor.user.profile_picture %}
+                    <img src="{{ mentor.user.profile_picture.url }}" alt="{{ mentor.user.get_full_name }}"
+                        style="width:100%;height:100%;object-fit:cover;border-radius:13px;">
+                    {% else %}
+                    <div class="mentor-avatar-initials">
+                        {{ mentor.user.first_name|first }}{{ mentor.user.last_name|first }}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="mentor-info">
+                    <h3>{{ mentor.user.get_full_name }}</h3>
+                    <div class="mentor-title">{{ mentor.expertise }}</div>
+                    <div class="mentor-rating">
+                        <span class="rating-stars">
+                            ★★★★★
+                        </span>
+                        <span>({{ mentor.sessions_count }} sessions)</span>
+                    </div>
+                </div>
+            </div>
+
+            <a href="{% url 'mentoring:mentor_detail' mentor.pk %}" class="btn-view">
+                👁️ Voir le profil
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <div class="empty-icon">⭐</div>
+        <h3>Aucun mentor disponible pour le moment</h3>
+        <p>Revenez bientôt pour découvrir nos meilleurs mentors</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

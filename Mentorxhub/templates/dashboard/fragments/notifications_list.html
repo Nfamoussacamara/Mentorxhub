@@ -1,0 +1,50 @@
+{% load static %}
+
+<div class="notifications-dropdown-content">
+    <div class="notifications-header">
+        <h3>Notifications</h3>
+        {% if unread_count > 0 %}
+        <button class="mark-all-read-btn" id="mark-all-read-dropdown">
+            Tout marquer comme lu
+        </button>
+        {% endif %}
+    </div>
+    <div class="notifications-list">
+        {% if notifications %}
+            {% for notification in notifications|slice:":10" %}
+            <div class="notification-item-dropdown {% if not notification.is_read %}unread{% endif %}" 
+                 data-notification-id="{{ notification.id }}">
+                <div class="notification-icon">
+                    {% if notification.type == 'session_reminder' %}
+                        <i class="fas fa-clock"></i>
+                    {% elif notification.type == 'session_confirmed' %}
+                        <i class="fas fa-check-circle"></i>
+                    {% elif notification.type == 'new_message' %}
+                        <i class="fas fa-envelope"></i>
+                    {% elif notification.type == 'new_request' %}
+                        <i class="fas fa-bell"></i>
+                    {% else %}
+                        <i class="fas fa-info-circle"></i>
+                    {% endif %}
+                </div>
+                <div class="notification-content">
+                    <h4>{{ notification.title }}</h4>
+                    <p>{{ notification.message|truncatewords:15 }}</p>
+                    <span class="notification-time">{{ notification.created_at|timesince }} ago</span>
+                </div>
+            </div>
+            {% endfor %}
+            {% if notifications|length > 10 %}
+            <a href="{% url 'dashboard:notifications' %}" class="view-all-notifications">
+                Voir toutes les notifications
+            </a>
+            {% endif %}
+        {% else %}
+        <div class="notification-empty">
+            <i class="fas fa-bell-slash"></i>
+            <p>Aucune notification</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+

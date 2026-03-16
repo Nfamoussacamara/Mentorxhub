@@ -1,0 +1,28 @@
+/* ============================================
+   STYLES POUR BASE.HTML
+   Base Template - MentorXHub
+   ============================================ */
+
+/* Messages Django */
+.container .alert {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.375rem;
+}
+
+.container .alert-success {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.container .alert-error,
+.container .alert-danger {
+    background-color: #ffffff;
+    color: #991b1b;
+}
+
+/* Footer */
+footer .container.text-center {
+    border-top: 1px solid var(--color-border);
+}
+

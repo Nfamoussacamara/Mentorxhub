@@ -1,0 +1,54 @@
+{% load static %}
+
+<div class="mentors-container">
+    <div class="page-header">
+        <h1>Découvrez Nos Mentors</h1>
+        <p style="opacity: 0.7; font-size: 1.1rem; max-width: 600px; margin: 0 auto; color: var(--premium-text-light);">
+            L'expertise de demain, disponible dès aujourd'hui pour vous propulser vers le succès.
+        </p>
+    </div>
+
+    <form hx-get="{% url 'mentoring:mentor_list' %}" hx-target="#mentor-list-container"
+        hx-trigger="change from:select, keyup changed delay:500ms from:input" hx-indicator="#loading-spinner"
+        hx-push-url="true" hx-swap="innerHTML transition:true" class="filters-bar">
+
+        <div class="filter-group">
+            <label><i class="fas fa-search"></i> Rechercher</label>
+            <input type="text" name="search" value="{{ search_query }}" placeholder="Un nom, une compétence..."
+                id="search-input">
+        </div>
+
+        <div class="filter-group">
+            <label><i class="fas fa-briefcase"></i> Expertise</label>
+            <select name="expertise" id="expertise-filter">
+                <option value="">Tous les domaines</option>
+                {% for option in expertise_options %}
+                <option value="{{ option.value }}" {% if option.selected %}selected{% endif %}>
+                    {{ option.label }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label><i class="fas fa-globe"></i> Langue</label>
+            <select name="language" id="language-filter">
+                <option value="">Toutes les langues</option>
+                {% for option in language_options %}
+                <option value="{{ option.value }}" {% if option.selected %}selected{% endif %}>
+                    {{ option.label }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Indicateur de chargement discret -->
+        <div id="loading-spinner" class="htmx-indicator" style="position: absolute; right: 2rem; bottom: 1.5rem;">
+            <i class="fas fa-circle-notch fa-spin" style="color: var(--premium-primary); font-size: 1.25rem;"></i>
+        </div>
+    </form>
+
+    <div id="mentor-list-container">
+        {% include 'mentoring/fragments/mentor_list_content.html' %}
+    </div>
+</div>

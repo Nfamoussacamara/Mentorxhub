@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choisissez votre rôle - MentorXHub</title>
+    <link rel="stylesheet" href="{% static 'css/auth-modern.css' %}">
+    <link rel="stylesheet" href="{% static 'accounts/css/role_selection.css' %}">
+</head>
+
+<body>
+    <div class="onboarding-container">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="logo-wrapper">
+                    <div class="logo-icon">M</div>
+                    <span class="logo-text">MentorXHub</span>
+                </div>
+                <h2>Bienvenue !</h2>
+                <p>Pour commencer, dites-nous qui vous êtes.</p>
+            </div>
+
+            <form method="post">
+                {% csrf_token %}
+
+                {% if form.errors %}
+                <div class="error-box">
+                    {{ form.role.errors }}
+                </div>
+                {% endif %}
+
+                <div class="role-cards">
+                    <!-- Option Student -->
+                    <label class="role-card-label">
+                        <input type="radio" name="role" value="student" class="hidden-radio" required>
+                        <div class="role-card">
+                            <div class="role-icon">🎓</div>
+                            <h3 class="role-title">Je veux apprendre</h3>
+                            <p class="role-desc">Trouvez des mentors, réservez des sessions et développez vos
+                                compétences.</p>
+                        </div>
+                    </label>
+
+                    <!-- Option Mentor -->
+                    <label class="role-card-label">
+                        <input type="radio" name="role" value="mentor" class="hidden-radio" required>
+                        <div class="role-card">
+                            <div class="role-icon">🚀</div>
+                            <h3 class="role-title">Je veux mentorer</h3>
+                            <p class="role-desc">Partagez votre expertise, guidez des talents et gagnez en impact.</p>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="button-wrapper">
+                    <button type="submit" class="submit-btn">Continuer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+{% load static %}
+<div class="support-tickets-list">
+    <div class="page-header">
+        <h1>Mes Tickets de Support</h1>
+        <a href="{% url 'dashboard:support_ticket_create' %}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Nouveau ticket
+        </a>
+    </div>
+    
+    <div class="tickets-stats">
+        <div class="stat-card">
+            <h3>Tickets ouverts</h3>
+            <p class="stat-value">{{ open_tickets }}</p>
+        </div>
+        <div class="stat-card">
+            <h3>Tickets résolus</h3>
+            <p class="stat-value">{{ resolved_tickets }}</p>
+        </div>
+    </div>
+    
+    <div class="tickets-list">
+        {% for ticket in tickets %}
+        <div class="ticket-card">
+            <div class="ticket-header">
+                <h3><a href="{% url 'dashboard:support_ticket_detail' ticket.id %}">{{ ticket.subject }}</a></h3>
+                <span class="badge badge-{{ ticket.status }}">
+                    {{ ticket.get_status_display }}
+                </span>
+            </div>
+            <p class="ticket-description">{{ ticket.description|truncatewords:20 }}</p>
+            <div class="ticket-meta">
+                <span><i class="fas fa-calendar"></i> {{ ticket.created_at|date:"d/m/Y" }}</span>
+                <span><i class="fas fa-comments"></i> {{ ticket.replies.count }} réponses</span>
+            </div>
+        </div>
+        {% empty %}
+        <div class="empty-state">
+            <i class="fas fa-ticket-alt"></i>
+            <p>Aucun ticket de support pour le moment.</p>
+            <a href="{% url 'dashboard:support_ticket_create' %}" class="btn btn-primary">
+                Créer un ticket
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+

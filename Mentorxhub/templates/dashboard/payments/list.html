@@ -1,0 +1,126 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Paiements - Dashboard{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'dashboard/css/payments.css' %}?v=1.0">
+{% endblock %}
+
+{% block content %}
+<div class="payments-page">
+    <div class="page-header">
+        <h1 class="page-title">
+            <i class="fas fa-credit-card"></i>
+            Mes Paiements
+        </h1>
+        <a href="{% url 'dashboard:payment_create' %}" class="neu-button neu-button-primary">
+            <i class="fas fa-plus"></i>
+            Nouveau paiement
+        </a>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="payments-stats">
+        <div class="stats-card">
+            <div class="stats-card-icon">
+                <i class="fas fa-euro-sign"></i>
+            </div>
+            <div class="stats-card-value">{{ total_paid|floatformat:2 }}€</div>
+            <div class="stats-card-label">Total payé</div>
+        </div>
+        <div class="stats-card">
+            <div class="stats-card-icon" style="background: linear-gradient(135deg, var(--warning), #f59e0b);">
+                <i class="fas fa-clock"></i>
+            </div>
+            <div class="stats-card-value">{{ pending_payments }}</div>
+            <div class="stats-card-label">En attente</div>
+        </div>
+        <div class="stats-card">
+            <div class="stats-card-icon" style="background: linear-gradient(135deg, var(--success), #10b981);">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="stats-card-value">{{ payments|length }}</div>
+            <div class="stats-card-label">Total transactions</div>
+        </div>
+    </div>
+
+    <!-- Payments List -->
+    <div class="payments-list-container glass-card">
+        <div class="payments-filters">
+            <select class="modern-input" id="status-filter">
+                <option value="">Tous les statuts</option>
+                <option value="completed">Complétés</option>
+                <option value="pending">En attente</option>
+                <option value="failed">Échoués</option>
+            </select>
+            <select class="modern-input" id="type-filter">
+                <option value="">Tous les types</option>
+                <option value="session">Sessions</option>
+                <option value="course">Cours</option>
+                <option value="subscription">Abonnements</option>
+            </select>
+        </div>
+
+        <div class="payments-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Montant</th>
+                        <th>Statut</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for payment in payments %}
+                    <tr class="payment-row" data-status="{{ payment.status }}" data-type="{{ payment.payment_type }}">
+                        <td>{{ payment.created_at|date:"d/m/Y" }}</td>
+                        <td>
+                            <span class="payment-type">
+                                {% if payment.payment_type == 'session' %}
+                                    <i class="fas fa-video"></i> Session
+                                {% elif payment.payment_type == 'course' %}
+                                    <i class="fas fa-graduation-cap"></i> Cours
+                                {% else %}
+                                    <i class="fas fa-sync"></i> Abonnement
+                                {% endif %}
+                            </span>
+                        </td>
+                        <td class="payment-amount">{{ payment.amount }}€</td>
+                        <td>
+                            <span class="badge badge-{{ payment.status }}">
+                                {{ payment.get_status_display }}
+                            </span>
+                        </td>
+                        <td>
+                            <a href="{% url 'dashboard:payment_detail' payment.id %}" class="action-link">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            {% if payment.status == 'completed' and payment.invoice_pdf %}
+                            <a href="{% url 'dashboard:payment_invoice' payment.id %}" class="action-link">
+                                <i class="fas fa-download"></i>
+                            </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="empty-state">
+                            <i class="fas fa-credit-card"></i>
+                            <p>Aucun paiement</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'dashboard/js/payments.js' %}?v=1.0"></script>
+{% endblock %}
+

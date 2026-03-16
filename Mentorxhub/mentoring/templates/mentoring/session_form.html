@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Réserver une Session - MentorXHub{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'mentoring/css/session_form.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="booking-container">
+    <div class="booking-card">
+        <div class="booking-header">
+            <h1>Réserver une Session de Mentorat</h1>
+            <p>Choisissez le créneau qui vous convient</p>
+        </div>
+
+        <!-- Mentor Info -->
+        <div class="mentor-info">
+            <div class="mentor-avatar">
+                {{ mentor.user.first_name|first|upper }}{{ mentor.user.last_name|first|upper }}
+            </div>
+            <div class="mentor-details">
+                <h3>{{ mentor.user.get_full_name }}</h3>
+                <p>{{ mentor.expertise }} • {{ mentor.hourly_rate }}€/heure</p>
+            </div>
+        </div>
+
+        <!-- Form -->
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label class="form-label" for="id_title">
+                    <i class="fas fa-heading"></i>
+                    Titre de la Session
+                </label>
+                {{ form.title }}
+                {{ form.title.errors }}
+                <p class="form-help">Ex: "Aide sur React Hooks" ou "Révision algorithmes"</p>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="id_date">
+                        <i class="fas fa-calendar"></i>
+                        Date
+                    </label>
+                    {{ form.date }}
+                    {{ form.date.errors }}
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="id_start_time">
+                        <i class="fas fa-clock"></i>
+                        Heure de Début
+                    </label>
+                    {{ form.start_time }}
+                    {{ form.start_time.errors }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="id_duration">
+                    <i class="fas fa-hourglass-half"></i>
+                    Durée (minutes)
+                </label>
+                {{ form.duration }}
+                {{ form.duration.errors }}
+                <p class="form-help">Durée recommandée : 60 minutes</p>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="id_description">
+                    <i class="fas fa-align-left"></i>
+                    Description / Objectifs
+                </label>
+                {{ form.description }}
+                {{ form.description.errors }}
+                <p class="form-help">Décrivez ce que vous aimeriez apprendre ou améliorer</p>
+            </div>
+
+            <!-- Price Summary -->
+            <div class="price-summary">
+                <div class="price-row">
+                    <span class="price-label">Tarif horaire</span>
+                    <span class="price-value">{{ mentor.hourly_rate }}€</span>
+                </div>
+                <div class="price-row">
+                    <span class="price-label">Durée</span>
+                    <span class="price-value">60 min</span>
+                </div>
+                <div class="price-row">
+                    <span class="price-label" style="font-weight: 700;">Total estimé</span>
+                    <span class="price-total">{{ mentor.hourly_rate }}€</span>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="form-actions">
+                <a href="{% url 'mentoring:mentor_detail' mentor.id %}" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i>
+                    Retour au Profil
+                </a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-check"></i>
+                    Confirmer la Réservation
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+

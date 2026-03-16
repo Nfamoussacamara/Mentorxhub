@@ -1,0 +1,86 @@
+/* ============================================
+   STYLES POUR PAGES D'ONBOARDING
+   Mentor et Mentee Onboarding - MentorXHub
+   ============================================ */
+
+/* Conteneur d'onboarding */
+.onboarding-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.onboarding-container .login-container {
+    max-width: 100%;
+}
+
+.onboarding-container .logo-wrapper {
+    justify-content: center;
+}
+
+/* Messages */
+.onboarding-container .messages-container {
+    margin-bottom: 1.5rem;
+}
+
+.onboarding-container .messages-container .error-box,
+.onboarding-container .messages-container .success-box {
+    margin-bottom: 0.75rem;
+}
+
+/* Boutons d'action */
+.onboarding-container .actions-wrapper {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.onboarding-container .submit-btn {
+    flex: 1;
+}
+
+/* Bouton "Passer cette étape" */
+.skip-button {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    background: transparent;
+    border: 2px solid #E5E7EB;
+    border-radius: 12px;
+    color: #6B7280;
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.skip-button:hover {
+    border-color: #CBD5E1;
+    color: #374151;
+}
+
+/* Message informatif */
+.onboarding-container .info-message {
+    text-align: center;
+    color: #9CA3AF;
+    font-size: 14px;
+    margin-top: 1.5rem;
+}
+
+/* Ajustements pour Bootstrap (mentor_form) */
+.onboarding-container .login-container {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.onboarding-container .asteriskField {
+    color: #EF4444;
+}
+
+.onboarding-container .submit-button-custom {
+    border-radius: 12px;
+    padding: 12px;
+}
+

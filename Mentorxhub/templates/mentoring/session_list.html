@@ -1,0 +1,142 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Mes Sessions{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'mentoring/css/session.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>📚 Mes Sessions de Mentorat</h1>
+        
+        {% if user.is_mentor %}
+        <a href="{% url 'mentoring:mentor_create_available_session' %}" class="btn btn-primary">
+            ➕ Créer une Session Ouverte
+        </a>
+        {% endif %}
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Tabs pour filtrer par statut -->
+    <ul class="nav nav-tabs mb-4" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#all" type="button">
+                Toutes ({{ sessions.count }})
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#pending" type="button">
+                🟡 En attente
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#scheduled" type="button">
+                🟢 Confirmées
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#completed" type="button">
+                ✅ Terminées
+            </button>
+        </li>
+    </ul>
+
+    <!-- Content -->
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="all">
+            {% if sessions %}
+                <div class="row">
+                    {% for session in sessions %}
+                    <div class="col-md-6 mb-3">
+                        <div class="card session-card status-{{ session.status }}">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h5 class="card-title">{{ session.title }}</h5>
+                                    <span class="badge 
+                                        {% if session.status == 'pending' %}bg-warning{% endif %}
+                                        {% if session.status == 'scheduled' %}bg-success{% endif %}
+                                        {% if session.status == 'completed' %}bg-secondary{% endif %}
+                                        {% if session.status == 'cancelled' or session.status == 'rejected' %}bg-danger{% endif %}
+                                        {% if session.status == 'available' %}bg-info{% endif %}
+                                    ">
+                                        {{ session.get_status_display }}
+                                    </span>
+                                </div>
+                                
+                                <div class="mb-2">
+                                    {% if user.is_mentor %}
+                                        {% if session.student %}
+                                            <p class="mb-1"><strong>👤 Étudiant :</strong> {{ session.student.user.get_full_name }}</p>
+                                        {% else %}
+                                            <p class="mb-1 text-muted"><em>Session ouverte - En attente de réservation</em></p>
+                                        {% endif %}
+                                    {% else %}
+                                        <p class="mb-1"><strong>👨‍🏫 Mentor :</strong> {{ session.mentor.user.get_full_name }}</p>
+                                    {% endif %}
+                                </div>
+                                
+                                <p class="mb-1">
+                                    <strong>📅 Date :</strong> {{ session.date|date:"d/m/Y" }} - 
+                                    {{ session.start_time|time:"H:i" }} à {{ session.end_time|time:"H:i" }}
+                                    ({{ session.duration|floatformat:0 }} min)
+                                </p>
+                                
+                                {% if session.description %}
+                                <p class="text-muted small">{{ session.description|truncatewords:20 }}</p>
+                                {% endif %}
+                                
+                                <!-- Actions -->
+                                <div class="mt-3">
+                                    <a href="{% url 'mentoring:session_detail' session.id %}" class="btn btn-sm btn-outline-primary">
+                                        Voir détails
+                                    </a>
+                                    
+                                    {% if session.status == 'pending' and user.is_mentor %}
+                                        <form method="post" action="{% url 'mentoring:session_approve' session.id %}" class="d-inline">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-sm btn-success">✅ Accepter</button>
+                                        </form>
+                                        <form method="post" action="{% url 'mentoring:session_reject' session.id %}" class="d-inline">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-sm btn-danger">❌ Refuser</button>
+                                        </form>
+                                    {% endif %}
+                                    
+                                    {% if session.status == 'scheduled' %}
+                                        <a href="{% url 'dashboard:session_video_room' session.id %}" class="btn btn-sm btn-primary">
+                                            🎥 Rejoindre
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="alert alert-info">
+                    <p class="mb-0">Aucune session pour le moment.</p>
+                    {% if not user.is_mentor %}
+                        <a href="{% url 'mentoring:mentor_list' %}" class="btn btn-primary mt-2">
+                            Rechercher un mentor
+                        </a>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+        
+        <!-- Autres tabs avec filtres similaires -->
+    </div>
+</div>
+{% endblock %}

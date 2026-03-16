@@ -1,0 +1,19 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Dashboard - MentorXHub{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'dashboard/css/dashboard-overview.css' %}?v=1.0">
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-home">
+    {% include 'dashboard/fragments/overview_dashboard.html' %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Custom scripts for home page if any -->
+{% endblock %}
+

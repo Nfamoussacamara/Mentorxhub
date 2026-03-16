@@ -1,0 +1,447 @@
+{% load static %}
+{% load custom_filters %}
+
+<!-- TEST DIAGNOSTIC: Si vous voyez ce texte avec les balises brutes, Django ne rend PAS le template -->
+<!-- TEST: user_role = {{ user_role }}, chart_sessions_total = {{ chart_sessions_total }} -->
+
+<!-- Dashboard Overview - HTMX DÉSACTIVÉ POUR TEST -->
+<div id="dashboard-overview-polling">
+    <!-- HTMX TEMPORAIREMENT DÉSACTIVÉ POUR DEBUG
+    hx-get="{% url 'dashboard:dashboard' %}" 
+    hx-trigger="every 60s" 
+    hx-target="this" 
+    hx-swap="innerHTML"
+    hx-indicator="#loading-overlay" 
+    hx-select="#dashboard-overview-content"
+    -->
+
+    <div id="dashboard-overview-content">
+        <div class="welcome-section">
+            <div class="welcome-content">
+                <div class="welcome-text">
+                    {% if greeting_time == 'morning' %}
+                    <h1 class="welcome-greeting">Bonjour, {{ user.first_name|default:user.email }}! ☀️</h1>
+                    <p class="welcome-subtitle">Belle journée pour progresser ! Voici votre vue d'ensemble du {% now "d
+                        M Y" %}</p>
+                    {% elif greeting_time == 'afternoon' %}
+                    <h1 class="welcome-greeting">Bon après-midi, {{ user.first_name|default:user.email }}! 🌤️</h1>
+                    <p class="welcome-subtitle">Comment se passe votre journée ? Voici votre activité du {% now "d M Y"
+                        %}</p>
+                    {% elif greeting_time == 'evening' %}
+                    <h1 class="welcome-greeting">Bonsoir, {{ user.first_name|default:user.email }}! 🌙</h1>
+                    <p class="welcome-subtitle">Une belle journée de travail ! Résumé du {% now "d M Y" %}</p>
+                    {% else %}
+                    <h1 class="welcome-greeting">Bonne soirée, {{ user.first_name|default:user.email }}! 🌃</h1>
+                    <p class="welcome-subtitle">Il est tard, mais voici votre récapitulatif du {% now "d M Y" %}</p>
+                    {% endif %}
+                </div>
+                {% if user_role == 'mentor' %}
+                {% if stats.sessions_created_change > 0 %}
+                <div class="welcome-insight positive">
+                    <div class="welcome-insight-content">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>Excellent ! Vous avez créé <strong>{{ stats.sessions_created_change|floatformat:0
+                                }}%</strong> de sessions en plus ce mois !</span>
+                    </div>
+                </div>
+                {% elif stats.active_earnings_change > 0 %}
+                <div class="welcome-insight positive">
+                    <div class="welcome-insight-content">
+                        <i class="fas fa-dollar-sign"></i>
+                        <span>Félicitations ! Vos revenus ont augmenté de <strong>{{
+                                stats.active_earnings_change|floatformat:0 }}%</strong> ce mois !</span>
+                    </div>
+                </div>
+                {% elif upcoming_sessions|length > 0 %}
+                <div class="welcome-insight info">
+                    <div class="welcome-insight-content">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Vous avez <strong>{{ upcoming_sessions|length }}</strong> session{{
+                            upcoming_sessions|length|pluralize }} à venir cette semaine !</span>
+                    </div>
+                </div>
+                {% endif %}
+                {% else %}
+                {% if stats.total_hours_change > 0 %}
+                <div class="welcome-insight positive">
+                    <div class="welcome-insight-content">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Super progrès ! Vous avez augmenté vos heures de <strong>{{
+                                stats.total_hours_change|floatformat:0 }}%</strong> ce mois !</span>
+                    </div>
+                </div>
+                {% elif upcoming_sessions|length > 0 %}
+                <div class="welcome-insight info">
+                    <div class="welcome-insight-content">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Vous avez <strong>{{ upcoming_sessions|length }}</strong> session{{
+                            upcoming_sessions|length|pluralize }} programmée{{ upcoming_sessions|length|pluralize }} !
+                            Préparez-vous bien !</span>
+                    </div>
+                </div>
+                {% elif stats.sessions_created == 0 %}
+                <div class="welcome-insight suggestion">
+                    <div class="welcome-insight-content">
+                        <i class="fas fa-lightbulb"></i>
+                        <span>Commencez votre parcours ! Réservez votre première séance avec un mentor.</span>
+                    </div>
+                    <a href="{% url 'mentoring:mentors_list' %}" class="insight-cta">
+                        Trouver un mentor
+                        <i class="fas fa-arrow-right" style="margin-left: 0.5rem; font-size: 0.75rem;"></i>
+                    </a>
+                </div>
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stats-card-overview">
+                <div class="stats-card-header-overview">
+                    <div>
+                        <div class="stats-card-label-overview">Sessions Créées</div>
+                        <div class="stats-card-value-overview">{{ stats.sessions_created|default:0 }}</div>
+                        {% if stats.sessions_created_change >= 0 %}
+                        <div class="stats-card-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>{{ stats.sessions_created_change|default:0 }}%</span>
+                        </div>
+                        {% else %}
+                        <div class="stats-card-change negative">
+                            <i class="fas fa-arrow-down"></i>
+                            <span>{{ stats.sessions_created_change_abs|default:0 }}%</span>
+                        </div>
+                        {% endif %}
+                        <div class="stats-card-comparison">Mois dernier: {{ stats.sessions_created_last_month|default:0
+                            }}</div>
+                    </div>
+                    <div class="stats-card-icon-overview purple">
+                        <i class="fas fa-calendar-plus"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-card-overview">
+                <div class="stats-card-header-overview">
+                    <div>
+                        <div class="stats-card-label-overview">Sessions Actives</div>
+                        <div class="stats-card-value-overview">{{ stats.sessions_open|default:0 }}</div>
+                        {% if stats.sessions_open_change >= 0 %}
+                        <div class="stats-card-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>{{ stats.sessions_open_change|default:0 }}%</span>
+                        </div>
+                        {% else %}
+                        <div class="stats-card-change negative">
+                            <i class="fas fa-arrow-down"></i>
+                            <span>{{ stats.sessions_open_change_abs|default:0 }}%</span>
+                        </div>
+                        {% endif %}
+                        <div class="stats-card-comparison">Mois dernier: {{ stats.sessions_open_last_month|default:0 }}
+                        </div>
+                    </div>
+                    <div class="stats-card-icon-overview green">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-card-overview">
+                <div class="stats-card-header-overview">
+                    <div>
+                        {% if user_role == 'mentor' %}
+                        <div class="stats-card-label-overview">Revenus du Mois</div>
+                        <div class="stats-card-value-overview">${{ stats.active_earnings|default:0|floatformat:2 }}
+                        </div>
+                        {% else %}
+                        <div class="stats-card-label-overview">Heures Totales</div>
+                        <div class="stats-card-value-overview">{{ stats.total_hours|default:0|floatformat:1 }}h</div>
+                        {% endif %}
+                        {% if user_role == 'mentor' %}
+                        {% if stats.active_earnings_change >= 0 %}
+                        <div class="stats-card-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>{{ stats.active_earnings_change|default:0 }}%</span>
+                        </div>
+                        {% else %}
+                        <div class="stats-card-change negative">
+                            <i class="fas fa-arrow-down"></i>
+                            <span>{{ stats.active_earnings_change_abs|default:0 }}%</span>
+                        </div>
+                        {% endif %}
+                        <div class="stats-card-comparison">Mois dernier: ${{
+                            stats.active_earnings_last_month|default:0|floatformat:2 }}</div>
+                        {% else %}
+                        {% if stats.total_hours_change >= 0 %}
+                        <div class="stats-card-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>{{ stats.total_hours_change|default:0 }}%</span>
+                        </div>
+                        {% else %}
+                        <div class="stats-card-change negative">
+                            <i class="fas fa-arrow-down"></i>
+                            <span>{{ stats.total_hours_change_abs|default:0 }}%</span>
+                        </div>
+                        {% endif %}
+                        <div class="stats-card-comparison">Mois dernier: {{
+                            stats.total_hours_last_month|default:0|floatformat:1 }}h</div>
+                        {% endif %}
+                    </div>
+                    <div class="stats-card-icon-overview red">
+                        {% if user_role == 'mentor' %}
+                        <i class="fas fa-dollar-sign"></i>
+                        {% else %}
+                        <i class="fas fa-hourglass-half"></i>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-card-overview">
+                <div class="stats-card-header-overview">
+                    <div>
+                        {% if user_role == 'mentor' %}
+                        <div class="stats-card-label-overview">Étudiants Actifs</div>
+                        <div class="stats-card-value-overview">{{ stats.active_students|default:0 }}</div>
+                        {% else %}
+                        <div class="stats-card-label-overview">Mentors Actifs</div>
+                        <div class="stats-card-value-overview">{{ stats.active_mentors|default:0 }}</div>
+                        {% endif %}
+                        {% if user_role == 'mentor' %}
+                        {% if stats.active_students_change >= 0 %}
+                        <div class="stats-card-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>{{ stats.active_students_change|default:0 }}%</span>
+                        </div>
+                        {% else %}
+                        <div class="stats-card-change negative">
+                            <i class="fas fa-arrow-down"></i>
+                            <span>{{ stats.active_students_change_abs|default:0 }}%</span>
+                        </div>
+                        {% endif %}
+                        <div class="stats-card-comparison">Mois dernier: {{ stats.active_students_last_month|default:0
+                            }}</div>
+                        {% else %}
+                        {% if stats.active_mentors_change >= 0 %}
+                        <div class="stats-card-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>{{ stats.active_mentors_change|default:0 }}%</span>
+                        </div>
+                        {% else %}
+                        <div class="stats-card-change negative">
+                            <i class="fas fa-arrow-down"></i>
+                            <span>{{ stats.active_mentors_change_abs|default:0 }}%</span>
+                        </div>
+                        {% endif %}
+                        <div class="stats-card-comparison">Mois dernier: {{ stats.active_mentors_last_month|default:0 }}
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="stats-card-icon-overview blue">
+                        <i class="fas fa-users"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-grid">
+            <!-- Sessions by Status Chart -->
+            <div class="chart-card">
+                <div class="chart-card-header">
+                    <div>
+                        <div class="chart-card-title">Sessions par Statut</div>
+                        <div class="chart-card-value">{{ chart_sessions_total|default:0 }}</div>
+                    </div>
+                    <div class="chart-card-actions">
+                        <a href="{% url 'dashboard:sessions_calendar' %}" class="chart-card-link">Plus de détails →</a>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="sessionsStatusChart" data-scheduled="{{ chart_sessions_data.scheduled|default:0 }}"
+                        data-in-progress="{{ chart_sessions_data.in_progress|default:0 }}"
+                        data-completed="{{ chart_sessions_data.completed|default:0 }}"
+                        data-cancelled="{{ chart_sessions_data.cancelled|default:0 }}"></canvas>
+                </div>
+            </div>
+
+            <!-- Revenue/Hours Chart -->
+            <div class="chart-card">
+                <div class="chart-card-header">
+                    <div>
+                        {% if user_role == 'mentor' %}
+                        <div class="chart-card-title">Revenus</div>
+                        <div class="chart-revenue-header">
+                            <div class="chart-card-value">${{ total_revenue|default:0|floatformat:2 }}</div>
+                            {% if stats.active_earnings_change >= 0 %}
+                            <div class="chart-revenue-change">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>{{ stats.active_earnings_change|default:0 }}%</span>
+                            </div>
+                            {% else %}
+                            <div class="chart-revenue-change" style="color: #ef4444;">
+                                <i class="fas fa-arrow-down"></i>
+                                <span>{{ stats.active_earnings_change_abs|default:0 }}%</span>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="chart-revenue-comparison">Mois dernier: ${{
+                            stats.active_earnings_last_month|default:0|floatformat:2 }}</div>
+                        {% else %}
+                        <div class="chart-card-title">Heures de Mentorat</div>
+                        <div class="chart-revenue-header">
+                            <div class="chart-card-value">{{
+                                total_hours_chart|default:stats.total_hours|default:0|floatformat:1 }}h</div>
+                            {% if stats.total_hours_change >= 0 %}
+                            <div class="chart-revenue-change">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>{{ stats.total_hours_change|default:0 }}%</span>
+                            </div>
+                            {% else %}
+                            <div class="chart-revenue-change" style="color: #ef4444;">
+                                <i class="fas fa-arrow-down"></i>
+                                <span>{{ stats.total_hours_change_abs|default:0 }}%</span>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="chart-revenue-comparison">Mois dernier: {{
+                            stats.total_hours_last_month|default:0|floatformat:1 }}h</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="revenueChart" data-user-role="{{ user_role|default:'student' }}"
+                        data-chart-data="{% if user_role == 'mentor' %}{{ chart_revenue_data_json|default:'[]'|safe }}{% else %}{{ chart_hours_data_json|default:'[]'|safe }}{% endif %}"
+                        data-chart-labels="{% if user_role == 'mentor' %}{{ chart_revenue_labels_json|default:'[]'|safe }}{% else %}{{ chart_hours_labels_json|default:'[]'|safe }}{% endif %}"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tables Section -->
+        <div class="tables-grid">
+            <!-- Leaderboard -->
+            <div class="table-card">
+                <div class="table-card-header">
+                    <h2 class="table-card-title">Classement</h2>
+                </div>
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th>NO</th>
+                            <th>NOM</th>
+                            {% if user_role == 'mentor' %}
+                            <th>ÉTUDIANTS</th>
+                            <th>SESSIONS</th>
+                            <th>REVENUS</th>
+                            {% else %}
+                            <th>MENTORS</th>
+                            <th>SESSIONS</th>
+                            <th>HEURES</th>
+                            {% endif %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if leaderboard %}
+                        {% for item in leaderboard %}
+                        <tr>
+                            <td>{{ item.rank }}</td>
+                            <td>
+                                <div class="leaderboard-row">
+                                    <div class="leaderboard-avatar">
+                                        {% if user_role == 'mentor' %}
+                                        {{ item.user.first_name|first }}{{ item.user.last_name|first }}
+                                        {% else %}
+                                        {{ item.user.first_name|first }}{{ item.user.last_name|first }}
+                                        {% endif %}
+                                    </div>
+                                    <div class="leaderboard-info">
+                                        <div class="leaderboard-name">{{ item.user.get_full_name|default:item.user.email
+                                            }}</div>
+                                        <div class="leaderboard-email">{{ item.user.email }}</div>
+                                    </div>
+                                </div>
+                            </td>
+                            {% if user_role == 'mentor' %}
+                            <td>{{ item.completed_sessions|default:0 }}</td>
+                            <td>{{ item.total_sessions|default:0 }}</td>
+                            <td>${{ item.total_value|default:0|floatformat:2 }}</td>
+                            {% else %}
+                            <td>{{ item.completed_sessions|default:0 }}</td>
+                            <td>{{ item.total_sessions|default:0 }}</td>
+                            <td>{{ item.total_hours|default:0|floatformat:1 }}h</td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                        {% else %}
+                        <tr>
+                            <td colspan="{% if user_role == 'mentor' %}5{% else %}5{% endif %}"
+                                style="text-align: center; padding: 40px; color: var(--gray-500);">
+                                Aucune donnée disponible
+                            </td>
+                        </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Upcoming Sessions -->
+            <div class="table-card">
+                <div class="table-card-header">
+                    <h2 class="table-card-title">Sessions à venir</h2>
+                </div>
+                <div class="meetings-list">
+                    {% if upcoming_sessions %}
+                    {% for session in upcoming_sessions %}
+                    <div class="meeting-item">
+                        <div class="meeting-time">
+                            {{ session.start_time|time:"H:i" }}
+                        </div>
+                        <div class="meeting-dot"></div>
+                        <div class="meeting-content">
+                            <div class="meeting-title">{{ session.title }}</div>
+                            <div class="meeting-icons">
+                                {% if session.meeting_link %}
+                                <div class="meeting-icon">
+                                    <i class="fas fa-video"></i>
+                                </div>
+                                {% else %}
+                                <div class="meeting-icon">
+                                    <i class="fas fa-calendar"></i>
+                                </div>
+                                {% endif %}
+                                <div class="meeting-participants">
+                                    {% if user_role == 'mentor' %}
+                                    <div class="meeting-participant" title="{{ session.student.user.get_full_name }}">
+                                        {{ session.student.user.first_name|first }}{{
+                                        session.student.user.last_name|first }}
+                                    </div>
+                                    {% else %}
+                                    <div class="meeting-participant" title="{{ session.mentor.user.get_full_name }}">
+                                        {{ session.mentor.user.first_name|first }}{{ session.mentor.user.last_name|first
+                                        }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <div style="text-align: center; padding: 40px; color: var(--gray-500);">
+                        <i class="fas fa-calendar-times"
+                            style="font-size: 48px; margin-bottom: 16px; opacity: 0.5;"></i>
+                        <p>Aucune session à venir</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Chart.js Script -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" defer></script>
+
+</div>

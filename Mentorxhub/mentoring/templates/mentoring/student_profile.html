@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Mon Profil Étudiant - MentorXHub{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'mentoring/css/student_profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <!-- Hero -->
+    <div class="profile-hero">
+        <div class="profile-avatar-large">
+            {% if user.first_name and user.last_name %}
+            {{ user.first_name|first|upper }}{{ user.last_name|first|upper }}
+            {% else %}
+            {{ user.email|first|upper }}
+            {% endif %}
+        </div>
+
+        <h1 class="profile-name">{{ user.get_full_name|default:user.email }}</h1>
+        <p class="profile-role">
+            <i class="fas fa-graduation-cap"></i>
+            Étudiant
+        </p>
+
+        <!-- Stats -->
+        <div class="stats-row">
+            <div class="stat-item">
+                <div class="stat-value">{{ student.total_sessions|default:0 }}</div>
+                <div class="stat-label">Sessions Complétées</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">{{ student.total_hours|default:0 }}</div>
+                <div class="stat-label">Heures d'Apprentissage</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">{{ active_mentors|default:0 }}</div>
+                <div class="stat-label">Mentors Actifs</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Prochaines Sessions -->
+    <div class="section">
+        <h2 class="section-title">
+            <i class="fas fa-calendar-check" style="color: var(--primary);"></i>
+            Prochaines Sessions
+        </h2>
+
+        {% if upcoming_sessions %}
+        <div class="sessions-grid">
+            {% for session in upcoming_sessions %}
+            <div class="session-item">
+                <div class="session-info">
+                    <h4>{{ session.title }}</h4>
+                    <div class="session-meta">
+                        <i class="fas fa-user"></i> {{ session.mentor.user.get_full_name }}
+                        <span style="margin: 0 0.5rem;">•</span>
+                        <i class="fas fa-clock"></i> {{ session.date|date:"d M Y" }} à {{ session.start_time|time:"H:i"
+                        }}
+                    </div>
+                </div>
+                <div>
+                    <span class="badge badge-{{ session.status }}">{{ session.get_status_display }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <i class="fas fa-calendar-day"></i>
+            <p>Aucune session programmée</p>
+            <a href="{% url 'mentoring:mentor_list' %}" class="btn btn-primary">
+                <i class="fas fa-search"></i>
+                Trouver un Mentor
+            </a>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Sessions Passées -->
+    <div class="section">
+        <h2 class="section-title">
+            <i class="fas fa-history" style="color: var(--text-gray);"></i>
+            Historique des Sessions
+        </h2>
+
+        {% if past_sessions %}
+        <div class="sessions-grid">
+            {% for session in past_sessions %}
+            <div class="session-item">
+                <div class="session-info">
+                    <h4>{{ session.title }}</h4>
+                    <div class="session-meta">
+                        <i class="fas fa-user"></i> {{ session.mentor.user.get_full_name }}
+                        <span style="margin: 0 0.5rem;">•</span>
+                        <i class="fas fa-clock"></i> {{ session.date|date:"d M Y" }}
+                    </div>
+                </div>
+                <div>
+                    <span class="badge badge-success">Complété</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <i class="fas fa-clock"></i>
+            <p>Aucune session passée</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+

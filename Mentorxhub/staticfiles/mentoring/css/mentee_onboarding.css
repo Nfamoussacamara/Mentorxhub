@@ -1,0 +1,595 @@
+/* ============================================
+   STYLES POUR PAGE D'ONBOARDING MENTEE
+   Mentee Onboarding - MentorXHub
+   Basé sur login.css pour cohérence
+   ============================================ */
+
+/* Préchargement de la police pour de meilleures performances */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Reset pour éviter les conflits */
+#onboarding-page * {
+    box-sizing: border-box;
+}
+
+/* Conteneur de la page d'onboarding */
+#onboarding-page {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #1D4ED8 0%, #1E3A8A 100%);
+    min-height: 100vh;
+    display: flex;
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 9999;
+    /* Masquer la barre de défilement */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    /* Animation d'entrée */
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Masquer la scrollbar pour Chrome, Safari et Opera */
+#onboarding-page::-webkit-scrollbar {
+    display: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Animations d'arrière-plan avec optimisation */
+#onboarding-page::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 15% 25%, rgba(96, 165, 250, 0.3) 0%, transparent 25%),
+        radial-gradient(circle at 85% 15%, rgba(147, 197, 253, 0.25) 0%, transparent 30%),
+        radial-gradient(circle at 70% 85%, rgba(59, 130, 246, 0.2) 0%, transparent 35%),
+        radial-gradient(circle at 30% 75%, rgba(191, 219, 254, 0.15) 0%, transparent 28%);
+    animation: float 25s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+    will-change: transform;
+}
+
+#onboarding-page::after {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-image:
+        url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 10 L90 90 L10 90 Z' fill='rgba(255,255,255,0.02)' /%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='40' r='30' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='2'/%3E%3C/svg%3E");
+    background-position: 0 0, 40px 40px;
+    background-size: 200px 200px, 160px 160px;
+    animation: backgroundMove 60s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+    will-change: transform;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(40px, -30px) scale(1.15);
+    }
+    66% {
+        transform: translate(-30px, 20px) scale(0.95);
+    }
+}
+
+@keyframes backgroundMove {
+    from {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    to {
+        transform: translate(50px, 50px) rotate(360deg);
+    }
+}
+
+/* Conteneur d'onboarding avec animation d'entrée et effet glassmorphism */
+.onboarding-container {
+    width: 100%;
+    max-width: 800px;
+    /* Largeur maximale augmentée pour éviter le défilement */
+    margin: auto;
+    background: rgba(239, 246, 255, 0.85);
+    /* Effet glassmorphism */
+    padding: 2.5rem;
+    border-radius: 24px;
+    box-shadow: 0 35px 70px rgba(0, 0, 0, 0.35), 0 15px 30px rgba(0, 0, 0, 0.15);
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transform: scale(1.02);
+    animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1.02);
+    }
+}
+
+/* Indicateur de progression */
+.progress-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding: 0 0.5rem;
+}
+
+.progress-step {
+    flex: 1;
+    height: 4px;
+    background: #E5E7EB;
+    border-radius: 2px;
+    position: relative;
+    margin: 0 0.25rem;
+}
+
+.progress-step.active {
+    background: #2563EB;
+}
+
+.progress-step.completed {
+    background: #10B981;
+}
+
+/* En-tête avec Logo */
+.login-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.logo-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background: #2563EB;
+    color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1E3A8A;
+}
+
+.login-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.5rem;
+}
+
+.login-header p {
+    color: #6B7280;
+    font-size: 15px;
+}
+
+/* Styles du formulaire */
+/* Formulaire avec gap pour espacer les lignes */
+#onboardingForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+/* Grille pour champs côte à côte - Deux colonnes */
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Deux colonnes égales */
+    gap: 1rem;
+    /* Espacement entre les colonnes */
+    margin-bottom: 0;
+    /* Pas de marge bottom car géré par le gap du formulaire */
+    width: 100%;
+}
+
+.input-group {
+    margin-bottom: 0;
+    /* Pas de marge bottom car géré par le gap du formulaire ou input-row */
+    width: 100%;
+    /* Animation d'entrée pour les champs */
+    animation: slideInField 0.4s ease-out;
+    animation-fill-mode: both;
+}
+
+/* Animation d'entrée progressive pour les champs */
+@keyframes slideInField {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.input-row .input-group:nth-child(1) { animation-delay: 0.1s; }
+.input-row .input-group:nth-child(2) { animation-delay: 0.2s; }
+.input-group.full:nth-of-type(1) { animation-delay: 0.3s; }
+.input-group.full:nth-of-type(2) { animation-delay: 0.4s; }
+
+/* Groupe de champ pleine largeur - S'étend sur toutes les colonnes */
+.input-group.full {
+    grid-column: 1 / -1;
+    /* Prend toute la largeur de la grille */
+    width: 100%;
+    margin-bottom: 1.25rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 14px;
+    color: #111827;
+}
+
+/* Wrapper pour input avec label flottant */
+.input-wrapper {
+    position: relative;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+    background-color: #ffffff;
+    height: auto;
+}
+
+.input-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Select moderne avec flèche personnalisée */
+.input-group select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+    cursor: pointer;
+}
+
+.input-group select:hover {
+    border-color: #D1D5DB;
+}
+
+/* Hover states améliorés */
+.input-group input:hover:not(:focus),
+.input-group select:hover:not(:focus),
+.input-group textarea:hover:not(:focus) {
+    border-color: #D1D5DB;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Focus ring moderne */
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+    background-color: #ffffff;
+    border-color: #2563EB;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1), 0 0 0 1px #2563EB;
+}
+
+/* Validation visuelle */
+.input-group.valid input,
+.input-group.valid select,
+.input-group.valid textarea {
+    border-color: #10B981;
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16.667 5L7.5 14.167 3.333 10' stroke='%2310B981' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+}
+
+/* Compteur de caractères */
+.char-counter {
+    text-align: right;
+    font-size: 12px;
+    color: #9CA3AF;
+    margin-top: 0.25rem;
+}
+
+.char-counter.warning {
+    color: #ffffff;
+}
+
+.char-counter.error {
+    color: #EF4444;
+}
+
+/* État d'erreur */
+.input-group input.error,
+.input-group select.error,
+.input-group textarea.error {
+    border-color: #EF4444;
+    animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-8px);
+    }
+    75% {
+        transform: translateX(8px);
+    }
+}
+
+/* Bouton de soumission avec état de chargement */
+.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background: #2563EB;
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    position: relative;
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+.submit-btn:hover:not(:disabled) {
+    background: #1D4ED8;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+}
+
+/* Effet shimmer sur le bouton */
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.submit-btn:hover:not(:disabled)::before {
+    left: 100%;
+}
+
+.submit-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* État de chargement du bouton */
+.submit-btn.loading::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    margin-left: -8px;
+    margin-top: -8px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spinner 0.6s linear infinite;
+}
+
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.submit-btn.loading span {
+    opacity: 0;
+}
+
+/* Bouton "Passer cette étape" */
+.skip-button {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    background: transparent;
+    border: 2px solid #E5E7EB;
+    border-radius: 12px;
+    color: #6B7280;
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.skip-button:hover {
+    border-color: #CBD5E1;
+    color: #374151;
+    background: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Message informatif */
+.info-message {
+    text-align: center;
+    color: #9CA3AF;
+    font-size: 14px;
+    margin-top: 1.5rem;
+}
+
+/* Messages d'erreur */
+.error-box {
+    padding: 1rem;
+    background: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 12px;
+    color: #991B1B;
+    margin-bottom: 1.5rem;
+    font-size: 14px;
+    text-align: left;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.error-text {
+    color: #EF4444;
+    font-size: 13px;
+    display: block;
+    margin-top: 0.25rem;
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Message de succès */
+.success-box {
+    padding: 1rem;
+    background: #D1FAE5;
+    border: 1px solid #6EE7B7;
+    border-radius: 12px;
+    color: #065F46;
+    margin-bottom: 1.5rem;
+    font-size: 14px;
+    text-align: left;
+    animation: slideDown 0.3s ease-out;
+}
+
+/* Conteneur de messages */
+.messages-container {
+    margin-bottom: 1.5rem;
+}
+
+.messages-container .error-box,
+.messages-container .success-box {
+    margin-bottom: 0.75rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #onboarding-page {
+        padding: 1rem;
+    }
+
+    .onboarding-container {
+        padding: 2rem;
+        max-width: 100%;
+    }
+
+    .login-header h2 {
+        font-size: 24px;
+    }
+
+    /* Mettre les champs en une seule colonne sur mobile */
+    .input-row {
+        grid-template-columns: 1fr;
+        /* Une seule colonne sur mobile */
+        gap: 1.25rem;
+        /* Espacement vertical entre les champs */
+    }
+
+    /* Ajuster les marges pour les champs pleine largeur */
+    .input-group.full {
+        margin-bottom: 0;
+    }
+}
+
+/* Amélioration pour les lecteurs d'écran */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Animation pour le carrousel de texte */
+.tagline-wrapper {
+    height: 1.5em;
+    position: relative;
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+
+#tagline-text {
+    margin: 0;
+    transition: opacity 0.8s ease-in-out;
+    color: #6B7280;
+    font-size: 15px;
+    font-weight: 500;
+}
+

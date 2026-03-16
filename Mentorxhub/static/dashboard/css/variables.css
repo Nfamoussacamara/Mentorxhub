@@ -1,0 +1,191 @@
+/**
+ * Variables CSS - Design System MentorXHub
+ * Tokens de design réutilisables
+ */
+
+:root {
+    /* ===== COULEURS PRIMAIRES ===== */
+    --primary-50: #eff6ff;
+    --primary-100: #dbeafe;
+    --primary-200: #bfdbfe;
+    --primary-300: #93c5fd;
+    --primary-400: #60a5fa;
+    --primary-500: #3b82f6;
+    --primary-600: #2563eb;
+    --primary-700: #1d4ed8;
+    --primary-800: #1e40af;
+    --primary-900: #1e3a8a;
+
+    /* ===== COULEURS ACCENT (Violet Premium) ===== */
+    --accent-50: #ffffff;
+    --accent-100: #ffffff;
+    --accent-200: #e9d5ff;
+    --accent-300: #d8b4fe;
+    --accent-400: #c084fc;
+    --accent-500: #a855f7;
+    --accent-600: #9333ea;
+    --accent-700: #7e22ce;
+    --accent-800: #6b21a8;
+    --accent-900: #581c87;
+
+    /* ===== COULEURS SÉMANTIQUES ===== */
+    --success: #10b981;
+    --warning: #ffffff;
+    --error: #ef4444;
+    --info: #3b82f6;
+
+    /* ===== NEUTRALS ===== */
+    --gray-50: #ffffff;
+    --gray-100: #ffffff;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+
+    --white: #ffffff;
+    --black: #000000;
+
+    /* ===== ESPACEMENTS ===== */
+    --spacing-xs: 0.25rem;
+    /* 4px */
+    --spacing-sm: 0.5rem;
+    /* 8px */
+    --spacing-md: 1rem;
+    /* 16px */
+    --spacing-lg: 1.5rem;
+    /* 24px */
+    --spacing-xl: 2rem;
+    /* 32px */
+    --spacing-2xl: 3rem;
+    /* 48px */
+    --spacing-3xl: 4rem;
+    /* 64px */
+    --spacing-4xl: 5rem;
+    /* 80px */
+
+    /* ===== TYPOGRAPHIE ===== */
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-size-xs: 0.75rem;
+    /* 12px */
+    --font-size-sm: 0.875rem;
+    /* 14px */
+    --font-size-base: 1rem;
+    /* 16px */
+    --font-size-lg: 1.125rem;
+    /* 18px */
+    --font-size-xl: 1.25rem;
+    /* 20px */
+    --font-size-2xl: 1.5rem;
+    /* 24px */
+    --font-size-3xl: 2rem;
+    /* 32px */
+    --font-size-4xl: 2.5rem;
+    /* 40px */
+
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    /* ===== BORDER RADIUS ===== */
+    --radius-sm: 0.375rem;
+    /* 6px */
+    --radius-md: 0.5rem;
+    /* 8px */
+    --radius-lg: 0.75rem;
+    /* 12px */
+    --radius-full: 9999px;
+
+    /* ===== OMBRES ===== */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+    /* ===== GLASSMORPHISM ===== */
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-blur: blur(10px);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+
+    /* ===== NEUMORPHISM ===== */
+    --neu-light: #ffffff;
+    --neu-dark: #e0e0e0;
+    --neu-shadow-light: 5px 5px 10px rgba(163, 177, 198, 0.3), -5px -5px 10px rgba(255, 255, 255, 0.8);
+    --neu-shadow-inset: inset 5px 5px 10px rgba(163, 177, 198, 0.3), inset -5px -5px 10px rgba(255, 255, 255, 0.8);
+
+    /* ===== TRANSITIONS ===== */
+    --transition-fast: 150ms ease-in-out;
+    --transition-base: 250ms ease-in-out;
+    --transition-slow: 350ms ease-in-out;
+
+    /* ===== LAYOUT ===== */
+    --sidebar-width: 280px;
+    --sidebar-width-collapsed: 80px;
+    --navbar-height: 64px;
+
+    /* ===== Z-INDEX ===== */
+    --z-sidebar: 100;
+    --z-navbar: 90;
+    --z-dropdown: 1000;
+    --z-modal: 2000;
+    --z-toast: 3000;
+}
+
+/* ===== DARK MODE ===== */
+[data-theme="dark"] {
+    /* Inverser les gris */
+    --gray-50: #1f2937;
+    --gray-100: #374151;
+    --gray-200: #4b5563;
+    --gray-300: #6b7280;
+    --gray-400: #9ca3af;
+    --gray-500: #d1d5db;
+    --gray-600: #e5e7eb;
+    --gray-700: #ffffff;
+    --gray-800: #ffffff;
+    --gray-900: #ffffff;
+
+    /* Couleurs de base */
+    --white: #111827;
+    --black: #ffffff;
+
+    /* Couleurs primaires ajustées pour le mode sombre */
+    --primary-50: #1e3a8a;
+    --primary-100: #1e40af;
+    --primary-200: #1d4ed8;
+    --primary-300: #2563eb;
+    --primary-400: #3b82f6;
+    --primary-500: #60a5fa;
+    --primary-600: #93c5fd;
+    --primary-700: #bfdbfe;
+    --primary-800: #dbeafe;
+    --primary-900: #eff6ff;
+
+    /* Couleurs accent ajustées */
+    --accent-50: #581c87;
+    --accent-100: #6b21a8;
+    --accent-200: #7e22ce;
+    --accent-300: #9333ea;
+    --accent-400: #a855f7;
+    --accent-500: #c084fc;
+    --accent-600: #d8b4fe;
+    --accent-700: #e9d5ff;
+    --accent-800: #ffffff;
+    --accent-900: #ffffff;
+
+    /* Glassmorphism pour mode sombre */
+    --glass-bg: rgba(31, 41, 55, 0.3);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+
+    /* Neumorphism pour mode sombre */
+    --neu-light: #374151;
+    --neu-dark: #1f2937;
+    --neu-shadow-light: 5px 5px 10px rgba(0, 0, 0, 0.5), -5px -5px 10px rgba(55, 65, 81, 0.5);
+    --neu-shadow-inset: inset 5px 5px 10px rgba(0, 0, 0, 0.5), inset -5px -5px 10px rgba(55, 65, 81, 0.5);
+}

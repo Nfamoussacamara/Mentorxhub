@@ -1,0 +1,186 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}MentorXHub{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar-modern.css' %}?v=2.0">
+    <link rel="stylesheet" href="{% static 'core/css/base.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body class="{% block body_class %}{% endblock %}">
+    {% if not hide_navbar %}
+    <header class="site-header">
+        <nav class="navbar-modern">
+            <div class="nav-container-modern">
+                <!-- Logo -->
+                <a href="{% url 'core:home' %}" class="navbar-brand-modern">
+                    <div class="brand-icon-modern">
+                        <span>M</span>
+                    </div>
+                    <span class="brand-text">MentorXHub</span>
+                </a>
+
+                <!-- Mobile Toggle -->
+                <button class="navbar-toggler-modern" id="navbarToggler" aria-label="Toggle navigation"
+                    aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <!-- Center Navigation -->
+                <div class="navbar-center">
+                    <a href="{% url 'core:home' %}" class="nav-item-modern">Accueil</a>
+                    <a href="{% url 'core:home' %}#features" class="nav-item-modern">Fonctionnalités</a>
+
+                    <div class="nav-dropdown-modern">
+                        <button class="nav-item-modern dropdown-btn">
+                            Mentors <i class="fas fa-chevron-down dropdown-icon"></i>
+                        </button>
+                        <div class="dropdown-content-modern">
+                            <div class="dropdown-header-modern">Trouver un Mentor</div>
+                            <a href="{% url 'mentoring:mentor_list' %}" class="dropdown-link-modern">
+                                <i class="fas fa-search"></i> Parcourir tous
+                            </a>
+                            <a href="{% url 'core:top_mentors' %}" class="dropdown-link-modern">
+                                <i class="fas fa-star"></i> Mieux notés
+                            </a>
+                        </div>
+                    </div>
+
+                    <a href="{% url 'core:pricing' %}" class="nav-item-modern">Tarifs</a>
+                </div>
+
+                <!-- Right Actions -->
+                <div class="navbar-actions-modern">
+                    {% if user.is_authenticated %}
+                    <button class="nav-item-modern apps-btn-modern">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2.5" y="2.5" width="8" height="8" rx="2" stroke="currentColor" stroke-width="2" />
+                            <rect x="13.5" y="2.5" width="8" height="8" rx="2" stroke="currentColor" stroke-width="2" />
+                            <rect x="2.5" y="13.5" width="8" height="8" rx="2" stroke="currentColor" stroke-width="2" />
+                            <rect x="13.5" y="13.5" width="8" height="8" rx="2" stroke="currentColor"
+                                stroke-width="2" />
+                        </svg>
+                    </button>
+                    <div class="nav-dropdown-modern dropdown-right user-dropdown-container">
+                        <button class="user-chip-modern">
+                            <div class="user-avatar-modern">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                            </div>
+                            <span class="user-name-modern">{{ user.get_full_name }}</span>
+                            <i class="fas fa-chevron-down dropdown-icon"></i>
+                        </button>
+                        <div class="dropdown-content-modern user-dropdown-content dropdown-right">
+                            <div class="user-dropdown-header">
+                                <div class="user-avatar-large">
+                                    {{ user.get_full_name|make_list|first|upper }}
+                                </div>
+                                <div class="user-info-header">
+                                    <div class="user-name-header">{{ user.get_full_name }}</div>
+                                    <div class="user-role-header">
+                                        {% if user.role == 'student' %}
+                                        <i class="fas fa-wallet"></i> Candidat
+                                        {% else %}
+                                        <i class="fas fa-chalkboard-teacher"></i> Mentor
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a href="{% url 'accounts:profile' %}" class="dropdown-link-modern">
+                                <i class="far fa-user"></i> Profil
+                            </a>
+                            <a href="{% url 'dashboard:dashboard' %}" class="dropdown-link-modern">
+                                <i class="fas fa-cog"></i> Mon compte
+                            </a>
+                            <a href="{% url 'core:home' %}" class="dropdown-link-modern">
+                                <i class="fas fa-globe"></i> Site
+                            </a>
+                            <a href="{% url 'accounts:logout' %}" class="dropdown-link-modern logout-link">
+                                <i class="fas fa-power-off"></i> Déconnexion
+                            </a>
+                        </div>
+                    </div>
+                    {% else %}
+                    <a href="{% url 'accounts:login' %}" class="nav-item-modern">Connexion</a>
+                    <a href="{% url 'accounts:signup' %}" class="btn-download-modern">
+                        <span>Commencer</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </header>
+    {% endif %}
+
+    {% if messages %}
+    <div class="container mt-4">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% if not hide_footer %}
+    <footer class="bg-surface py-12">
+        <div class="container grid md:grid-cols-4 gap-8">
+            <div>
+                <h4 class="text-primary">MentorXHub</h4>
+                <p>Donner du pouvoir à la prochaine génération de leaders.</p>
+            </div>
+            <div>
+                <h4>Plateforme</h4>
+                <ul>
+                    <li><a href="{% url 'mentoring:mentor_list' %}">Parcourir les Mentors</a></li>
+                    <li><a href="{% url 'core:how_it_works' %}">Comment ça marche</a></li>
+                    <li><a href="{% url 'core:pricing' %}">Tarifs</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Entreprise</h4>
+                <ul>
+                    <li><a href="{% url 'core:about' %}">À propos</a></li>
+                    <li><a href="{% url 'core:careers' %}">Carrières</a></li>
+                    <li><a href="{% url 'core:blog' %}">Blog</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Légal</h4>
+                <ul>
+                    <li><a href="{% url 'core:privacy_policy' %}">Politique de confidentialité</a></li>
+                    <li><a href="{% url 'core:terms_of_service' %}">Conditions d'utilisation</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container text-center mt-4 pt-4">
+            <p>&copy; 2024 MentorXHub. Tous droits réservés.</p>
+        </div>
+    </footer>
+    {% endif %}
+
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/navbar-modern.js' %}?v=2.0"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+
+</html>

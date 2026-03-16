@@ -1,0 +1,34 @@
+{% load static %}
+<div class="messages-page-layout">
+    <!-- Panneau central : Liste des messages -->
+    {% include 'dashboard/fragments/messages_list_panel.html' %}
+
+    <!-- Panneau droit : Chat actif -->
+    <div class="messages-chat-panel" id="messages-chat-panel">
+        {% if conversation %}
+            {% include 'dashboard/fragments/messages_chat_panel.html' %}
+        {% else %}
+            <div class="messages-chat-placeholder">
+                <p class="messages-placeholder-text">Choisissez une conversation pour commencer à discuter</p>
+                
+                <!-- Notification "Fonctionnalité à venir" -->
+                <div class="messages-info-notification" id="messages-info-notification">
+                    <div class="messages-info-icon">
+                        <i class="fas fa-info"></i>
+                    </div>
+                    <div class="messages-info-text">Fonctionnalité à venir</div>
+                    <button class="messages-info-close" id="messages-info-close" aria-label="Fermer">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Initialisation du script Messages si nécessaire -->
+<script>
+    if (window.messagesApp && typeof window.messagesApp.init === 'function') {
+        window.messagesApp.init();
+    }
+</script>

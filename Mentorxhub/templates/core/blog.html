@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ page_title }} - MentorXHub{% endblock %}
+
+{% block extra_css %}
+<style>
+    .blog-page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+        background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+        min-height: 100vh;
+    }
+
+    .page-header {
+        text-align: center;
+        margin-bottom: 3rem;
+        animation: fadeInDown 0.6s ease-out;
+    }
+
+    .page-header h1 {
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        font-weight: 800;
+        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 1rem;
+        letter-spacing: -0.02em;
+    }
+
+    .page-header p {
+        font-size: 1.25rem;
+        color: #64748b;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .articles-grid {
+        display: grid;
+        gap: 2rem;
+    }
+
+    .article-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid rgba(59, 130, 246, 0.1);
+        transition: all 0.3s ease;
+        animation: fadeInUp 0.6s ease-out backwards;
+    }
+
+    .article-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(30, 58, 138, 0.15);
+    }
+
+    .article-content {
+        padding: 2rem;
+    }
+
+    .article-meta {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        font-size: 0.875rem;
+        color: #64748b;
+    }
+
+    .article-title {
+        font-size: 1.75rem;
+        color: #1e293b;
+        margin-bottom: 1rem;
+        font-weight: 700;
+        line-height: 1.3;
+    }
+
+    .article-excerpt {
+        font-size: 1rem;
+        color: #64748b;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+
+    .read-more {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(30, 58, 138, 0.05));
+        border: 2px solid #3b82f6;
+        color: #1e40af;
+        border-radius: 12px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .read-more:hover {
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(30, 58, 138, 0.1));
+        transform: translateX(5px);
+    }
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .article-card:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+
+    .article-card:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .article-card:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+
+    @media (max-width: 768px) {
+        .blog-page {
+            padding: 2rem 1rem;
+        }
+
+        .article-content {
+            padding: 1.5rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="blog-page">
+    <div class="page-header">
+        <h1>📝 {{ page_title }}</h1>
+        <p>Découvrez nos articles, conseils et actualités sur le mentorat</p>
+    </div>
+
+    <div class="articles-grid">
+        {% for article in articles %}
+        <div class="article-card">
+            <div class="article-content">
+                <div class="article-meta">
+                    <span>📅 {{ article.date }}</span>
+                    <span>✍️ {{ article.author }}</span>
+                </div>
+                <h2 class="article-title">{{ article.title }}</h2>
+                <p class="article-excerpt">{{ article.excerpt }}</p>
+                <a href="#" class="read-more">Lire la suite →</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

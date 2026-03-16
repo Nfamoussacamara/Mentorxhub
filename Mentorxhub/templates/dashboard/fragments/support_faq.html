@@ -1,0 +1,29 @@
+{% load static %}
+<div class="support-faq">
+    <div class="page-header">
+        <h1>Questions Fréquentes (FAQ)</h1>
+    </div>
+    
+    <div class="faq-list">
+        {% for faq in faqs %}
+        <div class="faq-item">
+            <h3 class="faq-question">{{ faq.question }}</h3>
+            <div class="faq-answer">
+                <p>{{ faq.answer }}</p>
+            </div>
+        </div>
+        {% empty %}
+        <div class="empty-state">
+            <p>Aucune FAQ disponible pour le moment.</p>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <div class="faq-footer">
+        <p>Vous ne trouvez pas la réponse à votre question ?</p>
+        <a href="{% url 'dashboard:support_ticket_create' %}" class="btn btn-primary">
+            <i class="fas fa-ticket-alt"></i> Créer un ticket de support
+        </a>
+    </div>
+</div>
+

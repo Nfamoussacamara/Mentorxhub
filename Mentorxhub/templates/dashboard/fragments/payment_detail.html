@@ -1,0 +1,58 @@
+{% load static %}
+<div class="payment-detail">
+    <div class="page-header">
+        <h1>Détails du paiement</h1>
+        <a href="{% url 'dashboard:payments_list' %}" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Retour
+        </a>
+    </div>
+    
+    <div class="payment-info">
+        <div class="info-card">
+            <h3>Informations générales</h3>
+            <dl>
+                <dt>ID du paiement</dt>
+                <dd>{{ payment.id }}</dd>
+                
+                <dt>Date</dt>
+                <dd>{{ payment.created_at|date:"d/m/Y à H:i" }}</dd>
+                
+                <dt>Type</dt>
+                <dd>{{ payment.get_payment_type_display }}</dd>
+                
+                <dt>Montant</dt>
+                <dd class="amount">{{ payment.amount|floatformat:2 }} €</dd>
+                
+                <dt>Statut</dt>
+                <dd>
+                    <span class="badge badge-{{ payment.status }}">
+                        {{ payment.get_status_display }}
+                    </span>
+                </dd>
+            </dl>
+        </div>
+        
+        {% if payment.session %}
+        <div class="info-card">
+            <h3>Session associée</h3>
+            <p><a href="{% url 'dashboard:session_detail' payment.session.id %}">{{ payment.session.title }}</a></p>
+        </div>
+        {% endif %}
+        
+        {% if payment.course %}
+        <div class="info-card">
+            <h3>Cours associé</h3>
+            <p><a href="{% url 'dashboard:course_detail' payment.course.id %}">{{ payment.course.title }}</a></p>
+        </div>
+        {% endif %}
+        
+        {% if payment.status == 'completed' %}
+        <div class="payment-actions">
+            <a href="{% url 'dashboard:payment_invoice' payment.id %}" class="btn btn-primary">
+                <i class="fas fa-download"></i> Télécharger la facture
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+

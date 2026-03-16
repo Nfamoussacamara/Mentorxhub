@@ -1,0 +1,5093 @@
+/* ============================================
+   STYLES POUR PAGE D'INSCRIPTION
+   Signup - MentorXHub
+   Design System & Palette de Couleurs
+   ============================================ */
+
+/* Préchargement de la police pour de meilleures performances */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ============================================
+   VARIABLES CSS - DESIGN SYSTEM
+   ============================================ */
+:root {
+    /* Palette de couleurs principale */
+    --primary-blue: #2563EB;
+    --primary-blue-dark: #1D4ED8;
+    --primary-blue-light: #60A5FA;
+    --primary-blue-lighter: #93C5FD;
+
+    /* Bleus pour le panneau gauche */
+    --gradient-start: #1D4ED8;
+    --gradient-middle: #1E3A8A;
+    --gradient-end: #0F172A;
+
+    /* Couleurs de fond */
+    --bg-primary: #ffffff;
+    --bg-secondary: #ffffff;
+    --bg-form: #EFF6FF;
+
+    /* Couleurs de texte */
+    --text-primary: #111827;
+    --text-secondary: #374151;
+    --text-muted: #6B7280;
+    --text-white: #ffffff;
+
+    /* Couleurs de bordure */
+    --border-light: #E5E7EB;
+    --border-medium: #D1D5DB;
+    --border-focus: #2563EB;
+
+    /* Couleurs d'état */
+    --success: #10B981;
+    --success-light: #D1FAE5;
+    --error: #EF4444;
+    --error-light: #ffffff;
+    --warning: #ffffff;
+
+    /* Ombres */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    --shadow-blue: 0 10px 25px -5px rgba(37, 99, 235, 0.3);
+
+    /* Rayons */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+
+    /* Transitions */
+    --transition-fast: all 0.15s ease;
+    --transition-base: all 0.3s ease;
+    --transition-slow: all 0.5s ease;
+}
+
+/* Styles pour le body - Centrage de la page */
+ /* ============================================
+   STYLES POUR PAGE D'INSCRIPTION
+   Signup - MentorXHub
+   Design System & Palette de Couleurs
+   ============================================ */
+
+/* Préchargement de la police pour de meilleures performances */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ============================================
+   VARIABLES CSS - DESIGN SYSTEM
+   ============================================ */
+:root {
+    /* Palette de couleurs principale */
+    --primary-blue: #2563EB;
+    --primary-blue-dark: #1D4ED8;
+    --primary-blue-light: #60A5FA;
+    --primary-blue-lighter: #93C5FD;
+
+    /* Bleus pour le panneau gauche */
+    --gradient-start: #1D4ED8;
+    --gradient-middle: #1E3A8A;
+    --gradient-end: #0F172A;
+
+    /* Couleurs de fond */
+    --bg-primary: #ffffff;
+    --bg-secondary: #ffffff;
+    --bg-form: #EFF6FF;
+
+    /* Couleurs de texte */
+    --text-primary: #111827;
+    --text-secondary: #374151;
+    --text-muted: #6B7280;
+    --text-white: #ffffff;
+
+    /* Couleurs de bordure */
+    --border-light: #E5E7EB;
+    --border-medium: #D1D5DB;
+    --border-focus: #2563EB;
+
+    /* Couleurs d'état */
+    --success: #10B981;
+    --success-light: #D1FAE5;
+    --error: #EF4444;
+    --error-light: #ffffff;
+    --warning: #ffffff;
+
+    /* Ombres */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    --shadow-blue: 0 10px 25px -5px rgba(37, 99, 235, 0.3);
+
+    /* Rayons */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+
+    /* Transitions */
+    --transition-fast: all 0.15s ease;
+    --transition-base: all 0.3s ease;
+    --transition-slow: all 0.5s ease;
+}
+
+/* Styles pour le body - Centrage de la page */
+   STYLES POUR PAGE D'INSCRIPTION
+   Signup - MentorXHub
+   Design System & Palette de Couleurs
+   ============================================ */
+
+/* Préchargement de la police pour de meilleures performances */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ============================================
+   VARIABLES CSS - DESIGN SYSTEM
+   ============================================ */
+:root {
+    /* Palette de couleurs principale */
+    --primary-blue: #2563EB;
+    --primary-blue-dark: #1D4ED8;
+    --primary-blue-light: #60A5FA;
+    --primary-blue-lighter: #93C5FD;
+
+    /* Bleus pour le panneau gauche */
+    --gradient-start: #1D4ED8;
+    --gradient-middle: #1E3A8A;
+    --gradient-end: #0F172A;
+
+    /* Couleurs de fond */
+    --bg-primary: #ffffff;
+    --bg-secondary: #ffffff;
+    --bg-form: #EFF6FF;
+
+    /* Couleurs de texte */
+    --text-primary: #111827;
+    --text-secondary: #374151;
+    --text-muted: #6B7280;
+    --text-white: #ffffff;
+
+    /* Couleurs de bordure */
+    --border-light: #E5E7EB;
+    --border-medium: #D1D5DB;
+    --border-focus: #2563EB;
+
+    /* Couleurs d'état */
+    --success: #10B981;
+    --success-light: #D1FAE5;
+    --error: #EF4444;
+    --error-light: #ffffff;
+    --warning: #ffffff;
+
+    /* Ombres */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    --shadow-blue: 0 10px 25px -5px rgba(37, 99, 235, 0.3);
+
+    /* Rayons */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+
+    /* Transitions */
+    --transition-fast: all 0.15s ease;
+    --transition-base: all 0.3s ease;
+    --transition-slow: all 0.5s ease;
+}
+
+/* Styles pour le body - Centrage de la page */
+ /* ============================================
+   STYLES POUR PAGE D'INSCRIPTION
+   Signup - MentorXHub
+   Design System & Palette de Couleurs
+   ============================================ */
+
+/* Préchargement de la police pour de meilleures performances */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ============================================
+   VARIABLES CSS - DESIGN SYSTEM
+   ============================================ */
+:root {
+    /* Palette de couleurs principale */
+    --primary-blue: #2563EB;
+    --primary-blue-dark: #1D4ED8;
+    --primary-blue-light: #60A5FA;
+    --primary-blue-lighter: #93C5FD;
+
+    /* Bleus pour le panneau gauche */
+    --gradient-start: #1D4ED8;
+    --gradient-middle: #1E3A8A;
+    --gradient-end: #0F172A;
+
+    /* Couleurs de fond */
+    --bg-primary: #ffffff;
+    --bg-secondary: #ffffff;
+    --bg-form: #EFF6FF;
+
+    /* Couleurs de texte */
+    --text-primary: #111827;
+    --text-secondary: #374151;
+    --text-muted: #6B7280;
+    --text-white: #ffffff;
+
+    /* Couleurs de bordure */
+    --border-light: #E5E7EB;
+    --border-medium: #D1D5DB;
+    --border-focus: #2563EB;
+
+    /* Couleurs d'état */
+    --success: #10B981;
+    --success-light: #D1FAE5;
+    --error: #EF4444;
+    --error-light: #ffffff;
+    --warning: #ffffff;
+
+    /* Ombres */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    --shadow-blue: 0 10px 25px -5px rgba(37, 99, 235, 0.3);
+
+    /* Rayons */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+
+    /* Transitions */
+    --transition-fast: all 0.15s ease;
+    --transition-base: all 0.3s ease;
+    --transition-slow: all 0.5s ease;
+}
+
+/* Styles pour le body - Centrage de la page */
+body {
+    margin: 0;
+    padding: 0;
+    /* Pas de padding pour cacher la couleur bleue en haut et en bas */
+    min-height: 100vh;
+    height: 100vh;
+    /* Hauteur fixe à 100vh pour éviter le défilement */
+    display: flex;
+    align-items: flex-start;
+    /* Alignement en haut au lieu de center pour descendre le contenu */
+    justify-content: center;
+    padding-top: 0rem;
+    /* Padding top pour descendre le contenu */
+    background: #f9fafb;
+    /* Bleu royal vibrant comme dans l'image */
+    background-attachment: fixed;
+    /* Fixe le background pour qu'il ne bouge pas lors du défilement */
+    background-size: cover;
+    /* Assure que le background couvre tout l'écran */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* Permet le défilement vertical si nécessaire */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   EFFETS DE FOND ANIMÉS - COMME LA PAGE DE LOGIN
+   ============================================ */
+/* Première couche : Cercles radiaux animés pour effet de profondeur */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 15% 25%, rgba(96, 165, 250, 0.3) 0%, transparent 25%),
+        radial-gradient(circle at 85% 15%, rgba(147, 197, 253, 0.25) 0%, transparent 30%),
+        radial-gradient(circle at 70% 85%, rgba(59, 130, 246, 0.2) 0%, transparent 35%),
+        radial-gradient(circle at 30% 75%, rgba(191, 219, 254, 0.15) 0%, transparent 28%);
+    animation: float 25s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+    will-change: transform;
+}
+
+/* Deuxième couche : Motifs géométriques SVG (Triangles et Cercles) */
+body::after {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-image:
+        url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 10 L90 90 L10 90 Z' fill='rgba(255,255,255,0.02)' /%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='40' r='30' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='2'/%3E%3C/svg%3E");
+    background-position: 0 0, 40px 40px;
+    background-size: 200px 200px, 160px 160px;
+    animation: backgroundMove 60s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+    will-change: transform;
+}
+
+/* Animation de flottement pour les cercles radiaux */
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(40px, -30px) scale(1.15);
+    }
+    66% {
+        transform: translate(-30px, 20px) scale(0.95);
+    }
+}
+
+/* Animation de mouvement pour les motifs géométriques */
+@keyframes backgroundMove {
+    from {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    to {
+        transform: translate(50px, 50px) rotate(360deg);
+    }
+}
+
+/* ============================================
+   CONTENEUR PRINCIPAL - SPLIT SCREEN
+   ============================================ */
+/* Conteneur d'inscription (écran divisé) - Centré avec zoom réduit et marges latérales */
+.signup-container {
+    max-width: 1100px;
+    /* Largeur maximale réduite pour avoir des marges latérales */
+    width: 100%;
+    margin: 0 auto;
+    /* Centrage horizontal */
+    display: flex;
+    /* Layout flexbox pour les deux panneaux */
+    gap: 0;
+    /* Pas d'espace entre les panneaux */
+    min-height: 650px;
+    /* Hauteur minimale pour un rendu équilibré */
+    height: auto;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    /* Masque les coins arrondis des enfants */
+    box-shadow: var(--shadow-2xl), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    /* Ombre profonde + bordure subtile */
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(20px);
+    /* Effet de flou d'arrière-plan */
+    font-family: 'Inter', sans-serif;
+    background: transparent;
+    transition: box-shadow 0.3s ease;
+    /* Transition uniquement sur l'ombre, pas sur transform pour éviter le retrait */
+    transform: scale(1);
+    /* Zoom normal (100%) - comme avant */
+    transform-origin: center center;
+    /* Point d'origine du zoom au centre */
+    will-change: box-shadow;
+    /* Optimisation pour éviter les recalculs de layout */
+}
+
+/* Effet hover : légère élévation du conteneur */
+.signup-container:hover {
+    transform: scale(1) translateY(-2px);
+    /* Zoom normal avec élévation au survol */
+    box-shadow: var(--shadow-2xl), 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+/* ============================================
+   PANNEAU GAUCHE - BRANDING & INFORMATION
+   ============================================ */
+/* Panneau Gauche (SIGNUP) - Zone de branding avec effet de zoom */
+.left-side {
+    flex: 0 0 30%;
+    /* Prend 38% de la largeur du conteneur (moins que le panneau droit) */
+    background: url('../default_image/img.jpg') center center / cover no-repeat;
+    /* Image en fond d'écran */
+    backdrop-filter: blur(20px);
+    color: var(--text-white);
+    padding: 4rem 3.5rem;
+    /* Padding augmenté pour avoir plus de marge intérieure */
+    display: flex;
+    flex-direction: column;
+    /* Layout vertical pour empiler le contenu */
+    justify-content: space-between;
+    /* Espacement entre le contenu principal et le logo en bas */
+    position: relative;
+    overflow: hidden;
+    /* Masque les éléments qui dépassent */
+}
+
+/* Overlay bleu pour cacher l'image - Opacité augmentée */
+.left-side::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(65, 105, 225, 0.75);
+    /* Overlay bleu royal avec opacité 75% - légèrement réduite */
+    z-index: 0;
+    /* Derrière le contenu */
+}
+
+/* Animation de zoom pour l'effet de parallaxe */
+@keyframes zoomIn {
+    0% {
+        transform: scale(1);
+        /* Taille normale */
+    }
+
+    100% {
+        transform: scale(1.15);
+        /* Zoom à 115% */
+    }
+}
+
+/* Cercle décoratif en haut à droite - Animation de pulsation */
+.left-side::after {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.25) 0%, transparent 70%);
+    /* Cercle radial bleu clair */
+    border-radius: 50%;
+    animation: pulseGlow 4s ease-in-out infinite;
+    /* Animation de pulsation continue */
+    z-index: 0;
+    /* Derrière le contenu mais au-dessus du zoom */
+}
+
+/* Tous les enfants du panneau gauche au-dessus des effets de fond */
+.left-side>* {
+    position: relative;
+    z-index: 1;
+    /* Tous les enfants du panneau gauche au-dessus des effets */
+}
+
+/* Animation de pulsation pour les cercles décoratifs */
+@keyframes pulseGlow {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+        /* Légère augmentation de taille au milieu de l'animation */
+    }
+}
+
+/* ============================================
+   LOGO & BRANDING
+   ============================================ */
+/* Zone du logo (SIGNUP) - Positionné pour rester visible lors du défilement */
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    /* Espacement entre l'icône et le texte */
+    margin-top: auto;
+    /* Pousse le logo vers le bas */
+    margin-bottom: 8rem;
+    /* Marge bottom importante pour remonter beaucoup le logo et le garder visible */
+    position: relative;
+    z-index: 1;
+    /* Au-dessus des éléments décoratifs */
+    justify-content: center;
+    /* Centrage horizontal du logo */
+}
+
+/* Icône du logo - Carré avec lettre "M" */
+.logo-area .logo-icon {
+    width: 52px;
+    height: 52px;
+    background: rgba(255, 255, 255, 0.25);
+    /* Fond blanc semi-transparent */
+    backdrop-filter: blur(10px);
+    /* Effet de flou pour glassmorphism */
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text-white);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    /* Ombre externe + highlight interne */
+    transition: transform var(--transition-base);
+}
+
+/* Animation au survol de la zone logo */
+.logo-area:hover .logo-icon {
+    transform: scale(1.05) rotate(5deg);
+    /* Légère rotation et agrandissement */
+}
+
+.logo-area h1 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Contenu principal (SIGNUP) */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* Alignement en haut pour correspondre à l'image */
+    position: relative;
+    z-index: 1;
+    padding-top: 2rem;
+    /* Espacement depuis le haut */
+}
+
+.main-content h2 {
+    font-size: 42px;
+    /* Taille plus grande pour correspondre à l'image */
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    /* Espacement important après le titre */
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    color: var(--text-white);
+}
+
+/* Section de connexion - Question et bouton */
+.login-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    /* Espacement entre la question et le bouton */
+}
+
+.login-question {
+    font-size: 16px;
+    font-weight: 700;
+    /* Texte en gras */
+    opacity: 0.95;
+    margin: 0;
+    /* Pas de marge pour contrôle précis */
+    color: var(--text-white);
+}
+
+/* ============================================
+   BOUTON DE CONNEXION - STYLE COMME L'IMAGE
+   ============================================ */
+/* Lien "Se connecter" - Bouton blanc avec flèche comme dans l'image */
+.login-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    /* Espacement entre le texte et la flèche */
+    padding: 0.875rem 1.75rem;
+    background: #ffffff;
+    /* Fond blanc pur */
+    color: #111827;
+    /* Texte noir */
+    text-decoration: none;
+    border-radius: 8px;
+    /* Coins arrondis modérés */
+    font-weight: 700;
+    /* Texte en gras */
+    font-size: 15px;
+    transition: var(--transition-base);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Ombre légère */
+    letter-spacing: 0.2px;
+    width: fit-content;
+    /* Largeur adaptée au contenu */
+    border: none;
+    /* Pas de bordure */
+}
+
+/* Flèche dans le bouton */
+.login-link svg {
+    width: 16px;
+    height: 16px;
+    color: #111827;
+    /* Couleur noire pour la flèche */
+    transition: transform var(--transition-base);
+}
+
+/* Effet hover du lien de connexion */
+.login-link:hover {
+    background: #ffffff;
+    /* Fond gris très clair au survol */
+    transform: translateX(2px);
+    /* Légère translation vers la droite */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    color: #111827;
+}
+
+.login-link:hover svg {
+    transform: translateX(2px);
+    /* La flèche se déplace aussi */
+}
+
+.login-link:active {
+    transform: translateX(0);
+    /* Retour à la position normale au clic */
+}
+
+/* Panneau Droit (SIGNUP) */
+.right-side {
+    flex: 1;
+    background: transparent;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    /* Assure que le flex container prend toute la hauteur */
+}
+
+/* Wrapper du formulaire - Conteneur avec fond bleu très clair uniforme */
+.form-wrapper {
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    /* Fond bleu très clair uniforme (sans gradient) */
+    padding: 3.5rem 3rem;
+    /* Padding augmenté pour avoir plus de marge intérieure */
+    border-radius: 0;
+    box-shadow: none;
+    /* Pas d'ombre pour un look plus plat comme l'image */
+    backdrop-filter: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* Alignement en haut pour correspondre à l'image */
+    align-items: stretch;
+    /* Les éléments prennent toute la largeur */
+    overflow-y: auto;
+    /* Défilement vertical si nécessaire */
+    position: relative;
+}
+
+/* Ligne décorative en haut du formulaire */
+.form-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.1), transparent);
+    /* Ligne horizontale avec gradient */
+}
+
+/* ============================================
+   FORMULAIRE D'INSCRIPTION
+   ============================================ */
+/* Conteneur du formulaire - Prend toute la largeur disponible */
+#signupForm {
+    width: 100%;
+    max-width: 100%;
+    /* Formulaire prend toute la largeur disponible */
+    margin: 0;
+    /* Pas de marge pour maximiser l'espace */
+    display: flex;
+    flex-direction: column;
+    gap: 1.125rem;
+    /* Espacement légèrement augmenté pour aérer les champs */
+}
+
+/* ============================================
+   GRILLE DE CHAMPS - LAYOUT RESPONSIVE
+   ============================================ */
+/* Grille pour champs côte à côte (SIGNUP) - Ex: Prénom/Nom */
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Deux colonnes égales */
+    gap: 1rem;
+    /* Espacement entre les colonnes - plus généreux comme l'image */
+    margin-bottom: 0;
+    /* Pas de marge bottom car géré par le gap du formulaire */
+    width: 100%;
+}
+
+/* Groupe de champ individuel */
+.input-group {
+    margin-bottom: 0;
+    /* Pas de marge bottom car géré par le gap du formulaire */
+    width: 100%;
+}
+
+/* Groupe de champ pleine largeur - S'étend sur toutes les colonnes */
+.input-group.full {
+    grid-column: 1 / -1;
+    /* Prend toute la largeur de la grille */
+    width: 100%;
+}
+
+/* ============================================
+   LABELS DES CHAMPS
+   ============================================ */
+/* Labels visibles pour SIGNUP - Au-dessus des champs */
+.signup-container .input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    /* Espacement avant le champ */
+    font-weight: 500;
+    font-size: 14px;
+    color: #111827;
+    /* Noir foncé pour bonne lisibilité comme l'image */
+}
+
+/* ============================================
+   CHAMPS DE SAISIE - INPUTS
+   ============================================ */
+/* Champs de saisie (SIGNUP) - Style uniforme pour tous les types */
+.signup-container .input-group input[type="text"],
+.signup-container .input-group input[type="email"],
+.signup-container .input-group input[type="password"] {
+    width: 100%;
+    /* Prend toute la largeur du conteneur */
+    padding: 0.875rem 1rem;
+    /* Padding plus généreux comme dans l'image */
+    border: 1px solid #E5E7EB;
+    /* Bordure grise claire fine comme l'image */
+    border-radius: 8px;
+    /* Coins arrondis modérés */
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    transition: none;
+    /* Pas de transition pour éviter l'effet de retrait */
+    background-color: #ffffff;
+    /* Fond blanc pur */
+    height: auto;
+    box-sizing: border-box;
+    /* Padding inclus dans la largeur */
+    color: var(--text-primary);
+    /* Texte noir */
+    box-shadow: none;
+    /* Pas d'ombre pour un look plat comme l'image */
+    transform: none;
+    /* Pas de transformation pour éviter l'effet de retrait */
+}
+
+.signup-container .input-group input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+.signup-container .input-group input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    /* Bordure bleue au focus */
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    /* Ombre bleue subtile au focus */
+    background-color: #ffffff;
+}
+
+.signup-container .input-group input:hover:not(:focus) {
+    border-color: #D1D5DB;
+    /* Bordure légèrement plus foncée au survol */
+    box-shadow: none;
+}
+
+/* Champ mot de passe */
+.password-field {
+    position: relative;
+    display: flex;
+}
+
+.password-field input {
+    padding-right: 2.5rem;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #6B7280;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    padding: 0.25rem;
+}
+
+.password-toggle:hover {
+    color: #2563EB;
+}
+
+.password-toggle:focus {
+    outline: none;
+}
+
+.password-toggle svg {
+    transition: transform 0.3s ease;
+}
+
+.password-toggle.active svg {
+    transform: scale(1.1);
+}
+
+/* Sélecteur de rôle (SIGNUP) */
+.role-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.role-option {
+    position: relative;
+    padding: 1.5rem 1.25rem;
+    border: 2px solid var(--border-light);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: var(--transition-base);
+    text-align: center;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    box-shadow: var(--shadow-sm);
+}
+
+.role-option::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(96, 165, 250, 0.08) 100%);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.role-option:hover {
+    border-color: var(--primary-blue-light);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.2), var(--shadow-md);
+}
+
+.role-option:hover::before {
+    opacity: 1;
+}
+
+.role-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.role-option input[type="radio"]:checked~.role-text {
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+.role-option:has(input:checked) {
+    border-color: var(--primary-blue);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(96, 165, 250, 0.15) 100%);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15), var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.role-option:has(input:checked)::before {
+    opacity: 1;
+}
+
+.role-text {
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--text-primary);
+    pointer-events: none;
+    position: relative;
+    z-index: 1;
+    transition: var(--transition-base);
+}
+
+/* Bouton Google (SIGNUP) */
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.875rem;
+    width: 100%;
+    padding: 0.875rem 1.25rem;
+    /* Padding ajusté */
+    background: #ffffff;
+    /* Fond blanc pur */
+    border: 1px solid #E5E7EB;
+    /* Bordure fine grise */
+    border-radius: 8px;
+    /* Coins arrondis modérés */
+    color: var(--text-primary);
+    /* Texte noir */
+    font-weight: 500;
+    /* Poids de police modéré */
+    font-size: 15px;
+    text-decoration: none;
+    transition: var(--transition-base);
+    box-shadow: none;
+    /* Pas d'ombre pour un look plat */
+    margin-top: 1.5rem;
+    /* Marge top réduite légèrement */
+    margin-bottom: 0;
+    /* Pas de marge bottom car géré par le gap du formulaire */
+    box-sizing: border-box;
+    letter-spacing: 0.1px;
+    position: relative;
+    overflow: hidden;
+}
+
+.google-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.05), transparent);
+    transition: left 0.5s ease;
+}
+
+.google-btn:hover::before {
+    left: 100%;
+}
+
+.google-btn:hover {
+    border-color: #D1D5DB;
+    /* Bordure légèrement plus foncée au survol */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    /* Ombre très légère au survol */
+    background: #ffffff;
+    /* Fond gris très clair au survol */
+    transform: none;
+    /* Pas de transformation */
+    color: var(--text-primary);
+}
+
+.google-btn:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+}
+
+/* ============================================
+   SÉPARATEUR "OU" - DIVISION VISUELLE
+   ============================================ */
+.separator {
+    position: relative;
+    text-align: center;
+    margin: 1rem 0;
+    /* Marge légèrement augmentée pour aérer */
+}
+
+/* Ligne horizontale du séparateur - Plus visible */
+.separator::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1.5px;
+    /* Ligne plus épaisse et plus visible */
+    background: linear-gradient(90deg, transparent, var(--border-medium) 20%, var(--border-medium) 80%, transparent);
+    /* Couleur plus foncée pour meilleure visibilité */
+    opacity: 0.8;
+}
+
+/* Texte "OU" au centre du séparateur */
+.separator span {
+    position: relative;
+    background: var(--bg-form);
+    padding: 0 1.5rem;
+    color: var(--text-secondary);
+    /* Couleur plus foncée pour meilleure lisibilité */
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* ============================================
+   MESSAGES D'ERREUR ET DE SUCCÈS
+   ============================================ */
+/* Conteneur de messages (SIGNUP) - Regroupe tous les messages */
+.messages-container {
+    margin-bottom: 1.5rem;
+}
+
+.messages-container .error-box {
+    margin-bottom: 0.75rem;
+}
+
+/* Messages d'erreur - Style avec bordure gauche rouge */
+.error-box {
+    padding: 1.125rem 1.25rem;
+    background: var(--error-light);
+    border: 1.5px solid #ffffff;
+    border-left: 4px solid var(--error);
+    border-radius: var(--radius-md);
+    color: #991B1B;
+    margin-bottom: 1.5rem;
+    font-size: 14px;
+    text-align: left;
+    animation: slideDown 0.3s ease-out;
+    box-shadow: var(--shadow-sm);
+    font-weight: 500;
+}
+
+/* Animation d'apparition des messages - Slide down */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Texte d'erreur sous les champs - Validation inline */
+.error-text {
+    color: #EF4444;
+    font-size: 13px;
+    display: block;
+    margin-top: 0.25rem;
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Animation de fondu pour les textes d'erreur */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Message de succès - Style avec bordure gauche verte */
+.success-box {
+    padding: 1.125rem 1.25rem;
+    background: var(--success-light);
+    border: 1.5px solid #6EE7B7;
+    border-left: 4px solid var(--success);
+    border-radius: var(--radius-md);
+    color: #065F46;
+    margin-bottom: 1.5rem;
+    font-size: 14px;
+    text-align: left;
+    animation: slideDown 0.3s ease-out;
+    box-shadow: var(--shadow-sm);
+    font-weight: 500;
+}
+
+/* Bouton de soumission */
+.submit-btn {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    /* Padding ajusté pour correspondre à l'image */
+    background: var(--primary-blue);
+    /* Fond bleu uni (pas de gradient) comme l'image */
+    color: var(--text-white);
+    border: none;
+    border-radius: 8px;
+    /* Coins arrondis modérés */
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-base);
+    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+    /* Ombre légère */
+    position: relative;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.3px;
+    text-transform: none;
+    margin-top: 0.5rem;
+    /* Marge top pour espacement */
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.submit-btn:hover:not(:disabled)::before {
+    left: 100%;
+}
+
+.submit-btn:hover:not(:disabled) {
+    background: var(--primary-blue-dark);
+    /* Bleu plus foncé au survol */
+    transform: translateY(-2px);
+    /* Légère élévation */
+    box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+    /* Ombre plus prononcée au survol */
+}
+
+.submit-btn:active:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-blue);
+}
+
+.submit-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: var(--shadow-sm);
+}
+
+/* ============================================
+   INDICATEURS DE VALIDATION
+   ============================================ */
+.validation-indicator {
+    position: absolute;
+    right: 3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.validation-indicator.valid {
+    color: #10B981;
+    opacity: 1;
+}
+
+.validation-indicator.invalid {
+    color: #EF4444;
+    opacity: 1;
+}
+
+.signup-container .input-group input.valid {
+    border-color: #10B981;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+}
+
+.signup-container .input-group input.error {
+    border-color: #EF4444;
+    animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-8px);
+    }
+
+    75% {
+        transform: translateX(8px);
+    }
+}
+
+/* ============================================
+   INDICATEUR DE FORCE DU MOT DE PASSE
+   ============================================ */
+.password-strength {
+    margin-top: 0.5rem;
+    display: none;
+}
+
+.password-strength.show {
+    display: block;
+}
+
+.strength-bar {
+    width: 100%;
+    height: 4px;
+    background: #E5E7EB;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.strength-fill {
+    height: 100%;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    border-radius: 2px;
+}
+
+.password-strength.very-weak .strength-fill {
+    width: 20%;
+    background: #EF4444;
+}
+
+.password-strength.weak .strength-fill {
+    width: 40%;
+    background: #ffffff;
+}
+
+.password-strength.medium .strength-fill {
+    width: 60%;
+    background: #ffffff;
+}
+
+.password-strength.strong .strength-fill {
+    width: 80%;
+    background: #10B981;
+}
+
+.password-strength.very-strong .strength-fill {
+    width: 100%;
+    background: #059669;
+}
+
+.strength-text {
+    font-size: 12px;
+    font-weight: 500;
+    color: #6B7280;
+}
+
+.password-strength.very-weak .strength-text {
+    color: #EF4444;
+}
+
+.password-strength.weak .strength-text {
+    color: #ffffff;
+}
+
+.password-strength.medium .strength-text {
+    color: #ffffff;
+}
+
+.password-strength.strong .strength-text {
+    color: #10B981;
+}
+
+.password-strength.very-strong .strength-text {
+    color: #059669;
+}
+
+/* ============================================
+   MESSAGE DE CORRESPONDANCE DES MOTS DE PASSE
+   ============================================ */
+.password-match-message {
+    display: block;
+    font-size: 12px;
+    margin-top: 0.25rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.password-match-message.valid {
+    color: #10B981;
+}
+
+.password-match-message.invalid {
+    color: #EF4444;
+}
+
+/* ============================================
+   ÉTAT DE CHARGEMENT DU BOUTON
+   ============================================ */
+.submit-btn.loading {
+    position: relative;
+    color: transparent;
+}
+
+.submit-btn.loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin-left: -10px;
+    margin-top: -10px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spinner 0.8s linear infinite;
+}
+
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.submit-btn.loading span {
+    opacity: 0;
+}
+
+/* ============================================
+   AMÉLIORATION DES CHAMPS
+   ============================================ */
+.signup-container .input-group input:focus {
+    outline: none;
+    border-color: #2563EB;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    transform: translateY(-1px);
+}
+
+.signup-container .input-group input:focus:not(.error):not(.valid) {
+    border-color: #60A5FA;
+}
+
+/* ============================================
+   ANIMATIONS D'ENTRÉE DES CHAMPS
+   ============================================ */
+/* Animation d'entrée pour les champs - Effet de cascade */
+.signup-container .input-group {
+    animation: fadeInUp 0.4s ease-out backwards;
+    /* Animation de montée avec fondu */
+}
+
+/* Délais progressifs pour effet de cascade */
+.signup-container .input-group:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.signup-container .input-group:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.signup-container .input-group:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.signup-container .input-group:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+/* Animation de montée avec fondu */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+        /* Commence en bas et invisible */
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        /* Finit en position normale et visible */
+    }
+}
+
+/* ============================================
+   ÉTATS SPÉCIAUX DES COMPOSANTS
+   ============================================ */
+/* Sélecteur de rôle en erreur - Bordure rouge + animation shake */
+.role-selector.error {
+    border: 2px solid #EF4444;
+    border-radius: 12px;
+    padding: 0.5rem;
+    animation: shake 0.3s ease-in-out;
+    /* Animation de secousse pour attirer l'attention */
+}
+
+/* Sélecteur de rôle avec sélection - Animation de pulsation */
+.role-selector.role-selected {
+    animation: pulse 0.3s ease-out;
+}
+
+/* Animation de pulsation - Légère augmentation de taille */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+        /* Légère augmentation au milieu de l'animation */
+    }
+}
+
+/* Toggle password actif - Couleur bleue quand le mot de passe est visible */
+.password-toggle.active {
+    color: #2563EB;
+}
+
+.password-toggle.active svg {
+    transform: scale(1.1);
+    /* Légère augmentation de l'icône */
+}
+
+/* ============================================
+   RESPONSIVE - ADAPTATION MOBILE
+   ============================================ */
+/* Responsive pour SIGNUP - Breakpoint à 968px */
+@media (max-width: 968px) {
+    body {
+        padding: 1rem;
+        align-items: flex-start;
+        padding-top: 2rem;
+    }
+
+    .signup-container {
+        flex-direction: column;
+        height: auto;
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .left-side {
+        flex: 0 0 auto;
+        padding: 1.5rem 1.25rem;
+        min-height: auto;
+    }
+
+    .right-side {
+        flex: 0 0 auto;
+    }
+
+    .form-wrapper {
+        padding: 1.5rem 1.25rem;
+        min-height: auto;
+    }
+
+    .main-content h2 {
+        font-size: 28px;
+    }
+
+    .input-row {
+        grid-template-columns: 1fr;
+    }
+
+    .validation-indicator {
+        right: 2.5rem;
+    }
+    /* Bleu royal vibrant comme dans l'image */
+    background-attachment: fixed;
+    /* Fixe le background pour qu'il ne bouge pas lors du défilement */
+    background-size: cover;
+    /* Assure que le background couvre tout l'écran */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* Permet le défilement vertical si nécessaire */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   EFFETS DE FOND ANIMÉS - COMME LA PAGE DE LOGIN
+   ============================================ */
+/* Première couche : Cercles radiaux animés pour effet de profondeur */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 15% 25%, rgba(96, 165, 250, 0.3) 0%, transparent 25%),
+        radial-gradient(circle at 85% 15%, rgba(147, 197, 253, 0.25) 0%, transparent 30%),
+        radial-gradient(circle at 70% 85%, rgba(59, 130, 246, 0.2) 0%, transparent 35%),
+        radial-gradient(circle at 30% 75%, rgba(191, 219, 254, 0.15) 0%, transparent 28%);
+    animation: float 25s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+    will-change: transform;
+}
+
+/* Deuxième couche : Motifs géométriques SVG (Triangles et Cercles) */
+body::after {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-image:
+        url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 10 L90 90 L10 90 Z' fill='rgba(255,255,255,0.02)' /%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='40' r='30' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='2'/%3E%3C/svg%3E");
+    background-position: 0 0, 40px 40px;
+    background-size: 200px 200px, 160px 160px;
+    animation: backgroundMove 60s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+    will-change: transform;
+}
+
+/* Animation de flottement pour les cercles radiaux */
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(40px, -30px) scale(1.15);
+    }
+    66% {
+        transform: translate(-30px, 20px) scale(0.95);
+    }
+}
+
+/* Animation de mouvement pour les motifs géométriques */
+@keyframes backgroundMove {
+    from {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    to {
+        transform: translate(50px, 50px) rotate(360deg);
+    }
+}
+
+/* ============================================
+   CONTENEUR PRINCIPAL - SPLIT SCREEN
+   ============================================ */
+/* Conteneur d'inscription (écran divisé) - Centré avec zoom réduit et marges latérales */
+.signup-container {
+    max-width: 1100px;
+    /* Largeur maximale réduite pour avoir des marges latérales */
+    width: 100%;
+    margin: 0 auto;
+    /* Centrage horizontal */
+    display: flex;
+    /* Layout flexbox pour les deux panneaux */
+    gap: 0;
+    /* Pas d'espace entre les panneaux */
+    min-height: 650px;
+    /* Hauteur minimale pour un rendu équilibré */
+    height: auto;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    /* Masque les coins arrondis des enfants */
+    box-shadow: var(--shadow-2xl), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    /* Ombre profonde + bordure subtile */
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(20px);
+    /* Effet de flou d'arrière-plan */
+    font-family: 'Inter', sans-serif;
+    background: transparent;
+    transition: box-shadow 0.3s ease;
+    /* Transition uniquement sur l'ombre, pas sur transform pour éviter le retrait */
+    transform: scale(1);
+    /* Zoom normal (100%) - comme avant */
+    transform-origin: center center;
+    /* Point d'origine du zoom au centre */
+    will-change: box-shadow;
+    /* Optimisation pour éviter les recalculs de layout */
+}
+
+/* Effet hover : légère élévation du conteneur */
+.signup-container:hover {
+    transform: scale(1) translateY(-2px);
+    /* Zoom normal avec élévation au survol */
+    box-shadow: var(--shadow-2xl), 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+/* ============================================
+   PANNEAU GAUCHE - BRANDING & INFORMATION
+   ============================================ */
+/* Panneau Gauche (SIGNUP) - Zone de branding avec effet de zoom */
+.left-side {
+    flex: 0 0 30%;
+    /* Prend 38% de la largeur du conteneur (moins que le panneau droit) */
+    background: url('../default_image/img.jpg') center center / cover no-repeat;
+    /* Image en fond d'écran */
+    backdrop-filter: blur(20px);
+    color: var(--text-white);
+    padding: 4rem 3.5rem;
+    /* Padding augmenté pour avoir plus de marge intérieure */
+    display: flex;
+    flex-direction: column;
+    /* Layout vertical pour empiler le contenu */
+    justify-content: space-between;
+    /* Espacement entre le contenu principal et le logo en bas */
+    position: relative;
+    overflow: hidden;
+    /* Masque les éléments qui dépassent */
+}
+
+/* Overlay bleu pour cacher l'image - Opacité augmentée */
+.left-side::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(65, 105, 225, 0.75);
+    /* Overlay bleu royal avec opacité 75% - légèrement réduite */
+    z-index: 0;
+    /* Derrière le contenu */
+}
+
+/* Animation de zoom pour l'effet de parallaxe */
+@keyframes zoomIn {
+    0% {
+        transform: scale(1);
+        /* Taille normale */
+    }
+
+    100% {
+        transform: scale(1.15);
+        /* Zoom à 115% */
+    }
+}
+
+/* Cercle décoratif en haut à droite - Animation de pulsation */
+.left-side::after {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.25) 0%, transparent 70%);
+    /* Cercle radial bleu clair */
+    border-radius: 50%;
+    animation: pulseGlow 4s ease-in-out infinite;
+    /* Animation de pulsation continue */
+    z-index: 0;
+    /* Derrière le contenu mais au-dessus du zoom */
+}
+
+/* Tous les enfants du panneau gauche au-dessus des effets de fond */
+.left-side>* {
+    position: relative;
+    z-index: 1;
+    /* Tous les enfants du panneau gauche au-dessus des effets */
+}
+
+/* Animation de pulsation pour les cercles décoratifs */
+@keyframes pulseGlow {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+        /* Légère augmentation de taille au milieu de l'animation */
+    }
+}
+
+/* ============================================
+   LOGO & BRANDING
+   ============================================ */
+/* Zone du logo (SIGNUP) - Positionné pour rester visible lors du défilement */
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    /* Espacement entre l'icône et le texte */
+    margin-top: auto;
+    /* Pousse le logo vers le bas */
+    margin-bottom: 8rem;
+    /* Marge bottom importante pour remonter beaucoup le logo et le garder visible */
+    position: relative;
+    z-index: 1;
+    /* Au-dessus des éléments décoratifs */
+    justify-content: center;
+    /* Centrage horizontal du logo */
+}
+
+/* Icône du logo - Carré avec lettre "M" */
+.logo-area .logo-icon {
+    width: 52px;
+    height: 52px;
+    background: rgba(255, 255, 255, 0.25);
+    /* Fond blanc semi-transparent */
+    backdrop-filter: blur(10px);
+    /* Effet de flou pour glassmorphism */
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text-white);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    /* Ombre externe + highlight interne */
+    transition: transform var(--transition-base);
+}
+
+/* Animation au survol de la zone logo */
+.logo-area:hover .logo-icon {
+    transform: scale(1.05) rotate(5deg);
+    /* Légère rotation et agrandissement */
+}
+
+.logo-area h1 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Contenu principal (SIGNUP) */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* Alignement en haut pour correspondre à l'image */
+    position: relative;
+    z-index: 1;
+    padding-top: 2rem;
+    /* Espacement depuis le haut */
+}
+
+.main-content h2 {
+    font-size: 42px;
+    /* Taille plus grande pour correspondre à l'image */
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    /* Espacement important après le titre */
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    color: var(--text-white);
+}
+
+/* Section de connexion - Question et bouton */
+.login-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    /* Espacement entre la question et le bouton */
+}
+
+.login-question {
+    font-size: 16px;
+    font-weight: 700;
+    /* Texte en gras */
+    opacity: 0.95;
+    margin: 0;
+    /* Pas de marge pour contrôle précis */
+    color: var(--text-white);
+}
+
+/* ============================================
+   BOUTON DE CONNEXION - STYLE COMME L'IMAGE
+   ============================================ */
+/* Lien "Se connecter" - Bouton blanc avec flèche comme dans l'image */
+.login-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    /* Espacement entre le texte et la flèche */
+    padding: 0.875rem 1.75rem;
+    background: #ffffff;
+    /* Fond blanc pur */
+    color: #111827;
+    /* Texte noir */
+    text-decoration: none;
+    border-radius: 8px;
+    /* Coins arrondis modérés */
+    font-weight: 700;
+    /* Texte en gras */
+    font-size: 15px;
+    transition: var(--transition-base);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Ombre légère */
+    letter-spacing: 0.2px;
+    width: fit-content;
+    /* Largeur adaptée au contenu */
+    border: none;
+    /* Pas de bordure */
+}
+
+/* Flèche dans le bouton */
+.login-link svg {
+    width: 16px;
+    height: 16px;
+    color: #111827;
+    /* Couleur noire pour la flèche */
+    transition: transform var(--transition-base);
+}
+
+/* Effet hover du lien de connexion */
+.login-link:hover {
+    background: #ffffff;
+    /* Fond gris très clair au survol */
+    transform: translateX(2px);
+    /* Légère translation vers la droite */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    color: #111827;
+}
+
+.login-link:hover svg {
+    transform: translateX(2px);
+    /* La flèche se déplace aussi */
+}
+
+.login-link:active {
+    transform: translateX(0);
+    /* Retour à la position normale au clic */
+}
+
+/* Panneau Droit (SIGNUP) */
+.right-side {
+    flex: 1;
+    background: transparent;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    /* Assure que le flex container prend toute la hauteur */
+}
+
+/* Wrapper du formulaire - Conteneur avec fond bleu très clair uniforme */
+.form-wrapper {
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    /* Fond bleu très clair uniforme (sans gradient) */
+    padding: 3.5rem 3rem;
+    /* Padding augmenté pour avoir plus de marge intérieure */
+    border-radius: 0;
+    box-shadow: none;
+    /* Pas d'ombre pour un look plus plat comme l'image */
+    backdrop-filter: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* Alignement en haut pour correspondre à l'image */
+    align-items: stretch;
+    /* Les éléments prennent toute la largeur */
+    overflow-y: auto;
+    /* Défilement vertical si nécessaire */
+    position: relative;
+}
+
+/* Ligne décorative en haut du formulaire */
+.form-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.1), transparent);
+    /* Ligne horizontale avec gradient */
+}
+
+/* ============================================
+   FORMULAIRE D'INSCRIPTION
+   ============================================ */
+/* Conteneur du formulaire - Prend toute la largeur disponible */
+#signupForm {
+    width: 100%;
+    max-width: 100%;
+    /* Formulaire prend toute la largeur disponible */
+    margin: 0;
+    /* Pas de marge pour maximiser l'espace */
+    display: flex;
+    flex-direction: column;
+    gap: 1.125rem;
+    /* Espacement légèrement augmenté pour aérer les champs */
+}
+
+/* ============================================
+   GRILLE DE CHAMPS - LAYOUT RESPONSIVE
+   ============================================ */
+/* Grille pour champs côte à côte (SIGNUP) - Ex: Prénom/Nom */
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Deux colonnes égales */
+    gap: 1rem;
+    /* Espacement entre les colonnes - plus généreux comme l'image */
+    margin-bottom: 0;
+    /* Pas de marge bottom car géré par le gap du formulaire */
+    width: 100%;
+}
+
+/* Groupe de champ individuel */
+.input-group {
+    margin-bottom: 0;
+    /* Pas de marge bottom car géré par le gap du formulaire */
+    width: 100%;
+}
+
+/* Groupe de champ pleine largeur - S'étend sur toutes les colonnes */
+.input-group.full {
+    grid-column: 1 / -1;
+    /* Prend toute la largeur de la grille */
+    width: 100%;
+}
+
+/* ============================================
+   LABELS DES CHAMPS
+   ============================================ */
+/* Labels visibles pour SIGNUP - Au-dessus des champs */
+.signup-container .input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    /* Espacement avant le champ */
+    font-weight: 500;
+    font-size: 14px;
+    color: #111827;
+    /* Noir foncé pour bonne lisibilité comme l'image */
+}
+
+/* ============================================
+   CHAMPS DE SAISIE - INPUTS
+   ============================================ */
+/* Champs de saisie (SIGNUP) - Style uniforme pour tous les types */
+.signup-container .input-group input[type="text"],
+.signup-container .input-group input[type="email"],
+.signup-container .input-group input[type="password"] {
+    width: 100%;
+    /* Prend toute la largeur du conteneur */
+    padding: 0.875rem 1rem;
+    /* Padding plus généreux comme dans l'image */
+    border: 1px solid #E5E7EB;
+    /* Bordure grise claire fine comme l'image */
+    border-radius: 8px;
+    /* Coins arrondis modérés */
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    transition: none;
+    /* Pas de transition pour éviter l'effet de retrait */
+    background-color: #ffffff;
+    /* Fond blanc pur */
+    height: auto;
+    box-sizing: border-box;
+    /* Padding inclus dans la largeur */
+    color: var(--text-primary);
+    /* Texte noir */
+    box-shadow: none;
+    /* Pas d'ombre pour un look plat comme l'image */
+    transform: none;
+    /* Pas de transformation pour éviter l'effet de retrait */
+}
+
+.signup-container .input-group input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+.signup-container .input-group input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    /* Bordure bleue au focus */
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    /* Ombre bleue subtile au focus */
+    background-color: #ffffff;
+}
+
+.signup-container .input-group input:hover:not(:focus) {
+    border-color: #D1D5DB;
+    /* Bordure légèrement plus foncée au survol */
+    box-shadow: none;
+}
+
+/* Champ mot de passe */
+.password-field {
+    position: relative;
+    display: flex;
+}
+
+.password-field input {
+    padding-right: 2.5rem;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #6B7280;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    padding: 0.25rem;
+}
+
+.password-toggle:hover {
+    color: #2563EB;
+}
+
+.password-toggle:focus {
+    outline: none;
+}
+
+.password-toggle svg {
+    transition: transform 0.3s ease;
+}
+
+.password-toggle.active svg {
+    transform: scale(1.1);
+}
+
+/* Sélecteur de rôle (SIGNUP) */
+.role-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.role-option {
+    position: relative;
+    padding: 1.5rem 1.25rem;
+    border: 2px solid var(--border-light);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: var(--transition-base);
+    text-align: center;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    box-shadow: var(--shadow-sm);
+}
+
+.role-option::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(96, 165, 250, 0.08) 100%);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.role-option:hover {
+    border-color: var(--primary-blue-light);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.2), var(--shadow-md);
+}
+
+.role-option:hover::before {
+    opacity: 1;
+}
+
+.role-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.role-option input[type="radio"]:checked~.role-text {
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+.role-option:has(input:checked) {
+    border-color: var(--primary-blue);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(96, 165, 250, 0.15) 100%);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15), var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.role-option:has(input:checked)::before {
+    opacity: 1;
+}
+
+.role-text {
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--text-primary);
+    pointer-events: none;
+    position: relative;
+    z-index: 1;
+    transition: var(--transition-base);
+}
+
+/* Bouton Google (SIGNUP) */
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.875rem;
+    width: 100%;
+    padding: 0.875rem 1.25rem;
+    /* Padding ajusté */
+    background: #ffffff;
+    /* Fond blanc pur */
+    border: 1px solid #E5E7EB;
+    /* Bordure fine grise */
+    border-radius: 8px;
+    /* Coins arrondis modérés */
+    color: var(--text-primary);
+    /* Texte noir */
+    font-weight: 500;
+    /* Poids de police modéré */
+    font-size: 15px;
+    text-decoration: none;
+    transition: var(--transition-base);
+    box-shadow: none;
+    /* Pas d'ombre pour un look plat */
+    margin-top: 1.5rem;
+    /* Marge top réduite légèrement */
+    margin-bottom: 0;
+    /* Pas de marge bottom car géré par le gap du formulaire */
+    box-sizing: border-box;
+    letter-spacing: 0.1px;
+    position: relative;
+    overflow: hidden;
+}
+
+.google-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.05), transparent);
+    transition: left 0.5s ease;
+}
+
+.google-btn:hover::before {
+    left: 100%;
+}
+
+.google-btn:hover {
+    border-color: #D1D5DB;
+    /* Bordure légèrement plus foncée au survol */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    /* Ombre très légère au survol */
+    background: #ffffff;
+    /* Fond gris très clair au survol */
+    transform: none;
+    /* Pas de transformation */
+    color: var(--text-primary);
+}
+
+.google-btn:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+}
+
+/* ============================================
+   SÉPARATEUR "OU" - DIVISION VISUELLE
+   ============================================ */
+.separator {
+    position: relative;
+    text-align: center;
+    margin: 1rem 0;
+    /* Marge légèrement augmentée pour aérer */
+}
+
+/* Ligne horizontale du séparateur - Plus visible */
+.separator::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1.5px;
+    /* Ligne plus épaisse et plus visible */
+    background: linear-gradient(90deg, transparent, var(--border-medium) 20%, var(--border-medium) 80%, transparent);
+    /* Couleur plus foncée pour meilleure visibilité */
+    opacity: 0.8;
+}
+
+/* Texte "OU" au centre du séparateur */
+.separator span {
+    position: relative;
+    background: var(--bg-form);
+    padding: 0 1.5rem;
+    color: var(--text-secondary);
+    /* Couleur plus foncée pour meilleure lisibilité */
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* ============================================
+   MESSAGES D'ERREUR ET DE SUCCÈS
+   ============================================ */
+/* Conteneur de messages (SIGNUP) - Regroupe tous les messages */
+.messages-container {
+    margin-bottom: 1.5rem;
+}
+
+.messages-container .error-box {
+    margin-bottom: 0.75rem;
+}
+
+/* Messages d'erreur - Style avec bordure gauche rouge */
+.error-box {
+    padding: 1.125rem 1.25rem;
+    background: var(--error-light);
+    border: 1.5px solid #ffffff;
+    border-left: 4px solid var(--error);
+    border-radius: var(--radius-md);
+    color: #991B1B;
+    margin-bottom: 1.5rem;
+    font-size: 14px;
+    text-align: left;
+    animation: slideDown 0.3s ease-out;
+    box-shadow: var(--shadow-sm);
+    font-weight: 500;
+}
+
+/* Animation d'apparition des messages - Slide down */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Texte d'erreur sous les champs - Validation inline */
+.error-text {
+    color: #EF4444;
+    font-size: 13px;
+    display: block;
+    margin-top: 0.25rem;
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Animation de fondu pour les textes d'erreur */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Message de succès - Style avec bordure gauche verte */
+.success-box {
+    padding: 1.125rem 1.25rem;
+    background: var(--success-light);
+    border: 1.5px solid #6EE7B7;
+    border-left: 4px solid var(--success);
+    border-radius: var(--radius-md);
+    color: #065F46;
+    margin-bottom: 1.5rem;
+    font-size: 14px;
+    text-align: left;
+    animation: slideDown 0.3s ease-out;
+    box-shadow: var(--shadow-sm);
+    font-weight: 500;
+}
+
+/* Bouton de soumission */
+.submit-btn {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    /* Padding ajusté pour correspondre à l'image */
+    background: var(--primary-blue);
+    /* Fond bleu uni (pas de gradient) comme l'image */
+    color: var(--text-white);
+    border: none;
+    border-radius: 8px;
+    /* Coins arrondis modérés */
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-base);
+    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+    /* Ombre légère */
+    position: relative;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.3px;
+    text-transform: none;
+    margin-top: 0.5rem;
+    /* Marge top pour espacement */
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.submit-btn:hover:not(:disabled)::before {
+    left: 100%;
+}
+
+.submit-btn:hover:not(:disabled) {
+    background: var(--primary-blue-dark);
+    /* Bleu plus foncé au survol */
+    transform: translateY(-2px);
+    /* Légère élévation */
+    box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+    /* Ombre plus prononcée au survol */
+}
+
+.submit-btn:active:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-blue);
+}
+
+.submit-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: var(--shadow-sm);
+}
+
+/* ============================================
+   INDICATEURS DE VALIDATION
+   ============================================ */
+.validation-indicator {
+    position: absolute;
+    right: 3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.validation-indicator.valid {
+    color: #10B981;
+    opacity: 1;
+}
+
+.validation-indicator.invalid {
+    color: #EF4444;
+    opacity: 1;
+}
+
+.signup-container .input-group input.valid {
+    border-color: #10B981;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+}
+
+.signup-container .input-group input.error {
+    border-color: #EF4444;
+    animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-8px);
+    }
+
+    75% {
+        transform: translateX(8px);
+    }
+}
+
+/* ============================================
+   INDICATEUR DE FORCE DU MOT DE PASSE
+   ============================================ */
+.password-strength {
+    margin-top: 0.5rem;
+    display: none;
+}
+
+.password-strength.show {
+    display: block;
+}
+
+.strength-bar {
+    width: 100%;
+    height: 4px;
+    background: #E5E7EB;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.strength-fill {
+    height: 100%;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    border-radius: 2px;
+}
+
+.password-strength.very-weak .strength-fill {
+    width: 20%;
+    background: #EF4444;
+}
+
+.password-strength.weak .strength-fill {
+    width: 40%;
+    background: #ffffff;
+}
+
+.password-strength.medium .strength-fill {
+    width: 60%;
+    background: #ffffff;
+}
+
+.password-strength.strong .strength-fill {
+    width: 80%;
+    background: #10B981;
+}
+
+.password-strength.very-strong .strength-fill {
+    width: 100%;
+    background: #059669;
+}
+
+.strength-text {
+    font-size: 12px;
+    font-weight: 500;
+    color: #6B7280;
+}
+
+.password-strength.very-weak .strength-text {
+    color: #EF4444;
+}
+
+.password-strength.weak .strength-text {
+    color: #ffffff;
+}
+
+.password-strength.medium .strength-text {
+    color: #ffffff;
+}
+
+.password-strength.strong .strength-text {
+    color: #10B981;
+}
+
+.password-strength.very-strong .strength-text {
+    color: #059669;
+}
+
+/* ============================================
+   MESSAGE DE CORRESPONDANCE DES MOTS DE PASSE
+   ============================================ */
+.password-match-message {
+    display: block;
+    font-size: 12px;
+    margin-top: 0.25rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.password-match-message.valid {
+    color: #10B981;
+}
+
+.password-match-message.invalid {
+    color: #EF4444;
+}
+
+/* ============================================
+   ÉTAT DE CHARGEMENT DU BOUTON
+   ============================================ */
+.submit-btn.loading {
+    position: relative;
+    color: transparent;
+}
+
+.submit-btn.loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin-left: -10px;
+    margin-top: -10px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spinner 0.8s linear infinite;
+}
+
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.submit-btn.loading span {
+    opacity: 0;
+}
+
+/* ============================================
+   AMÉLIORATION DES CHAMPS
+   ============================================ */
+.signup-container .input-group input:focus {
+    outline: none;
+    border-color: #2563EB;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    transform: translateY(-1px);
+}
+
+.signup-container .input-group input:focus:not(.error):not(.valid) {
+    border-color: #60A5FA;
+}
+
+/* ============================================
+   ANIMATIONS D'ENTRÉE DES CHAMPS
+   ============================================ */
+/* Animation d'entrée pour les champs - Effet de cascade */
+.signup-container .input-group {
+    animation: fadeInUp 0.4s ease-out backwards;
+    /* Animation de montée avec fondu */
+}
+
+/* Délais progressifs pour effet de cascade */
+.signup-container .input-group:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.signup-container .input-group:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.signup-container .input-group:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.signup-container .input-group:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+/* Animation de montée avec fondu */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+        /* Commence en bas et invisible */
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        /* Finit en position normale et visible */
+    }
+}
+
+/* ============================================
+   ÉTATS SPÉCIAUX DES COMPOSANTS
+   ============================================ */
+/* Sélecteur de rôle en erreur - Bordure rouge + animation shake */
+.role-selector.error {
+    border: 2px solid #EF4444;
+    border-radius: 12px;
+    padding: 0.5rem;
+    animation: shake 0.3s ease-in-out;
+    /* Animation de secousse pour attirer l'attention */
+}
+
+/* Sélecteur de rôle avec sélection - Animation de pulsation */
+.role-selector.role-selected {
+    animation: pulse 0.3s ease-out;
+}
+
+/* Animation de pulsation - Légère augmentation de taille */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+        /* Légère augmentation au milieu de l'animation */
+    }
+}
+
+/* Toggle password actif - Couleur bleue quand le mot de passe est visible */
+.password-toggle.active {
+    color: #2563EB;
+}
+
+.password-toggle.active svg {
+    transform: scale(1.1);
+    /* Légère augmentation de l'icône */
+}
+
+/* ============================================
+   RESPONSIVE - ADAPTATION MOBILE
+   ============================================ */
+/* Responsive pour SIGNUP - Breakpoint à 968px */
+@media (max-width: 968px) {
+    body {
+        padding: 1rem;
+        align-items: flex-start;
+        padding-top: 2rem;
+    }
+
+    .signup-container {
+        flex-direction: column;
+        height: auto;
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .left-side {
+        flex: 0 0 auto;
+        padding: 1.5rem 1.25rem;
+        min-height: auto;
+    }
+
+    .right-side {
+        flex: 0 0 auto;
+    }
+
+    .form-wrapper {
+        padding: 1.5rem 1.25rem;
+        min-height: auto;
+    }
+
+    .main-content h2 {
+        font-size: 28px;
+    }
+
+    .input-row {
+        grid-template-columns: 1fr;
+    }
+
+    .validation-indicator {
+        right: 2.5rem;
+    }
+
+/* ============================================
+   EFFETS DE FOND ANIMÉS - COMME LA PAGE DE LOGIN
+   ============================================ */
+/* Première couche : Cercles radiaux animés pour effet de profondeur */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 15% 25%, rgba(96, 165, 250, 0.3) 0%, transparent 25%),
+        radial-gradient(circle at 85% 15%, rgba(147, 197, 253, 0.25) 0%, transparent 30%),
+        radial-gradient(circle at 70% 85%, rgba(59, 130, 246, 0.2) 0%, transparent 35%),
+        radial-gradient(circle at 30% 75%, rgba(191, 219, 254, 0.15) 0%, transparent 28%);
+    animation: float 25s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+    will-change: transform;
+}
+
+/* Deuxième couche : Motifs géométriques SVG (Triangles et Cercles) */
+body::after {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-image:
+        url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 10 L90 90 L10 90 Z' fill='rgba(255,255,255,0.02)' /%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='40' r='30' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='2'/%3E%3C/svg%3E");
+    background-position: 0 0, 40px 40px;
+    background-size: 200px 200px, 160px 160px;
+    animation: backgroundMove 60s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+    will-change: transform;
+}
+
+/* Animation de flottement pour les cercles radiaux */
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(40px, -30px) scale(1.15);
+    }
+    66% {
+        transform: translate(-30px, 20px) scale(0.95);
+    }
+}
+
+/* Animation de mouvement pour les motifs géométriques */
+@keyframes backgroundMove {
+    from {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    to {
+        transform: translate(50px, 50px) rotate(360deg);
+    }
+}
+
+/* ============================================
+   CONTENEUR PRINCIPAL - SPLIT SCREEN
+   ============================================ */
+/* Conteneur d'inscription (écran divisé) - Centré avec zoom réduit et marges latérales */
+.signup-container {
+    max-width: 1100px;
+    /* Largeur maximale réduite pour avoir des marges latérales */
+    width: 100%;
+    margin: 0 auto;
+    /* Centrage horizontal */
+    display: flex;
+    /* Layout flexbox pour les deux panneaux */
+    gap: 0;
+    /* Pas d'espace entre les panneaux */
+    min-height: 650px;
+    /* Hauteur minimale pour un rendu équilibré */
+    height: auto;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    /* Masque les coins arrondis des enfants */
+    box-shadow: var(--shadow-2xl), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    /* Ombre profonde + bordure subtile */
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(20px);
+    /* Effet de flou d'arrière-plan */
+    font-family: 'Inter', sans-serif;
+    background: transparent;
+    transition: box-shadow 0.3s ease;
+    /* Transition uniquement sur l'ombre, pas sur transform pour éviter le retrait */
+    transform: scale(1);
+    /* Zoom normal (100%) - comme avant */
+    transform-origin: center center;
+    /* Point d'origine du zoom au centre */
+    will-change: box-shadow;
+    /* Optimisation pour éviter les recalculs de layout */
+}
+
+/* Effet hover : légère élévation du conteneur */
+.signup-container:hover {
+    transform: scale(1) translateY(-2px);
+    /* Zoom normal avec élévation au survol */
+    box-shadow: var(--shadow-2xl), 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+/* ============================================
+   PANNEAU GAUCHE - BRANDING & INFORMATION
+   ============================================ */
+/* Panneau Gauche (SIGNUP) - Zone de branding avec effet de zoom */
+.left-side {
+    flex: 0 0 30%;
+    /* Prend 38% de la largeur du conteneur (moins que le panneau droit) */
+    background: url('../default_image/img.jpg') center center / cover no-repeat;
+    /* Image en fond d'écran */
+    backdrop-filter: blur(20px);
+    color: var(--text-white);
+    padding: 4rem 3.5rem;
+    /* Padding augmenté pour avoir plus de marge intérieure */
+    display: flex;
+    flex-direction: column;
+    /* Layout vertical pour empiler le contenu */
+    justify-content: space-between;
+    /* Espacement entre le contenu principal et le logo en bas */
+    position: relative;
+    overflow: hidden;
+    /* Masque les éléments qui dépassent */
+}
+
+/* Overlay bleu pour cacher l'image - Opacité augmentée */
+.left-side::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(65, 105, 225, 0.75);
+    /* Overlay bleu royal avec opacité 75% - légèrement réduite */
+    z-index: 0;
+    /* Derrière le contenu */
+}
+
+/* Animation de zoom pour l'effet de parallaxe */
+@keyframes zoomIn {
+    0% {
+        transform: scale(1);
+        /* Taille normale */
+    }
+
+    100% {
+        transform: scale(1.15);
+        /* Zoom à 115% */
+    }
+}
+
+/* Cercle décoratif en haut à droite - Animation de pulsation */
+.left-side::after {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.25) 0%, transparent 70%);
+    /* Cercle radial bleu clair */
+    border-radius: 50%;
+    animation: pulseGlow 4s ease-in-out infinite;
+    /* Animation de pulsation continue */
+    z-index: 0;
+    /* Derrière le contenu mais au-dessus du zoom */
+}
+
+/* Tous les enfants du panneau gauche au-dessus des effets de fond */
+.left-side>* {
+    position: relative;
+    z-index: 1;
+    /* Tous les enfants du panneau gauche au-dessus des effets */
+}
+
+/* Animation de pulsation pour les cercles décoratifs */
+@keyframes pulseGlow {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+        /* Légère augmentation de taille au milieu de l'animation */
+    }
+}
+
+/* ============================================
+   LOGO & BRANDING
+   ============================================ */
+/* Zone du logo (SIGNUP) - Positionné pour rester visible lors du défilement */
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    /* Espacement entre l'icône et le texte */
+    margin-top: auto;
+    /* Pousse le logo vers le bas */
+    margin-bottom: 8rem;
+    /* Marge bottom importante pour remonter beaucoup le logo et le garder visible */
+    position: relative;
+    z-index: 1;
+    /* Au-dessus des éléments décoratifs */
+    justify-content: center;
+    /* Centrage horizontal du logo */
+}
+
+/* Icône du logo - Carré avec lettre "M" */
+.logo-area .logo-icon {
+    width: 52px;
+    height: 52px;
+    background: rgba(255, 255, 255, 0.25);
+    /* Fond blanc semi-transparent */
+    backdrop-filter: blur(10px);
+    /* Effet de flou pour glassmorphism */
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text-white);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    /* Ombre externe + highlight interne */
+    transition: transform var(--transition-base);
+}
+
+/* Animation au survol de la zone logo */
+.logo-area:hover .logo-icon {
+    transform: scale(1.05) rotate(5deg);
+    /* Légère rotation et agrandissement */
+}
+
+.logo-area h1 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Contenu principal (SIGNUP) */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* Alignement en haut pour correspondre à l'image */
+    position: relative;
+    z-index: 1;
+    padding-top: 2rem;
+    /* Espacement depuis le haut */
+}
+
+.main-content h2 {
+    font-size: 42px;
+    /* Taille plus grande pour correspondre à l'image */
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    /* Espacement important après le titre */
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    color: var(--text-white);
+}
+
+/* Section de connexion - Question et bouton */
+.login-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    /* Espacement entre la question et le bouton */
+}
+
+.login-question {
+    font-size: 16px;
+    font-weight: 700;
+    /* Texte en gras */
+    opacity: 0.95;
+    margin: 0;
+    /* Pas de marge pour contrôle précis */
+    color: var(--text-white);
+}
+
+/* ============================================
+   BOUTON DE CONNEXION - STYLE COMME L'IMAGE
+   ============================================ */
+/* Lien "Se connecter" - Bouton blanc avec flèche comme dans l'image */
+.login-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    /* Espacement entre le texte et la flèche */
+    padding: 0.875rem 1.75rem;
+    background: #ffffff;
+    /* Fond blanc pur */
+    color: #111827;
+    /* Texte noir */
+    text-decoration: none;
+    border-radius: 8px;
+    /* Coins arrondis modérés */
+    font-weight: 700;
+    /* Texte en gras */
+    font-size: 15px;
+    transition: var(--transition-base);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Ombre légère */
+    letter-spacing: 0.2px;
+    width: fit-content;
+    /* Largeur adaptée au contenu */
+    border: none;
+    /* Pas de bordure */
+}
+
+/* Flèche dans le bouton */
+.login-link svg {
+    width: 16px;
+    height: 16px;
+    color: #111827;
+    /* Couleur noire pour la flèche */
+    transition: transform var(--transition-base);
+}
+
+/* Effet hover du lien de connexion */
+.login-link:hover {
+    background: #ffffff;
+    /* Fond gris très clair au survol */
+    transform: translateX(2px);
+    /* Légère translation vers la droite */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    color: #111827;
+}
+
+.login-link:hover svg {
+    transform: translateX(2px);
+    /* La flèche se déplace aussi */
+}
+
+.login-link:active {
+    transform: translateX(0);
+    /* Retour à la position normale au clic */
+}
+
+/* Panneau Droit (SIGNUP) */
+.right-side {
+    flex: 1;
+    background: transparent;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    /* Assure que le flex container prend toute la hauteur */
+}
+
+/* Wrapper du formulaire - Conteneur avec fond bleu très clair uniforme */
+.form-wrapper {
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    /* Fond bleu très clair uniforme (sans gradient) */
+    padding: 3.5rem 3rem;
+    /* Padding augmenté pour avoir plus de marge intérieure */
+    border-radius: 0;
+    box-shadow: none;
+    /* Pas d'ombre pour un look plus plat comme l'image */
+    backdrop-filter: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* Alignement en haut pour correspondre à l'image */
+    align-items: stretch;
+    /* Les éléments prennent toute la largeur */
+    overflow-y: auto;
+    /* Défilement vertical si nécessaire */
+    position: relative;
+}
+
+/* Ligne décorative en haut du formulaire */
+.form-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.1), transparent);
+    /* Ligne horizontale avec gradient */
+}
+
+/* ============================================
+   FORMULAIRE D'INSCRIPTION
+   ============================================ */
+/* Conteneur du formulaire - Prend toute la largeur disponible */
+#signupForm {
+    width: 100%;
+    max-width: 100%;
+    /* Formulaire prend toute la largeur disponible */
+    margin: 0;
+    /* Pas de marge pour maximiser l'espace */
+    display: flex;
+    flex-direction: column;
+    gap: 1.125rem;
+    /* Espacement légèrement augmenté pour aérer les champs */
+}
+
+/* ============================================
+   GRILLE DE CHAMPS - LAYOUT RESPONSIVE
+   ============================================ */
+/* Grille pour champs côte à côte (SIGNUP) - Ex: Prénom/Nom */
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Deux colonnes égales */
+    gap: 1rem;
+    /* Espacement entre les colonnes - plus généreux comme l'image */
+    margin-bottom: 0;
+    /* Pas de marge bottom car géré par le gap du formulaire */
+    width: 100%;
+}
+
+/* Groupe de champ individuel */
+.input-group {
+    margin-bottom: 0;
+    /* Pas de marge bottom car géré par le gap du formulaire */
+    width: 100%;
+}
+
+/* Groupe de champ pleine largeur - S'étend sur toutes les colonnes */
+.input-group.full {
+    grid-column: 1 / -1;
+    /* Prend toute la largeur de la grille */
+    width: 100%;
+}
+
+/* ============================================
+   LABELS DES CHAMPS
+   ============================================ */
+/* Labels visibles pour SIGNUP - Au-dessus des champs */
+.signup-container .input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    /* Espacement avant le champ */
+    font-weight: 500;
+    font-size: 14px;
+    color: #111827;
+    /* Noir foncé pour bonne lisibilité comme l'image */
+}
+
+/* ============================================
+   CHAMPS DE SAISIE - INPUTS
+   ============================================ */
+/* Champs de saisie (SIGNUP) - Style uniforme pour tous les types */
+.signup-container .input-group input[type="text"],
+.signup-container .input-group input[type="email"],
+.signup-container .input-group input[type="password"] {
+    width: 100%;
+    /* Prend toute la largeur du conteneur */
+    padding: 0.875rem 1rem;
+    /* Padding plus généreux comme dans l'image */
+    border: 1px solid #E5E7EB;
+    /* Bordure grise claire fine comme l'image */
+    border-radius: 8px;
+    /* Coins arrondis modérés */
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    transition: none;
+    /* Pas de transition pour éviter l'effet de retrait */
+    background-color: #ffffff;
+    /* Fond blanc pur */
+    height: auto;
+    box-sizing: border-box;
+    /* Padding inclus dans la largeur */
+    color: var(--text-primary);
+    /* Texte noir */
+    box-shadow: none;
+    /* Pas d'ombre pour un look plat comme l'image */
+    transform: none;
+    /* Pas de transformation pour éviter l'effet de retrait */
+}
+
+.signup-container .input-group input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+.signup-container .input-group input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    /* Bordure bleue au focus */
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    /* Ombre bleue subtile au focus */
+    background-color: #ffffff;
+}
+
+.signup-container .input-group input:hover:not(:focus) {
+    border-color: #D1D5DB;
+    /* Bordure légèrement plus foncée au survol */
+    box-shadow: none;
+}
+
+/* Champ mot de passe */
+.password-field {
+    position: relative;
+    display: flex;
+}
+
+.password-field input {
+    padding-right: 2.5rem;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #6B7280;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    padding: 0.25rem;
+}
+
+.password-toggle:hover {
+    color: #2563EB;
+}
+
+.password-toggle:focus {
+    outline: none;
+}
+
+.password-toggle svg {
+    transition: transform 0.3s ease;
+}
+
+.password-toggle.active svg {
+    transform: scale(1.1);
+}
+
+/* Sélecteur de rôle (SIGNUP) */
+.role-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.role-option {
+    position: relative;
+    padding: 1.5rem 1.25rem;
+    border: 2px solid var(--border-light);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: var(--transition-base);
+    text-align: center;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    box-shadow: var(--shadow-sm);
+}
+
+.role-option::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(96, 165, 250, 0.08) 100%);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.role-option:hover {
+    border-color: var(--primary-blue-light);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.2), var(--shadow-md);
+}
+
+.role-option:hover::before {
+    opacity: 1;
+}
+
+.role-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.role-option input[type="radio"]:checked~.role-text {
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+.role-option:has(input:checked) {
+    border-color: var(--primary-blue);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(96, 165, 250, 0.15) 100%);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15), var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.role-option:has(input:checked)::before {
+    opacity: 1;
+}
+
+.role-text {
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--text-primary);
+    pointer-events: none;
+    position: relative;
+    z-index: 1;
+    transition: var(--transition-base);
+}
+
+/* Bouton Google (SIGNUP) */
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.875rem;
+    width: 100%;
+    padding: 0.875rem 1.25rem;
+    /* Padding ajusté */
+    background: #ffffff;
+    /* Fond blanc pur */
+    border: 1px solid #E5E7EB;
+    /* Bordure fine grise */
+    border-radius: 8px;
+    /* Coins arrondis modérés */
+    color: var(--text-primary);
+    /* Texte noir */
+    font-weight: 500;
+    /* Poids de police modéré */
+    font-size: 15px;
+    text-decoration: none;
+    transition: var(--transition-base);
+    box-shadow: none;
+    /* Pas d'ombre pour un look plat */
+    margin-top: 1.5rem;
+    /* Marge top réduite légèrement */
+    margin-bottom: 0;
+    /* Pas de marge bottom car géré par le gap du formulaire */
+    box-sizing: border-box;
+    letter-spacing: 0.1px;
+    position: relative;
+    overflow: hidden;
+}
+
+.google-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.05), transparent);
+    transition: left 0.5s ease;
+}
+
+.google-btn:hover::before {
+    left: 100%;
+}
+
+.google-btn:hover {
+    border-color: #D1D5DB;
+    /* Bordure légèrement plus foncée au survol */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    /* Ombre très légère au survol */
+    background: #ffffff;
+    /* Fond gris très clair au survol */
+    transform: none;
+    /* Pas de transformation */
+    color: var(--text-primary);
+}
+
+.google-btn:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+}
+
+/* ============================================
+   SÉPARATEUR "OU" - DIVISION VISUELLE
+   ============================================ */
+.separator {
+    position: relative;
+    text-align: center;
+    margin: 1rem 0;
+    /* Marge légèrement augmentée pour aérer */
+}
+
+/* Ligne horizontale du séparateur - Plus visible */
+.separator::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1.5px;
+    /* Ligne plus épaisse et plus visible */
+    background: linear-gradient(90deg, transparent, var(--border-medium) 20%, var(--border-medium) 80%, transparent);
+    /* Couleur plus foncée pour meilleure visibilité */
+    opacity: 0.8;
+}
+
+/* Texte "OU" au centre du séparateur */
+.separator span {
+    position: relative;
+    background: var(--bg-form);
+    padding: 0 1.5rem;
+    color: var(--text-secondary);
+    /* Couleur plus foncée pour meilleure lisibilité */
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* ============================================
+   MESSAGES D'ERREUR ET DE SUCCÈS
+   ============================================ */
+/* Conteneur de messages (SIGNUP) - Regroupe tous les messages */
+.messages-container {
+    margin-bottom: 1.5rem;
+}
+
+.messages-container .error-box {
+    margin-bottom: 0.75rem;
+}
+
+/* Messages d'erreur - Style avec bordure gauche rouge */
+.error-box {
+    padding: 1.125rem 1.25rem;
+    background: var(--error-light);
+    border: 1.5px solid #ffffff;
+    border-left: 4px solid var(--error);
+    border-radius: var(--radius-md);
+    color: #991B1B;
+    margin-bottom: 1.5rem;
+    font-size: 14px;
+    text-align: left;
+    animation: slideDown 0.3s ease-out;
+    box-shadow: var(--shadow-sm);
+    font-weight: 500;
+}
+
+/* Animation d'apparition des messages - Slide down */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Texte d'erreur sous les champs - Validation inline */
+.error-text {
+    color: #EF4444;
+    font-size: 13px;
+    display: block;
+    margin-top: 0.25rem;
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Animation de fondu pour les textes d'erreur */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Message de succès - Style avec bordure gauche verte */
+.success-box {
+    padding: 1.125rem 1.25rem;
+    background: var(--success-light);
+    border: 1.5px solid #6EE7B7;
+    border-left: 4px solid var(--success);
+    border-radius: var(--radius-md);
+    color: #065F46;
+    margin-bottom: 1.5rem;
+    font-size: 14px;
+    text-align: left;
+    animation: slideDown 0.3s ease-out;
+    box-shadow: var(--shadow-sm);
+    font-weight: 500;
+}
+
+/* Bouton de soumission */
+.submit-btn {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    /* Padding ajusté pour correspondre à l'image */
+    background: var(--primary-blue);
+    /* Fond bleu uni (pas de gradient) comme l'image */
+    color: var(--text-white);
+    border: none;
+    border-radius: 8px;
+    /* Coins arrondis modérés */
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-base);
+    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+    /* Ombre légère */
+    position: relative;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.3px;
+    text-transform: none;
+    margin-top: 0.5rem;
+    /* Marge top pour espacement */
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.submit-btn:hover:not(:disabled)::before {
+    left: 100%;
+}
+
+.submit-btn:hover:not(:disabled) {
+    background: var(--primary-blue-dark);
+    /* Bleu plus foncé au survol */
+    transform: translateY(-2px);
+    /* Légère élévation */
+    box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+    /* Ombre plus prononcée au survol */
+}
+
+.submit-btn:active:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-blue);
+}
+
+.submit-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: var(--shadow-sm);
+}
+
+/* ============================================
+   INDICATEURS DE VALIDATION
+   ============================================ */
+.validation-indicator {
+    position: absolute;
+    right: 3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.validation-indicator.valid {
+    color: #10B981;
+    opacity: 1;
+}
+
+.validation-indicator.invalid {
+    color: #EF4444;
+    opacity: 1;
+}
+
+.signup-container .input-group input.valid {
+    border-color: #10B981;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+}
+
+.signup-container .input-group input.error {
+    border-color: #EF4444;
+    animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-8px);
+    }
+
+    75% {
+        transform: translateX(8px);
+    }
+}
+
+/* ============================================
+   INDICATEUR DE FORCE DU MOT DE PASSE
+   ============================================ */
+.password-strength {
+    margin-top: 0.5rem;
+    display: none;
+}
+
+.password-strength.show {
+    display: block;
+}
+
+.strength-bar {
+    width: 100%;
+    height: 4px;
+    background: #E5E7EB;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.strength-fill {
+    height: 100%;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    border-radius: 2px;
+}
+
+.password-strength.very-weak .strength-fill {
+    width: 20%;
+    background: #EF4444;
+}
+
+.password-strength.weak .strength-fill {
+    width: 40%;
+    background: #ffffff;
+}
+
+.password-strength.medium .strength-fill {
+    width: 60%;
+    background: #ffffff;
+}
+
+.password-strength.strong .strength-fill {
+    width: 80%;
+    background: #10B981;
+}
+
+.password-strength.very-strong .strength-fill {
+    width: 100%;
+    background: #059669;
+}
+
+.strength-text {
+    font-size: 12px;
+    font-weight: 500;
+    color: #6B7280;
+}
+
+.password-strength.very-weak .strength-text {
+    color: #EF4444;
+}
+
+.password-strength.weak .strength-text {
+    color: #ffffff;
+}
+
+.password-strength.medium .strength-text {
+    color: #ffffff;
+}
+
+.password-strength.strong .strength-text {
+    color: #10B981;
+}
+
+.password-strength.very-strong .strength-text {
+    color: #059669;
+}
+
+/* ============================================
+   MESSAGE DE CORRESPONDANCE DES MOTS DE PASSE
+   ============================================ */
+.password-match-message {
+    display: block;
+    font-size: 12px;
+    margin-top: 0.25rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.password-match-message.valid {
+    color: #10B981;
+}
+
+.password-match-message.invalid {
+    color: #EF4444;
+}
+
+/* ============================================
+   ÉTAT DE CHARGEMENT DU BOUTON
+   ============================================ */
+.submit-btn.loading {
+    position: relative;
+    color: transparent;
+}
+
+.submit-btn.loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin-left: -10px;
+    margin-top: -10px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spinner 0.8s linear infinite;
+}
+
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.submit-btn.loading span {
+    opacity: 0;
+}
+
+/* ============================================
+   AMÉLIORATION DES CHAMPS
+   ============================================ */
+.signup-container .input-group input:focus {
+    outline: none;
+    border-color: #2563EB;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    transform: translateY(-1px);
+}
+
+.signup-container .input-group input:focus:not(.error):not(.valid) {
+    border-color: #60A5FA;
+}
+
+/* ============================================
+   ANIMATIONS D'ENTRÉE DES CHAMPS
+   ============================================ */
+/* Animation d'entrée pour les champs - Effet de cascade */
+.signup-container .input-group {
+    animation: fadeInUp 0.4s ease-out backwards;
+    /* Animation de montée avec fondu */
+}
+
+/* Délais progressifs pour effet de cascade */
+.signup-container .input-group:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.signup-container .input-group:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.signup-container .input-group:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.signup-container .input-group:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+/* Animation de montée avec fondu */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+        /* Commence en bas et invisible */
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        /* Finit en position normale et visible */
+    }
+}
+
+/* ============================================
+   ÉTATS SPÉCIAUX DES COMPOSANTS
+   ============================================ */
+/* Sélecteur de rôle en erreur - Bordure rouge + animation shake */
+.role-selector.error {
+    border: 2px solid #EF4444;
+    border-radius: 12px;
+    padding: 0.5rem;
+    animation: shake 0.3s ease-in-out;
+    /* Animation de secousse pour attirer l'attention */
+}
+
+/* Sélecteur de rôle avec sélection - Animation de pulsation */
+.role-selector.role-selected {
+    animation: pulse 0.3s ease-out;
+}
+
+/* Animation de pulsation - Légère augmentation de taille */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+        /* Légère augmentation au milieu de l'animation */
+    }
+}
+
+/* Toggle password actif - Couleur bleue quand le mot de passe est visible */
+.password-toggle.active {
+    color: #2563EB;
+}
+
+.password-toggle.active svg {
+    transform: scale(1.1);
+    /* Légère augmentation de l'icône */
+}
+
+/* ============================================
+   RESPONSIVE - ADAPTATION MOBILE
+   ============================================ */
+/* Responsive pour SIGNUP - Breakpoint à 968px */
+@media (max-width: 968px) {
+    body {
+        padding: 1rem;
+        align-items: flex-start;
+        padding-top: 2rem;
+    }
+
+    .signup-container {
+        flex-direction: column;
+        height: auto;
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .left-side {
+        flex: 0 0 auto;
+        padding: 1.5rem 1.25rem;
+        min-height: auto;
+    }
+
+    .right-side {
+        flex: 0 0 auto;
+    }
+
+    .form-wrapper {
+        padding: 1.5rem 1.25rem;
+        min-height: auto;
+    }
+
+    .main-content h2 {
+        font-size: 28px;
+    }
+
+    .input-row {
+        grid-template-columns: 1fr;
+    }
+
+    .validation-indicator {
+        right: 2.5rem;
+    }
+    /* Bleu royal vibrant comme dans l'image */
+    background-attachment: fixed;
+    /* Fixe le background pour qu'il ne bouge pas lors du défilement */
+    background-size: cover;
+    /* Assure que le background couvre tout l'écran */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* Permet le défilement vertical si nécessaire */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   EFFETS DE FOND ANIMÉS - COMME LA PAGE DE LOGIN
+   ============================================ */
+/* Première couche : Cercles radiaux animés pour effet de profondeur */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 15% 25%, rgba(96, 165, 250, 0.3) 0%, transparent 25%),
+        radial-gradient(circle at 85% 15%, rgba(147, 197, 253, 0.25) 0%, transparent 30%),
+        radial-gradient(circle at 70% 85%, rgba(59, 130, 246, 0.2) 0%, transparent 35%),
+        radial-gradient(circle at 30% 75%, rgba(191, 219, 254, 0.15) 0%, transparent 28%);
+    animation: float 25s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+    will-change: transform;
+}
+
+/* Deuxième couche : Motifs géométriques SVG (Triangles et Cercles) */
+body::after {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-image:
+        url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 10 L90 90 L10 90 Z' fill='rgba(255,255,255,0.02)' /%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='40' r='30' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='2'/%3E%3C/svg%3E");
+    background-position: 0 0, 40px 40px;
+    background-size: 200px 200px, 160px 160px;
+    animation: backgroundMove 60s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+    will-change: transform;
+}
+
+/* Animation de flottement pour les cercles radiaux */
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(40px, -30px) scale(1.15);
+    }
+    66% {
+        transform: translate(-30px, 20px) scale(0.95);
+    }
+}
+
+/* Animation de mouvement pour les motifs géométriques */
+@keyframes backgroundMove {
+    from {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    to {
+        transform: translate(50px, 50px) rotate(360deg);
+    }
+}
+
+/* ============================================
+   CONTENEUR PRINCIPAL - SPLIT SCREEN
+   ============================================ */
+/* Conteneur d'inscription (écran divisé) - Centré avec zoom réduit et marges latérales */
+.signup-container {
+    max-width: 1100px;
+    /* Largeur maximale réduite pour avoir des marges latérales */
+    width: 100%;
+    margin: 0 auto;
+    /* Centrage horizontal */
+    display: flex;
+    /* Layout flexbox pour les deux panneaux */
+    gap: 0;
+    /* Pas d'espace entre les panneaux */
+    min-height: 650px;
+    /* Hauteur minimale pour un rendu équilibré */
+    height: auto;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    /* Masque les coins arrondis des enfants */
+    box-shadow: var(--shadow-2xl), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    /* Ombre profonde + bordure subtile */
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(20px);
+    /* Effet de flou d'arrière-plan */
+    font-family: 'Inter', sans-serif;
+    background: transparent;
+    transition: box-shadow 0.3s ease;
+    /* Transition uniquement sur l'ombre, pas sur transform pour éviter le retrait */
+    transform: scale(1);
+    /* Zoom normal (100%) - comme avant */
+    transform-origin: center center;
+    /* Point d'origine du zoom au centre */
+    will-change: box-shadow;
+    /* Optimisation pour éviter les recalculs de layout */
+}
+
+/* Effet hover : légère élévation du conteneur */
+.signup-container:hover {
+    transform: scale(1) translateY(-2px);
+    /* Zoom normal avec élévation au survol */
+    box-shadow: var(--shadow-2xl), 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+/* ============================================
+   PANNEAU GAUCHE - BRANDING & INFORMATION
+   ============================================ */
+/* Panneau Gauche (SIGNUP) - Zone de branding avec effet de zoom */
+.left-side {
+    flex: 0 0 30%;
+    /* Prend 38% de la largeur du conteneur (moins que le panneau droit) */
+    background: url('../default_image/img.jpg') center center / cover no-repeat;
+    /* Image en fond d'écran */
+    backdrop-filter: blur(20px);
+    color: var(--text-white);
+    padding: 4rem 3.5rem;
+    /* Padding augmenté pour avoir plus de marge intérieure */
+    display: flex;
+    flex-direction: column;
+    /* Layout vertical pour empiler le contenu */
+    justify-content: space-between;
+    /* Espacement entre le contenu principal et le logo en bas */
+    position: relative;
+    overflow: hidden;
+    /* Masque les éléments qui dépassent */
+}
+
+/* Overlay bleu pour cacher l'image - Opacité augmentée */
+.left-side::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(65, 105, 225, 0.75);
+    /* Overlay bleu royal avec opacité 75% - légèrement réduite */
+    z-index: 0;
+    /* Derrière le contenu */
+}
+
+/* Animation de zoom pour l'effet de parallaxe */
+@keyframes zoomIn {
+    0% {
+        transform: scale(1);
+        /* Taille normale */
+    }
+
+    100% {
+        transform: scale(1.15);
+        /* Zoom à 115% */
+    }
+}
+
+/* Cercle décoratif en haut à droite - Animation de pulsation */
+.left-side::after {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.25) 0%, transparent 70%);
+    /* Cercle radial bleu clair */
+    border-radius: 50%;
+    animation: pulseGlow 4s ease-in-out infinite;
+    /* Animation de pulsation continue */
+    z-index: 0;
+    /* Derrière le contenu mais au-dessus du zoom */
+}
+
+/* Tous les enfants du panneau gauche au-dessus des effets de fond */
+.left-side>* {
+    position: relative;
+    z-index: 1;
+    /* Tous les enfants du panneau gauche au-dessus des effets */
+}
+
+/* Animation de pulsation pour les cercles décoratifs */
+@keyframes pulseGlow {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+        /* Légère augmentation de taille au milieu de l'animation */
+    }
+}
+
+/* ============================================
+   LOGO & BRANDING
+   ============================================ */
+/* Zone du logo (SIGNUP) - Positionné pour rester visible lors du défilement */
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    /* Espacement entre l'icône et le texte */
+    margin-top: auto;
+    /* Pousse le logo vers le bas */
+    margin-bottom: 8rem;
+    /* Marge bottom importante pour remonter beaucoup le logo et le garder visible */
+    position: relative;
+    z-index: 1;
+    /* Au-dessus des éléments décoratifs */
+    justify-content: center;
+    /* Centrage horizontal du logo */
+}
+
+/* Icône du logo - Carré avec lettre "M" */
+.logo-area .logo-icon {
+    width: 52px;
+    height: 52px;
+    background: rgba(255, 255, 255, 0.25);
+    /* Fond blanc semi-transparent */
+    backdrop-filter: blur(10px);
+    /* Effet de flou pour glassmorphism */
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text-white);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    /* Ombre externe + highlight interne */
+    transition: transform var(--transition-base);
+}
+
+/* Animation au survol de la zone logo */
+.logo-area:hover .logo-icon {
+    transform: scale(1.05) rotate(5deg);
+    /* Légère rotation et agrandissement */
+}
+
+.logo-area h1 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Contenu principal (SIGNUP) */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* Alignement en haut pour correspondre à l'image */
+    position: relative;
+    z-index: 1;
+    padding-top: 2rem;
+    /* Espacement depuis le haut */
+}
+
+.main-content h2 {
+    font-size: 42px;
+    /* Taille plus grande pour correspondre à l'image */
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    /* Espacement important après le titre */
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    color: var(--text-white);
+}
+
+/* Section de connexion - Question et bouton */
+.login-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    /* Espacement entre la question et le bouton */
+}
+
+.login-question {
+    font-size: 16px;
+    font-weight: 700;
+    /* Texte en gras */
+    opacity: 0.95;
+    margin: 0;
+    /* Pas de marge pour contrôle précis */
+    color: var(--text-white);
+}
+
+/* ============================================
+   BOUTON DE CONNEXION - STYLE COMME L'IMAGE
+   ============================================ */
+/* Lien "Se connecter" - Bouton blanc avec flèche comme dans l'image */
+.login-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    /* Espacement entre le texte et la flèche */
+    padding: 0.875rem 1.75rem;
+    background: #ffffff;
+    /* Fond blanc pur */
+    color: #111827;
+    /* Texte noir */
+    text-decoration: none;
+    border-radius: 8px;
+    /* Coins arrondis modérés */
+    font-weight: 700;
+    /* Texte en gras */
+    font-size: 15px;
+    transition: var(--transition-base);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Ombre légère */
+    letter-spacing: 0.2px;
+    width: fit-content;
+    /* Largeur adaptée au contenu */
+    border: none;
+    /* Pas de bordure */
+}
+
+/* Flèche dans le bouton */
+.login-link svg {
+    width: 16px;
+    height: 16px;
+    color: #111827;
+    /* Couleur noire pour la flèche */
+    transition: transform var(--transition-base);
+}
+
+/* Effet hover du lien de connexion */
+.login-link:hover {
+    background: #ffffff;
+    /* Fond gris très clair au survol */
+    transform: translateX(2px);
+    /* Légère translation vers la droite */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    color: #111827;
+}
+
+.login-link:hover svg {
+    transform: translateX(2px);
+    /* La flèche se déplace aussi */
+}
+
+.login-link:active {
+    transform: translateX(0);
+    /* Retour à la position normale au clic */
+}
+
+/* Panneau Droit (SIGNUP) */
+.right-side {
+    flex: 1;
+    background: transparent;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    /* Assure que le flex container prend toute la hauteur */
+}
+
+/* Wrapper du formulaire - Conteneur avec fond bleu très clair uniforme */
+.form-wrapper {
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    /* Fond bleu très clair uniforme (sans gradient) */
+    padding: 3.5rem 3rem;
+    /* Padding augmenté pour avoir plus de marge intérieure */
+    border-radius: 0;
+    box-shadow: none;
+    /* Pas d'ombre pour un look plus plat comme l'image */
+    backdrop-filter: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* Alignement en haut pour correspondre à l'image */
+    align-items: stretch;
+    /* Les éléments prennent toute la largeur */
+    overflow-y: auto;
+    /* Défilement vertical si nécessaire */
+    position: relative;
+}
+
+/* Ligne décorative en haut du formulaire */
+.form-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.1), transparent);
+    /* Ligne horizontale avec gradient */
+}
+
+/* ============================================
+   FORMULAIRE D'INSCRIPTION
+   ============================================ */
+/* Conteneur du formulaire - Prend toute la largeur disponible */
+#signupForm {
+    width: 100%;
+    max-width: 100%;
+    /* Formulaire prend toute la largeur disponible */
+    margin: 0;
+    /* Pas de marge pour maximiser l'espace */
+    display: flex;
+    flex-direction: column;
+    gap: 1.125rem;
+    /* Espacement légèrement augmenté pour aérer les champs */
+}
+
+/* ============================================
+   GRILLE DE CHAMPS - LAYOUT RESPONSIVE
+   ============================================ */
+/* Grille pour champs côte à côte (SIGNUP) - Ex: Prénom/Nom */
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Deux colonnes égales */
+    gap: 1rem;
+    /* Espacement entre les colonnes - plus généreux comme l'image */
+    margin-bottom: 0;
+    /* Pas de marge bottom car géré par le gap du formulaire */
+    width: 100%;
+}
+
+/* Groupe de champ individuel */
+.input-group {
+    margin-bottom: 0;
+    /* Pas de marge bottom car géré par le gap du formulaire */
+    width: 100%;
+}
+
+/* Groupe de champ pleine largeur - S'étend sur toutes les colonnes */
+.input-group.full {
+    grid-column: 1 / -1;
+    /* Prend toute la largeur de la grille */
+    width: 100%;
+}
+
+/* ============================================
+   LABELS DES CHAMPS
+   ============================================ */
+/* Labels visibles pour SIGNUP - Au-dessus des champs */
+.signup-container .input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    /* Espacement avant le champ */
+    font-weight: 500;
+    font-size: 14px;
+    color: #111827;
+    /* Noir foncé pour bonne lisibilité comme l'image */
+}
+
+/* ============================================
+   CHAMPS DE SAISIE - INPUTS
+   ============================================ */
+/* Champs de saisie (SIGNUP) - Style uniforme pour tous les types */
+.signup-container .input-group input[type="text"],
+.signup-container .input-group input[type="email"],
+.signup-container .input-group input[type="password"] {
+    width: 100%;
+    /* Prend toute la largeur du conteneur */
+    padding: 0.875rem 1rem;
+    /* Padding plus généreux comme dans l'image */
+    border: 1px solid #E5E7EB;
+    /* Bordure grise claire fine comme l'image */
+    border-radius: 8px;
+    /* Coins arrondis modérés */
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    transition: none;
+    /* Pas de transition pour éviter l'effet de retrait */
+    background-color: #ffffff;
+    /* Fond blanc pur */
+    height: auto;
+    box-sizing: border-box;
+    /* Padding inclus dans la largeur */
+    color: var(--text-primary);
+    /* Texte noir */
+    box-shadow: none;
+    /* Pas d'ombre pour un look plat comme l'image */
+    transform: none;
+    /* Pas de transformation pour éviter l'effet de retrait */
+}
+
+.signup-container .input-group input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+.signup-container .input-group input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    /* Bordure bleue au focus */
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    /* Ombre bleue subtile au focus */
+    background-color: #ffffff;
+}
+
+.signup-container .input-group input:hover:not(:focus) {
+    border-color: #D1D5DB;
+    /* Bordure légèrement plus foncée au survol */
+    box-shadow: none;
+}
+
+/* Champ mot de passe */
+.password-field {
+    position: relative;
+    display: flex;
+}
+
+.password-field input {
+    padding-right: 2.5rem;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #6B7280;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    padding: 0.25rem;
+}
+
+.password-toggle:hover {
+    color: #2563EB;
+}
+
+.password-toggle:focus {
+    outline: none;
+}
+
+.password-toggle svg {
+    transition: transform 0.3s ease;
+}
+
+.password-toggle.active svg {
+    transform: scale(1.1);
+}
+
+/* Sélecteur de rôle (SIGNUP) */
+.role-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.role-option {
+    position: relative;
+    padding: 1.5rem 1.25rem;
+    border: 2px solid var(--border-light);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: var(--transition-base);
+    text-align: center;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    box-shadow: var(--shadow-sm);
+}
+
+.role-option::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(96, 165, 250, 0.08) 100%);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.role-option:hover {
+    border-color: var(--primary-blue-light);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.2), var(--shadow-md);
+}
+
+.role-option:hover::before {
+    opacity: 1;
+}
+
+.role-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.role-option input[type="radio"]:checked~.role-text {
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+.role-option:has(input:checked) {
+    border-color: var(--primary-blue);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(96, 165, 250, 0.15) 100%);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15), var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.role-option:has(input:checked)::before {
+    opacity: 1;
+}
+
+.role-text {
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--text-primary);
+    pointer-events: none;
+    position: relative;
+    z-index: 1;
+    transition: var(--transition-base);
+}
+
+/* Bouton Google (SIGNUP) */
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.875rem;
+    width: 100%;
+    padding: 0.875rem 1.25rem;
+    /* Padding ajusté */
+    background: #ffffff;
+    /* Fond blanc pur */
+    border: 1px solid #E5E7EB;
+    /* Bordure fine grise */
+    border-radius: 8px;
+    /* Coins arrondis modérés */
+    color: var(--text-primary);
+    /* Texte noir */
+    font-weight: 500;
+    /* Poids de police modéré */
+    font-size: 15px;
+    text-decoration: none;
+    transition: var(--transition-base);
+    box-shadow: none;
+    /* Pas d'ombre pour un look plat */
+    margin-top: 1.5rem;
+    /* Marge top réduite légèrement */
+    margin-bottom: 0;
+    /* Pas de marge bottom car géré par le gap du formulaire */
+    box-sizing: border-box;
+    letter-spacing: 0.1px;
+    position: relative;
+    overflow: hidden;
+}
+
+.google-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.05), transparent);
+    transition: left 0.5s ease;
+}
+
+.google-btn:hover::before {
+    left: 100%;
+}
+
+.google-btn:hover {
+    border-color: #D1D5DB;
+    /* Bordure légèrement plus foncée au survol */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    /* Ombre très légère au survol */
+    background: #ffffff;
+    /* Fond gris très clair au survol */
+    transform: none;
+    /* Pas de transformation */
+    color: var(--text-primary);
+}
+
+.google-btn:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+}
+
+/* ============================================
+   SÉPARATEUR "OU" - DIVISION VISUELLE
+   ============================================ */
+.separator {
+    position: relative;
+    text-align: center;
+    margin: 1rem 0;
+    /* Marge légèrement augmentée pour aérer */
+}
+
+/* Ligne horizontale du séparateur - Plus visible */
+.separator::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1.5px;
+    /* Ligne plus épaisse et plus visible */
+    background: linear-gradient(90deg, transparent, var(--border-medium) 20%, var(--border-medium) 80%, transparent);
+    /* Couleur plus foncée pour meilleure visibilité */
+    opacity: 0.8;
+}
+
+/* Texte "OU" au centre du séparateur */
+.separator span {
+    position: relative;
+    background: var(--bg-form);
+    padding: 0 1.5rem;
+    color: var(--text-secondary);
+    /* Couleur plus foncée pour meilleure lisibilité */
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* ============================================
+   MESSAGES D'ERREUR ET DE SUCCÈS
+   ============================================ */
+/* Conteneur de messages (SIGNUP) - Regroupe tous les messages */
+.messages-container {
+    margin-bottom: 1.5rem;
+}
+
+.messages-container .error-box {
+    margin-bottom: 0.75rem;
+}
+
+/* Messages d'erreur - Style avec bordure gauche rouge */
+.error-box {
+    padding: 1.125rem 1.25rem;
+    background: var(--error-light);
+    border: 1.5px solid #ffffff;
+    border-left: 4px solid var(--error);
+    border-radius: var(--radius-md);
+    color: #991B1B;
+    margin-bottom: 1.5rem;
+    font-size: 14px;
+    text-align: left;
+    animation: slideDown 0.3s ease-out;
+    box-shadow: var(--shadow-sm);
+    font-weight: 500;
+}
+
+/* Animation d'apparition des messages - Slide down */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Texte d'erreur sous les champs - Validation inline */
+.error-text {
+    color: #EF4444;
+    font-size: 13px;
+    display: block;
+    margin-top: 0.25rem;
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Animation de fondu pour les textes d'erreur */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Message de succès - Style avec bordure gauche verte */
+.success-box {
+    padding: 1.125rem 1.25rem;
+    background: var(--success-light);
+    border: 1.5px solid #6EE7B7;
+    border-left: 4px solid var(--success);
+    border-radius: var(--radius-md);
+    color: #065F46;
+    margin-bottom: 1.5rem;
+    font-size: 14px;
+    text-align: left;
+    animation: slideDown 0.3s ease-out;
+    box-shadow: var(--shadow-sm);
+    font-weight: 500;
+}
+
+/* Bouton de soumission */
+.submit-btn {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    /* Padding ajusté pour correspondre à l'image */
+    background: var(--primary-blue);
+    /* Fond bleu uni (pas de gradient) comme l'image */
+    color: var(--text-white);
+    border: none;
+    border-radius: 8px;
+    /* Coins arrondis modérés */
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-base);
+    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+    /* Ombre légère */
+    position: relative;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.3px;
+    text-transform: none;
+    margin-top: 0.5rem;
+    /* Marge top pour espacement */
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.submit-btn:hover:not(:disabled)::before {
+    left: 100%;
+}
+
+.submit-btn:hover:not(:disabled) {
+    background: var(--primary-blue-dark);
+    /* Bleu plus foncé au survol */
+    transform: translateY(-2px);
+    /* Légère élévation */
+    box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+    /* Ombre plus prononcée au survol */
+}
+
+.submit-btn:active:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-blue);
+}
+
+.submit-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: var(--shadow-sm);
+}
+
+/* ============================================
+   INDICATEURS DE VALIDATION
+   ============================================ */
+.validation-indicator {
+    position: absolute;
+    right: 3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.validation-indicator.valid {
+    color: #10B981;
+    opacity: 1;
+}
+
+.validation-indicator.invalid {
+    color: #EF4444;
+    opacity: 1;
+}
+
+.signup-container .input-group input.valid {
+    border-color: #10B981;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+}
+
+.signup-container .input-group input.error {
+    border-color: #EF4444;
+    animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-8px);
+    }
+
+    75% {
+        transform: translateX(8px);
+    }
+}
+
+/* ============================================
+   INDICATEUR DE FORCE DU MOT DE PASSE
+   ============================================ */
+.password-strength {
+    margin-top: 0.5rem;
+    display: none;
+}
+
+.password-strength.show {
+    display: block;
+}
+
+.strength-bar {
+    width: 100%;
+    height: 4px;
+    background: #E5E7EB;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.strength-fill {
+    height: 100%;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    border-radius: 2px;
+}
+
+.password-strength.very-weak .strength-fill {
+    width: 20%;
+    background: #EF4444;
+}
+
+.password-strength.weak .strength-fill {
+    width: 40%;
+    background: #ffffff;
+}
+
+.password-strength.medium .strength-fill {
+    width: 60%;
+    background: #ffffff;
+}
+
+.password-strength.strong .strength-fill {
+    width: 80%;
+    background: #10B981;
+}
+
+.password-strength.very-strong .strength-fill {
+    width: 100%;
+    background: #059669;
+}
+
+.strength-text {
+    font-size: 12px;
+    font-weight: 500;
+    color: #6B7280;
+}
+
+.password-strength.very-weak .strength-text {
+    color: #EF4444;
+}
+
+.password-strength.weak .strength-text {
+    color: #ffffff;
+}
+
+.password-strength.medium .strength-text {
+    color: #ffffff;
+}
+
+.password-strength.strong .strength-text {
+    color: #10B981;
+}
+
+.password-strength.very-strong .strength-text {
+    color: #059669;
+}
+
+/* ============================================
+   MESSAGE DE CORRESPONDANCE DES MOTS DE PASSE
+   ============================================ */
+.password-match-message {
+    display: block;
+    font-size: 12px;
+    margin-top: 0.25rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.password-match-message.valid {
+    color: #10B981;
+}
+
+.password-match-message.invalid {
+    color: #EF4444;
+}
+
+/* ============================================
+   ÉTAT DE CHARGEMENT DU BOUTON
+   ============================================ */
+.submit-btn.loading {
+    position: relative;
+    color: transparent;
+}
+
+.submit-btn.loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin-left: -10px;
+    margin-top: -10px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spinner 0.8s linear infinite;
+}
+
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.submit-btn.loading span {
+    opacity: 0;
+}
+
+/* ============================================
+   AMÉLIORATION DES CHAMPS
+   ============================================ */
+.signup-container .input-group input:focus {
+    outline: none;
+    border-color: #2563EB;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    transform: translateY(-1px);
+}
+
+.signup-container .input-group input:focus:not(.error):not(.valid) {
+    border-color: #60A5FA;
+}
+
+/* ============================================
+   ANIMATIONS D'ENTRÉE DES CHAMPS
+   ============================================ */
+/* Animation d'entrée pour les champs - Effet de cascade */
+.signup-container .input-group {
+    animation: fadeInUp 0.4s ease-out backwards;
+    /* Animation de montée avec fondu */
+}
+
+/* Délais progressifs pour effet de cascade */
+.signup-container .input-group:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.signup-container .input-group:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.signup-container .input-group:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.signup-container .input-group:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+/* Animation de montée avec fondu */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+        /* Commence en bas et invisible */
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        /* Finit en position normale et visible */
+    }
+}
+
+/* ============================================
+   ÉTATS SPÉCIAUX DES COMPOSANTS
+   ============================================ */
+/* Sélecteur de rôle en erreur - Bordure rouge + animation shake */
+.role-selector.error {
+    border: 2px solid #EF4444;
+    border-radius: 12px;
+    padding: 0.5rem;
+    animation: shake 0.3s ease-in-out;
+    /* Animation de secousse pour attirer l'attention */
+}
+
+/* Sélecteur de rôle avec sélection - Animation de pulsation */
+.role-selector.role-selected {
+    animation: pulse 0.3s ease-out;
+}
+
+/* Animation de pulsation - Légère augmentation de taille */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+        /* Légère augmentation au milieu de l'animation */
+    }
+}
+
+/* Toggle password actif - Couleur bleue quand le mot de passe est visible */
+.password-toggle.active {
+    color: #2563EB;
+}
+
+.password-toggle.active svg {
+    transform: scale(1.1);
+    /* Légère augmentation de l'icône */
+}
+
+/* ============================================
+   RESPONSIVE - ADAPTATION MOBILE
+   ============================================ */
+/* Responsive pour SIGNUP - Breakpoint à 968px */
+@media (max-width: 968px) {
+    body {
+        padding: 1rem;
+        align-items: flex-start;
+        padding-top: 2rem;
+    }
+
+    .signup-container {
+        flex-direction: column;
+        height: auto;
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .left-side {
+        flex: 0 0 auto;
+        padding: 1.5rem 1.25rem;
+        min-height: auto;
+    }
+
+    .right-side {
+        flex: 0 0 auto;
+    }
+
+    .form-wrapper {
+        padding: 1.5rem 1.25rem;
+        min-height: auto;
+    }
+
+    .main-content h2 {
+        font-size: 28px;
+    }
+
+    .input-row {
+        grid-template-columns: 1fr;
+    }
+
+    .validation-indicator {
+        right: 2.5rem;
+    }
+}

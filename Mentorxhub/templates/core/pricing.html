@@ -1,0 +1,224 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ page_title }} - MentorXHub{% endblock %}
+
+{% block extra_css %}
+<style>
+    .pricing-page {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+        background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+        min-height: 100vh;
+    }
+
+    .page-header {
+        text-align: center;
+        margin-bottom: 4rem;
+        animation: fadeInDown 0.6s ease-out;
+    }
+
+    .page-header h1 {
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        font-weight: 800;
+        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 1rem;
+        letter-spacing: -0.02em;
+    }
+
+    .page-header p {
+        font-size: 1.25rem;
+        color: #64748b;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-bottom: 4rem;
+    }
+
+    .pricing-card {
+        background: white;
+        border-radius: 20px;
+        padding: 2.5rem;
+        border: 2px solid #e2e8f0;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        animation: fadeInUp 0.6s ease-out backwards;
+    }
+
+    .pricing-card.popular {
+        border-color: #3b82f6;
+        box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+        transform: scale(1.05);
+    }
+
+    .pricing-card.popular::before {
+        content: 'POPULAIRE';
+        position: absolute;
+        top: 20px;
+        right: -30px;
+        background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+        color: white;
+        padding: 0.5rem 3rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        transform: rotate(45deg);
+        letter-spacing: 1px;
+    }
+
+    .pricing-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(30, 58, 138, 0.15);
+        border-color: #3b82f6;
+    }
+
+    .plan-name {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 1rem;
+    }
+
+    .plan-price {
+        font-size: 3rem;
+        font-weight: 800;
+        color: #3b82f6;
+        margin-bottom: 0.5rem;
+    }
+
+    .plan-price span {
+        font-size: 1.25rem;
+        color: #64748b;
+        font-weight: 400;
+    }
+
+    .plan-features {
+        list-style: none;
+        padding: 0;
+        margin: 2rem 0;
+    }
+
+    .plan-features li {
+        padding: 0.75rem 0;
+        color: #475569;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .plan-features li::before {
+        content: '✓';
+        color: #10b981;
+        font-weight: 700;
+        font-size: 1.25rem;
+    }
+
+    .plan-cta {
+        width: 100%;
+        padding: 1rem 2rem;
+        background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .plan-cta:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+    }
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .pricing-card:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+
+    .pricing-card:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .pricing-card:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+
+    @media (max-width: 768px) {
+        .pricing-page {
+            padding: 2rem 1rem;
+        }
+
+        .pricing-card.popular {
+            transform: scale(1);
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="pricing-page">
+    <div class="page-header">
+        <h1>💎 {{ page_title }}</h1>
+        <p>Choisissez le plan qui correspond à vos besoins et objectifs</p>
+    </div>
+
+    <div class="pricing-grid">
+        {% for plan in plans %}
+        <div class="pricing-card {% if plan.popular %}popular{% endif %}">
+            <div class="plan-name">{{ plan.name }}</div>
+            <div class="plan-price">
+                {{ plan.price }}€<span>/mois</span>
+            </div>
+            <ul class="plan-features">
+                {% for feature in plan.features %}
+                <li>{{ feature }}</li>
+                {% endfor %}
+            </ul>
+            <a href="{% url 'accounts:signup' %}" class="plan-cta">
+                {% if plan.price == '0' %}
+                Commencer gratuitement
+                {% else %}
+                Choisir ce plan
+                {% endif %}
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

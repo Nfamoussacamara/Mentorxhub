@@ -1,0 +1,88 @@
+/* ============================================
+   STYLES POUR PAGE DE SÉLECTION DE RÔLE
+   Role Selection - MentorXHub
+   ============================================ */
+
+.role-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+    width: 100%;
+}
+
+.role-card-label {
+    cursor: pointer;
+    position: relative;
+}
+
+.role-card {
+    background: #ffffff;
+    border: 2px solid #E5E7EB;
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.role-card:hover {
+    border-color: #93C5FD;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.1);
+}
+
+.hidden-radio {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.hidden-radio:checked+.role-card {
+    border-color: #2563EB;
+    background: #EFF6FF;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+}
+
+.role-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #2563EB;
+}
+
+.role-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1F2937;
+    margin-bottom: 0.5rem;
+}
+
+.role-desc {
+    color: #6B7280;
+    line-height: 1.5;
+}
+
+.onboarding-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.onboarding-container .login-container {
+    max-width: 100%;
+}
+
+.onboarding-container .logo-wrapper {
+    justify-content: center;
+}
+
+.onboarding-container .button-wrapper {
+    max-width: 400px;
+    margin: 0 auto;
+}
+

@@ -1,0 +1,50 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Calendrier des Sessions - Dashboard{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.css">
+<link rel="stylesheet" href="{% static 'dashboard/css/sessions.css' %}?v=1.0">
+{% endblock %}
+
+{% block content %}
+<div class="sessions-page">
+    <div class="page-header">
+        <h1>Mon Calendrier</h1>
+        <div class="calendar-actions">
+            <button class="btn btn-primary" id="create-session-btn">
+                <i class="fas fa-plus"></i>
+                Nouvelle Session
+            </button>
+        </div>
+    </div>
+    
+    <div class="premium-card calendar-container">
+        <div id="calendar"></div>
+    </div>
+</div>
+
+<!-- Modal Premium pour les détails de session -->
+<div class="modal" id="session-modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modal-title">Détails de la Session</h2>
+            <button class="modal-close" id="modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <div class="loading">
+                <div class="spinner"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
+<script src="{% static 'dashboard/js/sessions.js' %}?v=1.0"></script>
+{% endblock %}
+

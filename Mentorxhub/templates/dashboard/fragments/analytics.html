@@ -1,0 +1,102 @@
+{% load static %}
+
+<div class="analytics-page">
+    <div class="page-header">
+        <h1>Analytics & Statistiques</h1>
+        <div class="period-selector">
+            <button class="period-btn active" data-period="week">Semaine</button>
+            <button class="period-btn" data-period="month">Mois</button>
+            <button class="period-btn" data-period="year">Année</button>
+        </div>
+    </div>
+    
+    <!-- KPIs Cards Premium -->
+    <div class="kpis-grid" id="kpis-grid">
+        <div class="kpi-card">
+            <div class="kpi-loading">
+                <div class="spinner"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Charts Premium -->
+    <div class="charts-grid">
+        <div class="premium-card chart-card">
+            <h2>Activité des Sessions</h2>
+            <canvas id="sessions-chart"></canvas>
+        </div>
+        
+        <div class="premium-card chart-card">
+            <h2>Répartition par Statut</h2>
+            <canvas id="status-chart"></canvas>
+        </div>
+        
+        <div class="premium-card chart-card chart-card-full">
+            <h2>{% if user.role == 'mentor' %}Revenus{% else %}Heures{% endif %} par Mois</h2>
+            <canvas id="monthly-chart"></canvas>
+        </div>
+    </div>
+    
+    <!-- Sessions à venir (pour les étudiants) -->
+    {% if user.role == 'student' and upcoming_sessions %}
+    <div class="analytics-sessions-section">
+        <div class="premium-card">
+            <div class="table-card-header">
+                <h2 class="table-card-title">Sessions à venir</h2>
+                <a href="{% url 'dashboard:sessions_calendar' %}" class="chart-card-link">Voir tout →</a>
+            </div>
+            <div class="analytics-sessions-list">
+                {% for session in upcoming_sessions %}
+                <div class="analytics-session-item">
+                    <div class="analytics-session-time">
+                        <div class="analytics-session-hour">{{ session.start_time|time:"H:i" }}</div>
+                        <div class="analytics-session-date">{{ session.date|date:"d M" }}</div>
+                    </div>
+                    <div class="analytics-session-dot"></div>
+                    <div class="analytics-session-content">
+                        <div class="analytics-session-header">
+                            <div class="analytics-session-mentor">
+                                <div class="analytics-session-avatar">
+                                    {% if session.mentor.user.profile_picture %}
+                                        <img src="{{ session.mentor.user.profile_picture.url }}" alt="{{ session.mentor.user.get_full_name }}">
+                                    {% else %}
+                                        <span>{{ session.mentor.user.first_name|first }}{{ session.mentor.user.last_name|first }}</span>
+                                    {% endif %}
+                                </div>
+                                <div class="analytics-session-info">
+                                    <div class="analytics-session-name">{{ session.mentor.user.get_full_name|default:session.mentor.user.email }}</div>
+                                    <div class="analytics-session-title">{{ session.title|default:"Session de mentorat" }}</div>
+                                </div>
+                            </div>
+                            <div class="analytics-session-status status-{{ session.status|lower }}">
+                                {{ session.get_status_display }}
+                            </div>
+                        </div>
+                        <div class="analytics-session-meta">
+                            <div class="analytics-session-meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>{{ session.date|date:"d M Y" }}</span>
+                            </div>
+                            <div class="analytics-session-meta-item">
+                                <i class="fas fa-clock"></i>
+                                <span>{{ session.start_time|time:"H:i" }} - {{ session.end_time|time:"H:i" }}</span>
+                            </div>
+                            {% if session.meeting_link %}
+                            <a href="{{ session.meeting_link }}" target="_blank" class="analytics-session-join-btn">
+                                <i class="fas fa-video"></i>
+                                Rejoindre
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="{% static 'dashboard/js/analytics.js' %}?v=1.0"></script>
+

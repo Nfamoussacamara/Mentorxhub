@@ -1,0 +1,45 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Messagerie - Dashboard{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'dashboard/css/messages.css' %}?v=2.0">
+<style>
+    /* Override dashboard-content pour la page messages */
+    .dashboard-content {
+        padding: 0 !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="messages-page-layout">
+    <!-- Panneau central : Liste des messages -->
+    {% include 'dashboard/fragments/messages_list_panel.html' %}
+
+    <!-- Panneau droit : Chat actif -->
+    <div class="messages-chat-panel" id="messages-chat-panel">
+        <div class="messages-chat-placeholder">
+            <p class="messages-placeholder-text">Choisissez une conversation pour commencer à discuter</p>
+            
+            <!-- Notification "Fonctionnalité à venir" -->
+            <div class="messages-info-notification" id="messages-info-notification">
+                <div class="messages-info-icon">
+                    <i class="fas fa-info"></i>
+                </div>
+                <div class="messages-info-text">Fonctionnalité à venir</div>
+                <button class="messages-info-close" id="messages-info-close" aria-label="Fermer">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'dashboard/js/messages.js' %}?v=2.0" defer></script>
+{% endblock %}

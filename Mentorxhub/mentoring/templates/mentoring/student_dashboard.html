@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Tableau de bord Étudiant - MentorXHub{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'mentoring/css/student_dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <!-- En-tête -->
+    <div class="dashboard-header">
+        <h1>👋 Bienvenue, {{ user.first_name|default:"Étudiant" }}!</h1>
+        <p>Voici un aperçu de votre parcours d'apprentissage</p>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon">📅</div>
+            <div class="stat-label">Sessions à venir</div>
+            <div class="stat-value">{{ upcoming_sessions_count|default:"0" }}</div>
+            <div class="stat-change">↑ 2 cette semaine</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">⏱️</div>
+            <div class="stat-label">Heures de mentorat</div>
+            <div class="stat-value">{{ total_hours|default:"0" }}</div>
+            <div class="stat-change">↑ 15% ce mois</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">👥</div>
+            <div class="stat-label">Mentors actifs</div>
+            <div class="stat-value">{{ active_mentors_count|default:"0" }}</div>
+            <div class="stat-change">3 favoris</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">🎯</div>
+            <div class="stat-label">Objectifs atteints</div>
+            <div class="stat-value">{{ goals_completed|default:"0" }}/{{ total_goals|default:"0" }}</div>
+            <div class="stat-change">↑ 80% progression</div>
+        </div>
+    </div>
+
+    <!-- Content Grid -->
+    <div class="content-grid">
+        <!-- Sessions à venir -->
+        <div class="content-card">
+            <div class="card-header">
+                <h2>📚 Sessions à venir</h2>
+                <a href="{% url 'mentoring:mentor_list' %}" class="btn-primary-custom">
+                    + Réserver
+                </a>
+            </div>
+
+            {% if upcoming_sessions %}
+            {% for session in upcoming_sessions %}
+            <div class="session-item">
+                <div class="session-avatar">
+                    {{ session.mentor.user.first_name|first }}{{ session.mentor.user.last_name|first }}
+                </div>
+                <div class="session-info">
+                    <h3>{{ session.mentor.user.get_full_name }}</h3>
+                    <div class="session-meta">
+                        <span>📅 {{ session.date|date:"d M Y" }}</span>
+                        <span>🕐 {{ session.start_time|time:"H:i" }}</span>
+                    </div>
+                    <span class="session-status status-{{ session.status|lower }}">
+                        {{ session.get_status_display }}
+                    </span>
+                </div>
+                <div class="session-actions">
+                    {% if session.meeting_link %}
+                    <a href="{{ session.meeting_link }}" target="_blank" class="btn-icon" title="Rejoindre">
+                        🎥
+                    </a>
+                    {% endif %}
+                    <a href="{% url 'mentoring:session_detail' session.id %}" class="btn-icon" title="Détails">
+                        👁️
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="empty-state">
+                <div class="empty-state-icon">📅</div>
+                <p>Aucune session programmée pour le moment</p>
+                <a href="{% url 'mentoring:mentor_list' %}" class="btn-primary-custom" style="margin-top: 1rem;">
+                    Trouver un mentor
+                </a>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Mentors recommandés -->
+        <div class="content-card">
+            <div class="card-header">
+                <h2>⭐ Mentors recommandés</h2>
+                <a href="{% url 'mentoring:mentor_list' %}"
+                    style="color: #2563EB; font-size: 0.875rem; font-weight: 600;">
+                    Voir tous
+                </a>
+            </div>
+
+            {% if recommended_mentors %}
+            {% for mentor in recommended_mentors %}
+            <div class="mentor-item">
+                <div class="mentor-avatar">
+                    {{ mentor.user.first_name|first }}{{ mentor.user.last_name|first }}
+                </div>
+                <div class="mentor-info">
+                    <h4>{{ mentor.user.get_full_name }}</h4>
+                    <p>{{ mentor.expertise }}</p>
+                    <div class="mentor-rating">
+                        ★★★★★ ({{ mentor.total_sessions|default:"0" }} sessions)
+                    </div>
+                </div>
+                <div class="mentor-actions" style="display: flex; gap: 0.5rem;">
+                    <a href="{% url 'mentoring:mentor_detail' mentor.id %}" class="btn-icon" title="Voir profil">
+                        👁️
+                    </a>
+                    {% if user.is_authenticated and user.role == 'student' %}
+                    <a href="{% url 'mentoring:session_create' mentor.id %}" class="btn-icon" title="Réserver">
+                        📅
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="empty-state">
+                <div class="empty-state-icon">👥</div>
+                <p style="font-size: 0.875rem;">Aucun mentor disponible</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'mentoring/js/student_dashboard.js' %}"></script>
+{% endblock %}
+

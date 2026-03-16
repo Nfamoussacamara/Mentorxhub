@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Évaluer la Session - MentorXHub{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'mentoring/css/session_feedback.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="feedback-container">
+    <div class="feedback-card">
+        <div class="feedback-header">
+            <h1>Évaluer la Session</h1>
+            <p>Votre avis nous aide à améliorer l'expérience</p>
+        </div>
+
+        <!-- Session Info -->
+        <div class="session-info">
+            <h3>{{ session.title }}</h3>
+            <p>
+                <i class="fas fa-user"></i>
+                Avec {{ session.mentor.user.get_full_name }}
+                <span style="margin: 0 0.5rem;">•</span>
+                <i class="fas fa-calendar"></i>
+                {{ session.date|date:"d M Y" }}
+            </p>
+        </div>
+
+        <!-- Form -->
+        <form method="post" id="feedbackForm">
+            {% csrf_token %}
+
+            <!-- Star Rating -->
+            <div class="rating-section">
+                <label class="rating-label">Comment évaluez-vous cette session ?</label>
+                <div class="star-rating" id="starRating">
+                    <i class="far fa-star star" data-rating="1"></i>
+                    <i class="far fa-star star" data-rating="2"></i>
+                    <i class="far fa-star star" data-rating="3"></i>
+                    <i class="far fa-star star" data-rating="4"></i>
+                    <i class="far fa-star star" data-rating="5"></i>
+                </div>
+                <p class="rating-text" id="ratingText">Cliquez sur les étoiles pour noter</p>
+                <input type="hidden" name="rating" id="ratingInput" value="">
+            </div>
+
+            <!-- Feedback Text -->
+            <div class="form-group">
+                <label class="form-label" for="id_feedback">
+                    <i class="fas fa-comment"></i>
+                    Votre Commentaire
+                </label>
+                {{ form.feedback }}
+                <p class="form-help">Partagez votre expérience avec ce mentor (optionnel)</p>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn btn-primary" id="submitBtn" disabled>
+                <i class="fas fa-paper-plane"></i>
+                Envoyer l'Évaluation
+            </button>
+        </form>
+    </div>
+</div>
+
+{% block extra_js %}
+<script src="{% static 'mentoring/js/session_feedback.js' %}"></script>
+{% endblock %}
+{% endblock %}
+

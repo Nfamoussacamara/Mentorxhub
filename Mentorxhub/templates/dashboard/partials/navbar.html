@@ -1,0 +1,85 @@
+{% load static %}
+
+<nav class="dashboard-navbar">
+    <div class="navbar-left">
+        <button class="navbar-mobile-toggle" id="navbar-mobile-toggle" aria-label="Toggle sidebar">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="breadcrumb">
+            {% block breadcrumb %}
+            <span class="breadcrumb-item active">Dashboard</span>
+            {% endblock %}
+        </div>
+    </div>
+    
+    <div class="navbar-right">
+        <!-- Search -->
+        <div class="navbar-search">
+            <button class="search-toggle" id="search-toggle" aria-label="Search">
+                <i class="fas fa-search"></i>
+            </button>
+            <div class="search-box" id="search-box" style="display: none;">
+                <input type="text" placeholder="Rechercher (Ctrl+K)" id="search-input">
+                <button class="search-close" id="search-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Notifications -->
+        <div class="navbar-notifications">
+            <button class="notification-btn" id="notification-btn" aria-label="Notifications">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge" style="display: none;">0</span>
+            </button>
+            <div class="notifications-dropdown" id="notifications-dropdown" style="display: none;">
+                <div class="notifications-header">
+                    <h3>Notifications</h3>
+                    <button class="mark-all-read">Tout marquer comme lu</button>
+                </div>
+                <div class="notifications-list">
+                    <div class="notification-empty">
+                        <i class="fas fa-bell-slash"></i>
+                        <p>Aucune notification</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- User Menu -->
+        <div class="navbar-user">
+            <button class="user-menu-btn" id="user-menu-btn">
+                <div class="user-avatar">
+                    {% if user.profile_picture %}
+                        <img src="{{ user.profile_picture.url }}" alt="{{ user.get_full_name }}">
+                    {% else %}
+                        <i class="fas fa-user"></i>
+                    {% endif %}
+                </div>
+                <span class="user-name">{{ user.get_full_name|default:user.email }}</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="user-menu-dropdown" id="user-menu-dropdown" style="display: none;">
+                <a href="{% url 'accounts:profile' %}" class="user-menu-item">
+                    <i class="fas fa-user"></i>
+                    <span>Mon Profil</span>
+                </a>
+                <a href="#settings" class="user-menu-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Paramètres</span>
+                </a>
+                <div class="user-menu-divider"></div>
+                <button class="user-menu-item theme-toggle" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                    <span>Mode sombre</span>
+                </button>
+                <div class="user-menu-divider"></div>
+                <a href="{% url 'accounts:logout' %}" class="user-menu-item user-menu-item-danger">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Déconnexion</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+

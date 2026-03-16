@@ -1,0 +1,90 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Cours - Dashboard{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'dashboard/css/courses.css' %}?v=1.0">
+{% endblock %}
+
+{% block content %}
+<div class="courses-page">
+    <div class="page-header">
+        <h1 class="page-title">
+            <i class="fas fa-graduation-cap"></i>
+            {% if user_role == 'mentor' %}Mes Cours{% else %}Cours Disponibles{% endif %}
+        </h1>
+        {% if user_role == 'mentor' %}
+        <a href="{% url 'dashboard:course_create' %}" class="neu-button neu-button-primary">
+            <i class="fas fa-plus"></i>
+            Créer un cours
+        </a>
+        {% endif %}
+    </div>
+
+    <div class="courses-grid">
+        {% for course in courses %}
+        <div class="course-card modern-card">
+            {% if course.thumbnail %}
+            <div class="course-thumbnail">
+                <img src="{{ course.thumbnail.url }}" alt="{{ course.title }}">
+            </div>
+            {% else %}
+            <div class="course-thumbnail course-thumbnail-placeholder">
+                <i class="fas fa-book"></i>
+            </div>
+            {% endif %}
+            
+            <div class="course-content">
+                <div class="course-header">
+                    <h3 class="course-title">{{ course.title }}</h3>
+                    <span class="badge badge-primary">{{ course.get_difficulty_display }}</span>
+                </div>
+                
+                <p class="course-description">
+                    {{ course.short_description|default:course.description|truncatewords:20 }}
+                </p>
+                
+                <div class="course-meta">
+                    <div class="course-mentor">
+                        <i class="fas fa-user"></i>
+                        <span>{{ course.mentor.get_full_name }}</span>
+                    </div>
+                    <div class="course-stats">
+                        <span><i class="fas fa-users"></i> {{ course.students_count }} étudiants</span>
+                        <span><i class="fas fa-star"></i> {{ course.average_rating|floatformat:1 }}</span>
+                    </div>
+                </div>
+                
+                <div class="course-footer">
+                    <div class="course-price">
+                        {% if course.is_free %}
+                            <span class="price-free">Gratuit</span>
+                        {% else %}
+                            <span class="price">{{ course.price }}€</span>
+                        {% endif %}
+                    </div>
+                    <a href="{% url 'dashboard:course_detail' course.id %}" class="neu-button">
+                        {% if user_role == 'mentor' %}Gérer{% else %}Voir le cours{% endif %}
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="empty-state">
+            <i class="fas fa-book-open"></i>
+            <h2>Aucun cours disponible</h2>
+            {% if user_role == 'mentor' %}
+            <p>Créez votre premier cours pour commencer à enseigner</p>
+            <a href="{% url 'dashboard:course_create' %}" class="neu-button neu-button-primary">
+                Créer un cours
+            </a>
+            {% else %}
+            <p>Les cours seront bientôt disponibles</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+

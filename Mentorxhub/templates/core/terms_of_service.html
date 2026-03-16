@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ page_title }} - MentorXHub{% endblock %}
+
+{% block extra_css %}
+<style>
+    .legal-page {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+        background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+        min-height: 100vh;
+    }
+
+    .legal-container {
+        background: white;
+        padding: 3rem;
+        border-radius: 20px;
+        border: 1px solid rgba(59, 130, 246, 0.1);
+        box-shadow: 0 10px 30px rgba(30, 58, 138, 0.1);
+    }
+
+    .legal-header {
+        text-align: center;
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 2px solid #e2e8f0;
+    }
+
+    .legal-header h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #1e293b;
+        margin-bottom: 0.5rem;
+    }
+
+    .last-updated {
+        color: #64748b;
+        font-size: 0.95rem;
+    }
+
+    .legal-section {
+        margin-bottom: 2.5rem;
+    }
+
+    .legal-section h2 {
+        font-size: 1.5rem;
+        color: #1e293b;
+        margin-bottom: 1rem;
+        font-weight: 700;
+    }
+
+    .legal-section h3 {
+        font-size: 1.25rem;
+        color: #334155;
+        margin: 1.5rem 0 0.75rem;
+        font-weight: 600;
+    }
+
+    .legal-section p {
+        color: #475569;
+        line-height: 1.8;
+        margin-bottom: 1rem;
+    }
+
+    .legal-section ul {
+        margin: 1rem 0 1rem 1.5rem;
+        color: #475569;
+        line-height: 1.8;
+    }
+
+    .legal-section li {
+        margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+        .legal-page {
+            padding: 2rem 1rem;
+        }
+
+        .legal-container {
+            padding: 2rem 1.5rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="legal-page">
+    <div class="legal-container">
+        <div class="legal-header">
+            <h1>📋 {{ page_title }}</h1>
+            <p class="last-updated">Dernière mise à jour : {{ last_updated }}</p>
+        </div>
+
+        <div class="legal-section">
+            <h2>1. Acceptation des Conditions</h2>
+            <p>
+                En accédant et en utilisant MentorXHub, vous acceptez d'être lié par les présentes conditions
+                d'utilisation. Si vous n'acceptez pas ces conditions, veuillez ne pas utiliser notre plateforme.
+            </p>
+        </div>
+
+        <div class="legal-section">
+            <h2>2. Description du Service</h2>
+            <p>
+                MentorXHub est une plateforme de mentorat en ligne qui connecte des mentors expérimentés avec
+                des étudiants cherchant à développer leurs compétences. Nous facilitons ces connexions mais ne
+                sommes pas responsables du contenu des sessions de mentorat.
+            </p>
+        </div>
+
+        <div class="legal-section">
+            <h2>3. Inscription et Compte</h2>
+            <ul>
+                <li>Vous devez avoir au moins 18 ans pour créer un compte</li>
+                <li>Vous êtes responsable de la confidentialité de vos identifiants</li>
+                <li>Vous devez fournir des informations exactes et à jour</li>
+                <li>Vous ne pouvez pas créer plusieurs comptes</li>
+                <li>Nous nous réservons le droit de suspendre ou supprimer votre compte si vous violez ces conditions
+                </li>
+            </ul>
+        </div>
+
+        <div class="legal-section">
+            <h2>4. Utilisation de la Plateforme</h2>
+            <p>En utilisant MentorXHub, vous acceptez de :</p>
+            <ul>
+                <li>Respecter tous les utilisateurs et maintenir un comportement professionnel</li>
+                <li>Ne pas partager de contenu illégal, offensant ou inapproprié</li>
+                <li>Ne pas utiliser la plateforme à des fins commerciales non autorisées</li>
+                <li>Ne pas tenter de contourner les mesures de sécurité</li>
+                <li>Respecter les droits de propriété intellectuelle</li>
+            </ul>
+        </div>
+
+        <div class="legal-section">
+            <h2>5. Paiements et Remboursements</h2>
+            <p>
+                Les tarifs sont fixés par chaque mentor. MentorXHub prélève une commission sur chaque transaction.
+                Les demandes de remboursement doivent être soumises dans les 24 heures suivant une session,
+                sauf circonstances exceptionnelles.
+            </p>
+        </div>
+
+        <div class="legal-section">
+            <h2>6. Propriété Intellectuelle</h2>
+            <p>
+                Tout le contenu de la plateforme MentorXHub, y compris le design, le logo, les textes et les
+                fonctionnalités, est la propriété de MentorXHub ou de ses concédants de licence.
+            </p>
+        </div>
+
+        <div class="legal-section">
+            <h2>7. Limitation de Responsabilité</h2>
+            <p>
+                MentorXHub fournit la plateforme "en l'état". Nous ne garantissons pas la qualité des services
+                de mentorat fournis par les mentors indépendants. Notre responsabilité est limitée au montant
+                payé pour le service concerné.
+            </p>
+        </div>
+
+        <div class="legal-section">
+            <h2>8. Résiliation</h2>
+            <p>
+                Vous pouvez fermer votre compte à tout moment. Nous nous réservons le droit de suspendre ou
+                résilier votre compte en cas de violation de ces conditions.
+            </p>
+        </div>
+
+        <div class="legal-section">
+            <h2>9. Modifications des Conditions</h2>
+            <p>
+                Nous nous réservons le droit de modifier ces conditions à tout moment. Les modifications seront
+                effectives dès leur publication. Votre utilisation continue de la plateforme constitue votre
+                acceptation des conditions modifiées.
+            </p>
+        </div>
+
+        <div class="legal-section">
+            <h2>10. Loi Applicable</h2>
+            <p>
+                Ces conditions sont régies par les lois françaises. Tout litige sera soumis à la juridiction
+                exclusive des tribunaux français.
+            </p>
+        </div>
+
+        <div class="legal-section">
+            <h2>11. Contact</h2>
+            <p>
+                Pour toute question concernant ces conditions d'utilisation, veuillez nous contacter à :
+                <strong>legal@mentorxhub.com</strong>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

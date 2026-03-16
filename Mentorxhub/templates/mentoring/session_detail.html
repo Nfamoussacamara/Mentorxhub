@@ -1,0 +1,203 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}{{ session.title }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'mentoring/css/session.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div>
+                            <h2>{{ session.title }}</h2>
+                            <span class="badge 
+                                {% if session.status == 'available' %}bg-info{% endif %}
+                                {% if session.status == 'pending' %}bg-warning{% endif %}
+                                {% if session.status == 'scheduled' %}bg-success{% endif %}
+                                {% if session.status == 'in_progress' %}bg-primary{% endif %}
+                                {% if session.status == 'completed' %}bg-secondary{% endif %}
+                                {% if session.status == 'cancelled' or session.status == 'rejected' %}bg-danger{% endif %}
+                            ">
+                                {{ session.get_status_display }}
+                            </span>
+                        </div>
+                        <div>
+                            {% if session.status == 'pending' or session.status == 'scheduled' %}
+                                <a href="{% url 'mentoring:session_update' session.id %}" class="btn btn-sm btn-outline-primary">
+                                    ✏️ Modifier
+                                </a>
+                                <a href="{% url 'mentoring:session_delete' session.id %}" class="btn btn-sm btn-outline-danger">
+                                    🗑️ Annuler
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Participants -->
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h5>👨‍🏫 Mentor</h5>
+                            <div class="d-flex align-items-center">
+                                {% if session.mentor.user.profile.avatar %}
+                                <img src="{{ session.mentor.user.profile.avatar.url }}" 
+                                     class="rounded-circle me-3" 
+                                     style="width: 50px; height: 50px; object-fit: cover;" 
+                                     alt="{{ session.mentor.user.get_full_name }}">
+                                {% endif %}
+                                <div>
+                                    <strong>{{ session.mentor.user.get_full_name }}</strong>
+                                    <br>
+                                    <small class="text-muted">{{ session.mentor.expertise }}</small>
+                                    <br>
+                                    <small class="text-warning">⭐ {{ session.mentor.rating|floatformat:1 }}/5</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>👨‍🎓 Étudiant</h5>
+                            {% if session.student %}
+                                <div class="d-flex align-items-center">
+                                    {% if session.student.user.profile.avatar %}
+                                    <img src="{{ session.student.user.profile.avatar.url }}" 
+                                         class="rounded-circle me-3" 
+                                         style="width: 50px; height: 50px; object-fit: cover;" 
+                                         alt="{{ session.student.user.get_full_name }}">
+                                    {% endif %}
+                                    <div>
+                                        <strong>{{ session.student.user.get_full_name }}</strong>
+                                        <br>
+                                        <small class="text-muted">{{ session.student.level }}</small>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <p class="text-muted"><em>Session ouverte - En attente de réservation</em></p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <h5>📝 Description</h5>
+                    <p>{{ session.description|linebreaks }}</p>
+
+                    <!-- Actions selon le statut et le rôle -->
+                    {% if session.status == 'pending' %}
+                        {% if user.is_mentor and session.mentor.user == user %}
+                            <div class="alert alert-warning">
+                                <p><strong>Cette session est en attente de votre validation.</strong></p>
+                                <form method="post" action="{% url 'mentoring:session_approve' session.id %}" class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-success">✅ Approuver</button>
+                                </form>
+                                <form method="post" action="{% url 'mentoring:session_reject' session.id %}" class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">❌ Refuser</button>
+                                </form>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+
+                    {% if session.status == 'scheduled' %}
+                        <div class="alert alert-success">
+                            <p><strong>Session confirmée !</strong></p>
+                            <a href="{% url 'dashboard:session_video_room' session.id %}" class="btn btn-primary">
+                                🎥 Rejoindre la visioconférence
+                            </a>
+                        </div>
+                    {% endif %}
+
+                    {% if session.status == 'completed' and user.role == 'student' and not session.rating %}
+                        <div class="alert alert-info">
+                            <p><strong>Session terminée. Donnez votre avis !</strong></p>
+                            <a href="{% url 'mentoring:session_feedback' session.id %}" class="btn btn-primary">
+                                ⭐ Laisser un feedback
+                            </a>
+                        </div>
+                    {% endif %}
+
+                    {% if session.rating %}
+                        <div class="mt-4">
+                            <h5>⭐ Feedback de l'étudiant</h5>
+                            <div class="alert alert-light">
+                                <p><strong>Note :</strong> 
+                                    {% for i in "12345" %}
+                                        {% if forloop.counter <= session.rating %}⭐{% else %}☆{% endif %}
+                                    {% endfor %}
+                                    ({{ session.rating }}/5)
+                                </p>
+                                <p>{{ session.feedback }}</p>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    {% if session.notes %}
+                        <div class="mt-4">
+                            <h5>📋 Notes de session</h5>
+                            <div class="alert alert-light">
+                                {{ session.notes|linebreaks }}
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">📅 Informations</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <strong>Date :</strong><br>
+                            {{ session.date|date:"l d F Y" }}
+                        </li>
+                        <li class="mb-2">
+                            <strong>Heure :</strong><br>
+                            {{ session.start_time|time:"H:i" }} - {{ session.end_time|time:"H:i" }}
+                        </li>
+                        <li class="mb-2">
+                            <strong>Durée :</strong><br>
+                            {{ session.duration|floatformat:0 }} minutes
+                        </li>
+                        {% if session.meeting_link %}
+                        <li class="mb-2">
+                            <strong>Lien de réunion :</strong><br>
+                            <a href="{{ session.meeting_link }}" target="_blank" class="btn btn-sm btn-outline-primary">
+                                🔗 Ouvrir
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+
+            {% if session.status == 'available' and user.role == 'student' %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">✅ Réserver</h5>
+                    <p>Cette session est disponible à la réservation</p>
+                    <form method="post" action="{% url 'mentoring:book_session' session.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary w-100">
+                            Réserver cette session
+                        </button>
+                    </form>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a href="{% url 'mentoring:session_list' %}" class="btn btn-secondary">
+            ← Retour à mes sessions
+        </a>
+    </div>
+</div>
+{% endblock %}

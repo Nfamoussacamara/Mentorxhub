@@ -1,0 +1,41 @@
+{% load static %}
+<div class="support-ticket-create">
+    <div class="page-header">
+        <h1>Créer un nouveau ticket</h1>
+    </div>
+    
+    <form method="post" action="{% url 'dashboard:support_ticket_create' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_subject">Sujet *</label>
+            {{ form.subject }}
+            {% if form.subject.errors %}
+            <div class="error-message">{{ form.subject.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_category">Catégorie *</label>
+            {{ form.category }}
+            {% if form.category.errors %}
+            <div class="error-message">{{ form.category.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_description">Description *</label>
+            {{ form.description }}
+            {% if form.description.errors %}
+            <div class="error-message">{{ form.description.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-paper-plane"></i> Envoyer le ticket
+            </button>
+            <a href="{% url 'dashboard:support_tickets_list' %}" class="btn btn-secondary">Annuler</a>
+        </div>
+    </form>
+</div>
+

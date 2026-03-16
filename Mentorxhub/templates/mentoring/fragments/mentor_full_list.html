@@ -1,0 +1,31 @@
+{% load static %}
+
+<!-- Interface complète des mentors (DASHBOARD MODE) -->
+<link rel="stylesheet" href="{% static 'mentoring/css/mentors_public.css' %}">
+<style>
+    /* Spécificités pour l'intégration Dashboard */
+    .mentors-container {
+        padding: 0;
+    }
+
+    .page-header {
+        text-align: left !important;
+        margin-bottom: 2rem !important;
+    }
+
+    .page-header p {
+        margin: 0 !important;
+    }
+
+    .filters-bar {
+        margin-top: 1rem;
+    }
+
+    .mentors-grid {
+        margin-top: 2rem;
+    }
+</style>
+
+<div class="mentors-page">
+    {% include 'mentoring/fragments/mentor_list_ui.html' %}
+</div>

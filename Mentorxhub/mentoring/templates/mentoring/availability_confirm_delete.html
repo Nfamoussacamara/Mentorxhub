@@ -1,0 +1,26 @@
+<div class="delete-confirmation">
+    <div class="premium-card max-w-md mx-auto text-center">
+        <div class="warning-icon mb-4">
+            <i class="fas fa-exclamation-triangle fa-3x text-warning"></i>
+        </div>
+        <h2>Supprimer la disponibilité ?</h2>
+        <p class="text-muted mb-8">
+            Êtes-vous sûr de vouloir supprimer ce créneau du <strong>{{ object.get_day_of_week_display }}</strong> ?
+        </p>
+        
+        <form method="post" hx-post="{% url 'mentoring:availability_delete' object.pk %}" hx-target="#dashboard-content">
+            {% csrf_token %}
+            <div class="flex gap-4">
+                <a href="{% url 'mentoring:availability_list' %}" 
+                   class="btn btn-secondary flex-1"
+                   hx-get="{% url 'mentoring:availability_list' %}"
+                   hx-target="#dashboard-content">
+                    Annuler
+                </a>
+                <button type="submit" class="btn btn-danger flex-1">
+                    Supprimer
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

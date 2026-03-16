@@ -1,0 +1,123 @@
+{% load static %}
+
+<!-- Stats Cards Premium -->
+<div class="premium-cards-grid">
+    <div class="premium-card stats-card-premium">
+        <div class="stats-card-header">
+            <div class="stats-card-content">
+                <div class="stats-card-label">Demandes</div>
+                <div class="stats-card-value">{{ stats.pending_requests }}</div>
+                <div class="stats-card-variation positive">
+                    <i class="fas fa-arrow-up stats-card-variation-icon"></i>
+                    <span>+12%</span>
+                </div>
+                <div class="stats-card-subtext">vs mois dernier</div>
+            </div>
+            <div class="stats-card-icon-wrapper">
+                <i class="fas fa-inbox stats-card-icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="premium-card stats-card-premium">
+        <div class="stats-card-header">
+            <div class="stats-card-content">
+                <div class="stats-card-label">Sessions</div>
+                <div class="stats-card-value">{{ stats.total_sessions }}</div>
+                <div class="stats-card-variation positive">
+                    <i class="fas fa-arrow-up stats-card-variation-icon"></i>
+                    <span>+8%</span>
+                </div>
+                <div class="stats-card-subtext">vs mois dernier</div>
+            </div>
+            <div class="stats-card-icon-wrapper">
+                <i class="fas fa-calendar-check stats-card-icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="premium-card stats-card-premium">
+        <div class="stats-card-header">
+            <div class="stats-card-content">
+                <div class="stats-card-label">Note Moyenne</div>
+                <div class="stats-card-value">{{ stats.avg_rating|floatformat:1 }}</div>
+                <div class="stats-card-variation positive">
+                    <i class="fas fa-arrow-up stats-card-variation-icon"></i>
+                    <span>+0.2</span>
+                </div>
+                <div class="stats-card-subtext">vs mois dernier</div>
+            </div>
+            <div class="stats-card-icon-wrapper">
+                <i class="fas fa-star stats-card-icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="premium-card stats-card-premium">
+        <div class="stats-card-header">
+            <div class="stats-card-content">
+                <div class="stats-card-label">Revenus Mois</div>
+                <div class="stats-card-value">{{ stats.monthly_earnings|floatformat:0 }}€</div>
+                <div class="stats-card-variation positive">
+                    <i class="fas fa-arrow-up stats-card-variation-icon"></i>
+                    <span>+15%</span>
+                </div>
+                <div class="stats-card-subtext">vs mois dernier</div>
+            </div>
+            <div class="stats-card-icon-wrapper">
+                <i class="fas fa-dollar-sign stats-card-icon"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Prochaines Sessions -->
+<div class="premium-card">
+    <div class="section-header">
+        <h2>Prochaines Sessions</h2>
+        <a href="{% url 'dashboard:sessions_calendar' %}" 
+           class="section-link"
+           hx-get="{% url 'dashboard:sessions_calendar' %}"
+           hx-target="#dashboard-content"
+           hx-push-url="true">Voir tout</a>
+    </div>
+    
+    {% if upcoming_sessions %}
+    <div class="sessions-list">
+        {% for session in upcoming_sessions %}
+        <div class="session-item">
+            <div class="session-avatar">
+                {{ session.student.user.first_name|first }}{{ session.student.user.last_name|first }}
+            </div>
+            <div class="session-info">
+                <h3>{{ session.title|default:"Session de mentorat" }}</h3>
+                <p class="session-meta">
+                    <span><i class="fas fa-user"></i> {{ session.student.user.get_full_name }}</span>
+                    <span><i class="fas fa-calendar"></i> {{ session.date|date:"d/m/Y" }}</span>
+                    <span><i class="fas fa-clock"></i> {{ session.start_time|time:"H:i" }}</span>
+                </p>
+            </div>
+            <div class="session-actions">
+                <button class="btn btn-ghost btn-sm"
+                        hx-get="{% url 'dashboard:session_detail' session.id %}"
+                        hx-target="#dashboard-content"
+                        title="Détails">
+                    <i class="fas fa-eye"></i>
+                </button>
+                {% if session.meeting_link %}
+                <a href="{{ session.meeting_link }}" target="_blank" class="btn btn-primary btn-sm">
+                    <i class="fas fa-video"></i> Rejoindre
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <i class="fas fa-calendar-times"></i>
+        <p>Aucune session à venir</p>
+    </div>
+    {% endif %}
+</div>
+

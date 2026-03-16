@@ -1,0 +1,176 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Mon Profil - Dashboard{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'dashboard/css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-profile-page">
+    <!-- Bannière avec photo de profil -->
+    <div class="profile-banner" {% if user.banner_image %}style="background-image: url('{{ user.banner_image.url }}');"{% endif %}>
+        {% if not user.banner_image %}
+        <div class="profile-banner-gradient"></div>
+        {% endif %}
+        <div class="profile-banner-overlay"></div>
+        
+        <div class="profile-banner-content">
+            <div class="profile-avatar-large">
+                <img src="{{ user.get_avatar_url }}" alt="{{ user.get_full_name }}">
+            </div>
+            <div class="profile-banner-info">
+                <h1>{{ user.get_full_name|default:user.email }}</h1>
+                <p class="profile-role">
+                    {% if user.role == 'mentor' %}
+                        <i class="fas fa-chalkboard-teacher"></i> Mentor
+                    {% elif user.role == 'student' %}
+                        <i class="fas fa-graduation-cap"></i> Étudiant
+                    {% endif %}
+                </p>
+            </div>
+            <a href="{% url 'dashboard:profile_edit' %}" class="btn-edit-profile">
+                <i class="fas fa-edit"></i> Modifier
+            </a>
+        </div>
+    </div>
+
+    <!-- Barre de complétion du profil -->
+    <div class="profile-completion-card">
+        <div class="completion-header">
+            <h3>Complétion du profil</h3>
+            <span class="completion-percentage">{{ completion_percentage }}%</span>
+        </div>
+        <div class="completion-bar">
+            <div class="completion-fill" style="width: {{ completion_percentage }}%"></div>
+        </div>
+        {% if completion_percentage < 100 %}
+        <p class="completion-message">Complétez votre profil pour améliorer votre visibilité</p>
+        {% endif %}
+    </div>
+
+    <!-- Statistiques en cards -->
+    <div class="profile-stats-grid">
+        {% if user.role == 'mentor' %}
+        <div class="stat-card">
+            <div class="stat-icon stat-icon-primary">
+                <i class="fas fa-calendar-check"></i>
+            </div>
+            <div class="stat-content">
+                <h3>{{ stats.total_sessions }}</h3>
+                <p>Sessions totales</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon stat-icon-success">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="stat-content">
+                <h3>{{ stats.completed_sessions }}</h3>
+                <p>Sessions complétées</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon stat-icon-warning">
+                <i class="fas fa-clock"></i>
+            </div>
+            <div class="stat-content">
+                <h3>{{ stats.pending_requests }}</h3>
+                <p>Demandes en attente</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon stat-icon-info">
+                <i class="fas fa-star"></i>
+            </div>
+            <div class="stat-content">
+                <h3>{{ stats.avg_rating|floatformat:1 }}</h3>
+                <p>Note moyenne</p>
+            </div>
+        </div>
+        {% elif user.role == 'student' %}
+        <div class="stat-card">
+            <div class="stat-icon stat-icon-primary">
+                <i class="fas fa-calendar-check"></i>
+            </div>
+            <div class="stat-content">
+                <h3>{{ stats.total_sessions }}</h3>
+                <p>Sessions totales</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon stat-icon-success">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="stat-content">
+                <h3>{{ stats.completed_sessions }}</h3>
+                <p>Sessions complétées</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon stat-icon-warning">
+                <i class="fas fa-clock"></i>
+            </div>
+            <div class="stat-content">
+                <h3>{{ stats.upcoming_sessions }}</h3>
+                <p>Sessions à venir</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon stat-icon-info">
+                <i class="fas fa-hourglass-half"></i>
+            </div>
+            <div class="stat-content">
+                <h3>{{ stats.total_hours|floatformat:0 }}h</h3>
+                <p>Heures de mentorat</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Informations du profil -->
+    <div class="profile-info-grid">
+        <div class="profile-info-card">
+            <h3><i class="fas fa-info-circle"></i> Informations</h3>
+            <div class="info-item">
+                <span class="info-label">Email</span>
+                <span class="info-value">{{ user.email }}</span>
+            </div>
+            {% if user.bio %}
+            <div class="info-item">
+                <span class="info-label">Bio</span>
+                <span class="info-value">{{ user.bio }}</span>
+            </div>
+            {% endif %}
+            {% if user.role == 'mentor' and profile.expertise %}
+            <div class="info-item">
+                <span class="info-label">Expertise</span>
+                <span class="info-value">{{ profile.expertise }}</span>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Timeline d'activité récente -->
+        <div class="profile-activity-card">
+            <h3><i class="fas fa-history"></i> Activité récente</h3>
+            <div class="activity-timeline">
+                {% for activity in recent_activity|slice:":5" %}
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-calendar"></i>
+                    </div>
+                    <div class="activity-content">
+                        <p class="activity-title">Session le {{ activity.date|date:"d/m/Y" }}</p>
+                        <p class="activity-time">{{ activity.start_time|time:"H:i" }} - {{ activity.end_time|time:"H:i" }}</p>
+                    </div>
+                </div>
+                {% empty %}
+                <p class="no-activity">Aucune activité récente</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

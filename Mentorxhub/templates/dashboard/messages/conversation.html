@@ -1,0 +1,31 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block title %}Conversation - Dashboard{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'dashboard/css/messages.css' %}?v=2.0">
+<style>
+    /* Override dashboard-content pour la page messages */
+    .dashboard-content {
+        padding: 0 !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="messages-page-layout">
+    <!-- Panneau central : Liste des messages -->
+    {% include 'dashboard/fragments/messages_list_panel.html' %}
+
+    <!-- Panneau droit : Chat actif -->
+    {% include 'dashboard/fragments/messages_chat_panel.html' %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'dashboard/js/messages.js' %}?v=2.0" defer></script>
+{% endblock %}

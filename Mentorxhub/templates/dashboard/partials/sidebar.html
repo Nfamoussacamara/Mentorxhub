@@ -1,0 +1,137 @@
+{% load static %}
+{% load custom_filters %}
+{% url 'dashboard:dashboard' as dashboard_url %}
+{% url 'mentoring:mentor_list' as mentor_list_url %}
+{% url 'accounts:profile' as profile_url %}
+{% url 'accounts:logout' as logout_url %}
+
+<aside class="dashboard-sidebar" id="dashboard-sidebar">
+    <div class="sidebar-header">
+        <a href="{% url 'core:home' %}" class="sidebar-brand">
+            <div class="brand-icon">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <span class="brand-text">MentorXHub</span>
+        </a>
+        <button class="sidebar-collapse-btn" id="sidebar-collapse-btn" aria-label="Réduire le menu"
+            title="Réduire le menu">
+            <i class="fas fa-angles-left"></i>
+            <i class="fas fa-angles-right"></i>
+        </button>
+        <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+    <nav class="sidebar-nav">
+        <!-- Vue d'ensemble (Active) -->
+        <a href="{{ dashboard_url }}"
+            class="nav-item {% if request.resolver_match.url_name == 'dashboard' or request.resolver_match.url_name == 'home' %}active{% endif %}"
+            hx-get="{{ dashboard_url }}" hx-target="#dashboard-content" hx-swap="innerHTML"
+            hx-indicator="#loading-overlay" hx-push-url="true">
+            <i class="fas fa-comment-dots"></i>
+            <span class="nav-label">Vue d'ensemble</span>
+        </a>
+
+        <!-- Sessions -->
+        {% if user.role == 'mentor' %}
+        <a href="{% url 'dashboard:sessions_calendar' %}"
+            class="nav-item sessions-nav-item {% if request.resolver_match.url_name == 'sessions_calendar' %}active{% endif %}"
+            hx-get="{% url 'dashboard:sessions_calendar' %}" hx-target="#dashboard-content" hx-swap="innerHTML"
+            hx-indicator="#loading-overlay" hx-push-url="true">
+            <i class="fas fa-calendar-check"></i>
+            <span class="nav-label">Calendrier</span>
+        </a>
+        <a href="{% url 'mentoring:session_list' %}"
+            class="nav-item {% if request.resolver_match.url_name == 'session_list' %}active{% endif %}">
+            <i class="fas fa-list"></i>
+            <span class="nav-label">Mes Sessions</span>
+        </a>
+        <a href="{% url 'mentoring:mentor_create_available_session' %}"
+            class="nav-item {% if request.resolver_match.url_name == 'mentor_create_available_session' %}active{% endif %}">
+            <i class="fas fa-plus-circle"></i>
+            <span class="nav-label">Créer Session Ouverte</span>
+        </a>
+        <a href="{% url 'mentoring:availability_list' %}"
+            class="nav-item availability-nav-item {% if request.resolver_match.url_name == 'availability_list' %}active{% endif %}"
+            hx-get="{% url 'mentoring:availability_list' %}" hx-target="#dashboard-content" hx-swap="innerHTML"
+            hx-indicator="#loading-overlay" hx-push-url="true">
+            <i class="fas fa-clock"></i>
+            <span class="nav-label">Disponibilités</span>
+        </a>
+        {% else %}
+        <a href="{% url 'mentoring:session_list' %}"
+            class="nav-item {% if request.resolver_match.url_name == 'session_list' %}active{% endif %}">
+            <i class="fas fa-list"></i>
+            <span class="nav-label">Mes Sessions</span>
+        </a>
+        <a href="{% url 'mentoring:available_sessions' %}"
+            class="nav-item {% if request.resolver_match.url_name == 'available_sessions' %}active{% endif %}">
+            <i class="fas fa-star"></i>
+            <span class="nav-label">Sessions Disponibles</span>
+        </a>
+        <a href="{% url 'dashboard:analytics' %}"
+            class="nav-item sessions-nav-item {% if request.resolver_match.url_name == 'analytics' %}active{% endif %}"
+            hx-get="{% url 'dashboard:analytics' %}" hx-target="#dashboard-content" hx-swap="innerHTML"
+            hx-indicator="#loading-overlay" hx-push-url="true">
+            <i class="fas fa-chart-line"></i>
+            <span class="nav-label">Analytiques</span>
+        </a>
+        {% endif %}
+
+        <!-- Mentors -->
+        <!-- Mentors -->
+        {% if user.role == 'student' %}
+        <a href="{{ mentor_list_url }}"
+            class="nav-item mentors-nav-item {% if 'mentors' in request.path %}active{% endif %}"
+            hx-get="{{ mentor_list_url }}" hx-target="#dashboard-content" hx-swap="innerHTML"
+            hx-indicator="#loading-overlay" hx-push-url="true">
+            <i class="fas fa-user-tie"></i>
+            <span class="nav-label">Mentors</span>
+        </a>
+        {% endif %}
+
+        <!-- Messagerie -->
+        <a href="{% url 'dashboard:messages_list' %}"
+            class="nav-item {% if request.resolver_match.url_name|startswith:'message' %}active{% endif %}"
+            hx-get="{% url 'dashboard:messages_list' %}" hx-target="#dashboard-content" hx-swap="innerHTML"
+            hx-indicator="#loading-overlay" hx-push-url="true">
+            <i class="fas fa-comments"></i>
+            <span class="nav-label">Messagerie</span>
+            <span class="nav-badge" id="messages-unread-badge" style="display: none;">0</span>
+        </a>
+
+        <!-- Cours -->
+        <a href="{% url 'dashboard:courses_list' %}"
+            class="nav-item {% if request.resolver_match.url_name|startswith:'course' %}active{% endif %}"
+            hx-get="{% url 'dashboard:courses_list' %}" hx-target="#dashboard-content" hx-swap="innerHTML"
+            hx-indicator="#loading-overlay" hx-push-url="true">
+            <i class="fas fa-file-alt"></i>
+            <span class="nav-label">Cours</span>
+        </a>
+
+        <div class="sidebar-divider"></div>
+
+        <a href="{% url 'dashboard:profile' %}" class="nav-item" hx-get="{% url 'dashboard:profile' %}"
+            hx-target="#dashboard-content" hx-swap="innerHTML" hx-indicator="#loading-overlay" hx-push-url="true">
+            <i class="fas fa-user"></i>
+            <span class="nav-label">Mon Profil</span>
+        </a>
+
+        <a href="{% url 'dashboard:settings' %}"
+            class="nav-item {% if request.resolver_match.url_name == 'settings' or request.resolver_match.url_name|startswith:'settings' %}active{% endif %}"
+            hx-get="{% url 'dashboard:settings' %}" hx-target="#dashboard-content" hx-swap="innerHTML"
+            hx-indicator="#loading-overlay" hx-push-url="true">
+            <i class="fas fa-cog"></i>
+            <span class="nav-label">Paramètres</span>
+        </a>
+
+        <a href="{{ logout_url }}" class="nav-item nav-item-danger">
+            <i class="fas fa-sign-out-alt"></i>
+            <span class="nav-label">Déconnexion</span>
+        </a>
+    </nav>
+
+    <!-- Zone de redimensionnement -->
+    <div class="sidebar-resizer" id="sidebar-resizer"></div>
+</aside>

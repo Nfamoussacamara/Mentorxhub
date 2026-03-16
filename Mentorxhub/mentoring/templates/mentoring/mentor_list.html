@@ -1,0 +1,183 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block title %}Liste des Mentors - MentorXHub{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'mentoring/css/mentors_list.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="mentors-container">
+    <!-- En-tête -->
+    <div class="page-header">
+        <h1>👥 Trouvez votre Mentor</h1>
+        <p>Explorez notre communauté de mentors experts et trouvez celui qui correspond à vos besoins</p>
+    </div>
+
+    <!-- Filtres -->
+    <div class="filters-section">
+        <form method="get" action="{% url 'mentoring:mentor_list' %}">
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label for="expertise">Domaine d'expertise</label>
+                    <select name="expertise" id="expertise">
+                        <option value="">Tous les domaines</option>
+                        {% for choice in expertise_choices %}
+                        <option value="{{ choice.0 }}" {% if request.GET.expertise == choice.0 %}selected{% endif %}>
+                            {{ choice.1 }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="min_experience">Années d'expérience min</label>
+                    <select name="min_experience" id="min_experience">
+                        <option value="">Tous</option>
+                        <option value="1" {% if request.GET.min_experience == "1" %}selected{% endif %}>1+ ans</option>
+                        <option value="3" {% if request.GET.min_experience == "3" %}selected{% endif %}>3+ ans</option>
+                        <option value="5" {% if request.GET.min_experience == "5" %}selected{% endif %}>5+ ans</option>
+                        <option value="10" {% if request.GET.min_experience == "10" %}selected{% endif %}>10+ ans</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="max_rate">Tarif max (€/h)</label>
+                    <input type="number" name="max_rate" id="max_rate" value="{{ request.GET.max_rate }}"
+                        placeholder="Aucune limite" min="0">
+                </div>
+
+                <div class="filter-group">
+                    <label for="language">Langue/Technologie</label>
+                    <input type="text" name="language" id="language" value="{{ request.GET.language }}"
+                        placeholder="Python, JavaScript...">
+                </div>
+            </div>
+
+            <div style="margin-top: 1rem; display: flex; gap: 1rem;">
+                <button type="submit"
+                    style="padding: 0.75rem 2rem; background: #2563EB; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                    🔍 Filtrer
+                </button>
+                <a href="{% url 'mentoring:mentor_list' %}"
+                    style="padding: 0.75rem 2rem; background: #F3F4F6; color: #374151; border: none; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center;">
+                    🔄 Réinitialiser
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Liste des mentors -->
+    {% if mentors %}
+    <div class="mentors-grid">
+        {% for mentor in mentors %}
+        <div class="mentor-card" style="animation-delay: {{ forloop.counter0|mul:0.1 }}s">
+            <div class="mentor-header">
+                <div class="mentor-avatar">
+                    {{ mentor.user.first_name|first }}{{ mentor.user.last_name|first }}
+                </div>
+                <div class="mentor-info-header">
+                    <h3>{{ mentor.user.get_full_name }}</h3>
+                    <p>{{ mentor.expertise }}</p>
+                    <div class="mentor-rating">
+                        ★★★★★ ({{ mentor.total_sessions|default:"0" }} sessions)
+                    </div>
+                </div>
+            </div>
+
+            <div class="mentor-expertise">
+                <span class="expertise-tag">{{ mentor.expertise }}</span>
+            </div>
+
+            <div class="mentor-stats">
+                <div class="stat-item">
+                    <span class="stat-value">{{ mentor.years_of_experience|default:"0" }}</span>
+                    <span class="stat-label">Années</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">{{ mentor.hourly_rate|default:"0" }}€</span>
+                    <span class="stat-label">Tarif/h</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">{{ mentor.total_sessions|default:"0" }}</span>
+                    <span class="stat-label">Sessions</span>
+                </div>
+            </div>
+
+            {% if mentor.languages %}
+            <div class="mentor-languages">
+                <div class="languages-list">
+                    {% for lang in mentor.languages|slice:":5" %}
+                    <span class="language-tag">{{ lang }}</span>
+                    {% endfor %}
+                    {% if mentor.languages|length > 5 %}
+                    <span class="language-tag">+{{ mentor.languages|length|add:"-5" }}</span>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="mentor-actions">
+                <a href="{% url 'mentoring:mentor_detail' mentor.id %}" class="btn-view">
+                    👁️ Voir profil
+                </a>
+                {% if user.is_authenticated and user.role == 'student' %}
+                <a href="{% url 'mentoring:session_create' mentor.id %}" class="btn-book">
+                    📅 Réserver
+                </a>
+                {% elif not user.is_authenticated %}
+                <a href="{% url 'accounts:login' %}?next={% url 'mentoring:mentor_list' %}" class="btn-book">
+                    📅 Réserver
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if is_paginated %}
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+        <a href="?page=1{% if request.GET.expertise %}&expertise={{ request.GET.expertise }}{% endif %}{% if request.GET.min_experience %}&min_experience={{ request.GET.min_experience }}{% endif %}{% if request.GET.max_rate %}&max_rate={{ request.GET.max_rate }}{% endif %}{% if request.GET.language %}&language={{ request.GET.language }}{% endif %}">
+            « Première
+        </a>
+        <a
+            href="?page={{ page_obj.previous_page_number }}{% if request.GET.expertise %}&expertise={{ request.GET.expertise }}{% endif %}{% if request.GET.min_experience %}&min_experience={{ request.GET.min_experience }}{% endif %}{% if request.GET.max_rate %}&max_rate={{ request.GET.max_rate }}{% endif %}{% if request.GET.language %}&language={{ request.GET.language }}{% endif %}">
+            ‹ Précédente
+        </a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+        <a
+            href="?page={{ page_obj.next_page_number }}{% if request.GET.expertise %}&expertise={{ request.GET.expertise }}{% endif %}{% if request.GET.min_experience %}&min_experience={{ request.GET.min_experience }}{% endif %}{% if request.GET.max_rate %}&max_rate={{ request.GET.max_rate }}{% endif %}{% if request.GET.language %}&language={{ request.GET.language }}{% endif %}">
+            Suivante ›
+        </a>
+        <a
+            href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.expertise %}&expertise={{ request.GET.expertise }}{% endif %}{% if request.GET.min_experience %}&min_experience={{ request.GET.min_experience }}{% endif %}{% if request.GET.max_rate %}&max_rate={{ request.GET.max_rate }}{% endif %}{% if request.GET.language %}&language={{ request.GET.language }}{% endif %}">
+            Dernière »
+        </a>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% else %}
+    <div class="empty-state">
+        <div class="empty-state-icon">👥</div>
+        <h3>Aucun mentor trouvé</h3>
+        <p>Essayez de modifier vos critères de recherche</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'mentoring/js/mentors_list.js' %}"></script>
+{% endblock %}
+

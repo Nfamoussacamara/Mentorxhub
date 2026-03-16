@@ -1,0 +1,127 @@
+{% load static %}
+
+<!-- Stats Cards Premium -->
+<div class="premium-cards-grid">
+    <div class="premium-card stats-card-premium">
+        <div class="stats-card-header">
+            <div class="stats-card-content">
+                <div class="stats-card-label">Heures Suivies</div>
+                <div class="stats-card-value">{{ stats.total_hours }}h</div>
+                <div class="stats-card-variation positive">
+                    <i class="fas fa-arrow-up stats-card-variation-icon"></i>
+                    <span>+5h</span>
+                </div>
+                <div class="stats-card-subtext">ce mois</div>
+            </div>
+            <div class="stats-card-icon-wrapper">
+                <i class="fas fa-clock stats-card-icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="premium-card stats-card-premium">
+        <div class="stats-card-header">
+            <div class="stats-card-content">
+                <div class="stats-card-label">Sessions</div>
+                <div class="stats-card-value">{{ stats.upcoming_sessions }}</div>
+                <div class="stats-card-variation positive">
+                    <i class="fas fa-arrow-up stats-card-variation-icon"></i>
+                    <span>+2</span>
+                </div>
+                <div class="stats-card-subtext">à venir</div>
+            </div>
+            <div class="stats-card-icon-wrapper">
+                <i class="fas fa-calendar-check stats-card-icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="premium-card stats-card-premium">
+        <div class="stats-card-header">
+            <div class="stats-card-content">
+                <div class="stats-card-label">Mentors Actifs</div>
+                <div class="stats-card-value">{{ stats.active_mentors }}</div>
+                <div class="stats-card-variation">
+                    <span>Actifs</span>
+                </div>
+                <div class="stats-card-subtext">en ce moment</div>
+            </div>
+            <div class="stats-card-icon-wrapper">
+                <i class="fas fa-users stats-card-icon"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Prochaines Sessions -->
+<div class="premium-card">
+    <div class="section-header">
+        <h2>Prochaines Sessions</h2>
+        <a href="#sessions" class="section-link">Voir tout</a>
+    </div>
+    
+    {% if upcoming_sessions %}
+    <div class="sessions-list">
+        {% for session in upcoming_sessions %}
+        <div class="session-item">
+            <div class="session-avatar">
+                {{ session.mentor.user.first_name|first }}{{ session.mentor.user.last_name|first }}
+            </div>
+            <div class="session-info">
+                <h3>{{ session.title|default:"Session de mentorat" }}</h3>
+                <p class="session-meta">
+                    <span><i class="fas fa-user"></i> {{ session.mentor.user.get_full_name }}</span>
+                    <span><i class="fas fa-calendar"></i> {{ session.date|date:"d/m/Y" }}</span>
+                    <span><i class="fas fa-clock"></i> {{ session.start_time|time:"H:i" }}</span>
+                </p>
+            </div>
+            <div class="session-actions">
+                {% if session.meeting_link %}
+                <a href="{{ session.meeting_link }}" target="_blank" class="btn btn-primary btn-sm">
+                    <i class="fas fa-video"></i> Rejoindre
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <i class="fas fa-calendar-times"></i>
+        <p>Aucune session à venir</p>
+        <a href="{% url 'mentoring:mentor_list' %}" class="btn btn-primary">Trouver un mentor</a>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Mentors Recommandés -->
+{% if recommended_mentors %}
+<div class="premium-card">
+    <div class="section-header">
+        <h2>Mentors Recommandés</h2>
+        <a href="{% url 'mentoring:mentor_list' %}" class="section-link">Voir tout</a>
+    </div>
+    
+    <div class="mentors-grid">
+        {% for mentor in recommended_mentors %}
+        <div class="mentor-card-small">
+            <div class="mentor-avatar-small">
+                {{ mentor.user.first_name|first }}{{ mentor.user.last_name|first }}
+            </div>
+            <div class="mentor-info-small">
+                <h4>{{ mentor.user.get_full_name }}</h4>
+                <p>{{ mentor.expertise }}</p>
+                <div class="mentor-rating-small">
+                    <i class="fas fa-star"></i>
+                    <span>{{ mentor.rating|floatformat:1|default:"0.0" }}</span>
+                </div>
+            </div>
+            <a href="{% url 'mentoring:mentor_detail' mentor.id %}" class="btn btn-outline btn-sm">
+                Voir profil
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+

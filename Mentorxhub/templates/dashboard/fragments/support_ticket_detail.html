@@ -1,0 +1,76 @@
+{% load static %}
+<div class="support-ticket-detail">
+    <div class="page-header">
+        <h1>{{ ticket.subject }}</h1>
+        <div class="ticket-status">
+            <span class="badge badge-{{ ticket.status }}">
+                {{ ticket.get_status_display }}
+            </span>
+        </div>
+    </div>
+    
+    <div class="ticket-info">
+        <div class="info-card">
+            <h3>Informations du ticket</h3>
+            <dl>
+                <dt>Catégorie</dt>
+                <dd>{{ ticket.get_category_display }}</dd>
+                
+                <dt>Date de création</dt>
+                <dd>{{ ticket.created_at|date:"d/m/Y à H:i" }}</dd>
+                
+                <dt>Dernière mise à jour</dt>
+                <dd>{{ ticket.updated_at|date:"d/m/Y à H:i" }}</dd>
+            </dl>
+        </div>
+        
+        <div class="ticket-description">
+            <h3>Description</h3>
+            <p>{{ ticket.description|linebreaks }}</p>
+        </div>
+    </div>
+    
+    <div class="ticket-replies">
+        <h3>Réponses ({{ replies.count }})</h3>
+        <div class="replies-list">
+            {% for reply in replies %}
+            <div class="reply-item {% if reply.author == user %}reply-own{% endif %}">
+                <div class="reply-header">
+                    <strong>{{ reply.author.get_full_name }}</strong>
+                    <span class="reply-time">{{ reply.created_at|date:"d/m/Y à H:i" }}</span>
+                </div>
+                <div class="reply-content">
+                    {{ reply.content|linebreaks }}
+                </div>
+            </div>
+            {% empty %}
+            <p class="text-muted">Aucune réponse pour le moment.</p>
+            {% endfor %}
+        </div>
+    </div>
+    
+    {% if ticket.status != 'closed' %}
+    <div class="ticket-reply-form">
+        <h3>Ajouter une réponse</h3>
+        <form method="post" action="{% url 'dashboard:support_ticket_reply' ticket.id %}" id="reply-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <textarea name="content" id="id_content" rows="5" required placeholder="Votre réponse..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-paper-plane"></i> Envoyer
+            </button>
+        </form>
+    </div>
+    
+    <div class="ticket-actions">
+        <form method="post" action="{% url 'dashboard:support_ticket_close' ticket.id %}" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-secondary">
+                <i class="fas fa-times"></i> Fermer le ticket
+            </button>
+        </form>
+    </div>
+    {% endif %}
+</div>
+

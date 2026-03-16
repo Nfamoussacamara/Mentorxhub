@@ -1,0 +1,25 @@
+{% load custom_filters %}
+<!-- Fragment HTML pour un message individuel (utilisé par HTMX) -->
+<div class="messages-chat-message {% if message.sender == user %}messages-chat-message-sent{% else %}messages-chat-message-received{% endif %}">
+    {% if message.sender != user %}
+    <div class="messages-chat-message-avatar">
+        {% if message.sender.profile_picture %}
+            <img src="{{ message.sender.profile_picture.url }}" alt="{{ message.sender.get_full_name }}">
+        {% else %}
+            <span>{{ message.sender.first_name|first }}{{ message.sender.last_name|first }}</span>
+        {% endif %}
+    </div>
+    {% endif %}
+    <div class="messages-chat-message-content">
+        {% if message.sender != user %}
+        <div class="messages-chat-message-sender">{{ message.sender.get_full_name|default:message.sender.email }}</div>
+        {% endif %}
+        <div class="messages-chat-message-bubble">
+            {{ message.content|linebreaks }}
+        </div>
+        <div class="messages-chat-message-time">
+            {{ message.created_at|message_time }}
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,65 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Notifications - Dashboard{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'dashboard/css/notifications.css' %}?v=1.0">
+{% endblock %}
+
+{% block content %}
+<div class="notifications-page">
+    <div class="page-header">
+        <h1>Notifications</h1>
+        <button class="btn btn-secondary" id="mark-all-read-btn">
+            <i class="fas fa-check-double"></i>
+            Tout marquer comme lu
+        </button>
+    </div>
+    
+    <div class="notifications-container">
+        {% if notifications %}
+        <div class="notifications-list">
+            {% for notification in notifications %}
+            <div class="notification-item {% if not notification.is_read %}unread{% endif %}" 
+                 data-notification-id="{{ notification.id }}">
+                <div class="notification-icon">
+                    {% if notification.type == 'session_reminder' %}
+                        <i class="fas fa-clock"></i>
+                    {% elif notification.type == 'session_confirmed' %}
+                        <i class="fas fa-check-circle"></i>
+                    {% elif notification.type == 'new_message' %}
+                        <i class="fas fa-envelope"></i>
+                    {% elif notification.type == 'new_request' %}
+                        <i class="fas fa-bell"></i>
+                    {% else %}
+                        <i class="fas fa-info-circle"></i>
+                    {% endif %}
+                </div>
+                <div class="notification-content">
+                    <h3>{{ notification.title }}</h3>
+                    <p>{{ notification.message }}</p>
+                    <span class="notification-time">{{ notification.created_at|timesince }} ago</span>
+                </div>
+                {% if notification.link %}
+                <a href="{{ notification.link }}" class="notification-link">
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="notifications-empty">
+            <i class="fas fa-bell-slash"></i>
+            <p>Aucune notification</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'dashboard/js/notifications.js' %}?v=1.0"></script>
+{% endblock %}
+

@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Modifier mon Profil - MentorXHub{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'mentoring/css/profile_update.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <div class="form-card">
+        <div class="form-header">
+            <h1>Modifier mon Profil</h1>
+            <p>Mettez à jour vos informations personnelles et vos objectifs</p>
+        </div>
+
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="{{ form.level.id_for_label }}">Niveau</label>
+                {{ form.level }}
+                {% if form.level.errors %}
+                <ul class="errorlist">
+                    {% for error in form.level.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.interests.id_for_label }}">Centres d'intérêt</label>
+                {{ form.interests }}
+                {% if form.interests.errors %}
+                <ul class="errorlist">
+                    {% for error in form.interests.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.preferred_languages.id_for_label }}">Langues préférées</label>
+                {{ form.preferred_languages }}
+                {% if form.preferred_languages.errors %}
+                <ul class="errorlist">
+                    {% for error in form.preferred_languages.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.github_profile.id_for_label }}">Profil GitHub</label>
+                {{ form.github_profile }}
+                {% if form.github_profile.errors %}
+                <ul class="errorlist">
+                    {% for error in form.github_profile.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.learning_goals.id_for_label }}">Objectifs d'apprentissage</label>
+                {{ form.learning_goals }}
+                {% if form.learning_goals.errors %}
+                <ul class="errorlist">
+                    {% for error in form.learning_goals.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i>
+                    Enregistrer les modifications
+                </button>
+                <a href="{% url 'mentoring:student_profile' %}" class="btn btn-outline">
+                    <i class="fas fa-times"></i>
+                    Annuler
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'mentoring/js/profile_update.js' %}" defer></script>
+{% endblock %}
+

@@ -1,0 +1,53 @@
+{% load static %}
+
+<div class="sessions-page slide-in">
+    <div class="page-header-premium">
+        <div class="header-content">
+            <h1 class="premium-title">Mon Calendrier</h1>
+            <p class="premium-subtitle">Gérez vos sessions de mentorat et votre emploi du temps</p>
+        </div>
+        <div class="calendar-actions">
+            {% if user.role == 'mentor' %}
+            <a href="{% url 'mentoring:mentor_session_create' %}" 
+               class="btn-premium-action" 
+               id="create-session-btn"
+               hx-get="{% url 'mentoring:mentor_session_create' %}"
+               hx-target="#dashboard-content"
+               hx-push-url="true">
+                <i class="fas fa-plus"></i>
+                Nouvelle Session
+            </a>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="premium-card glass-card calendar-wrapper">
+        <div id="sessions-calendar" class="full-calendar-premium"></div>
+    </div>
+</div>
+
+<!-- Modal Premium pour les détails de session -->
+<div class="premium-modal-overlay" id="session-modal-overlay" style="display: none;">
+    <div class="premium-modal">
+        <div class="modal-header-premium">
+            <h2 id="modal-title-premium">Détails de la Session</h2>
+            <button class="btn-close-premium" id="modal-close-btn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="modal-body-premium" id="modal-body-content">
+            <div class="premium-loading">
+                <div class="premium-spinner"></div>
+                <p>Chargement des détails...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- On utilise un micro-initialiseur pour s'assurer que FullCalendar se charge bien après le swap HTMX -->
+<script>
+    if (typeof window.sessionsApp !== 'undefined') {
+        window.sessionsApp.init();
+    }
+</script>
+

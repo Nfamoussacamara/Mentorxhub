@@ -1,0 +1,160 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Sessions Disponibles{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'mentoring/css/session.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>🎓 Sessions Disponibles à la Réservation</h1>
+    <p class="lead">Trouvez et réservez des sessions de mentorat avec nos experts</p>
+
+    <!-- Filtres -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="get" class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label">Expertise</label>
+                    <select name="expertise" class="form-select">
+                        <option value="">Toutes</option>
+                        {% for expertise in expertises %}
+                        <option value="{{ expertise }}">{{ expertise }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Date</label>
+                    <input type="date" name="date" class="form-control" value="{{ selected_date }}">
+                </div>
+                <div class="col-md-4 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary w-100">🔍 Rechercher</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Liste des sessions -->
+    {% if sessions %}
+        <div class="row">
+            {% for session in sessions %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100 session-available-card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-start mb-3">
+                            <div class="flex-shrink-0">
+                                {% if session.mentor.user.profile.avatar %}
+                                <img src="{{ session.mentor.user.profile.avatar.url }}" 
+                                     alt="{{ session.mentor.user.get_full_name }}"
+                                     class="rounded-circle" 
+                                     style="width: 50px; height: 50px; object-fit: cover;">
+                                {% else %}
+                                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center"
+                                     style="width: 50px; height: 50px; font-size: 24px;">
+                                    {{ session.mentor.user.first_name|first }}{{ session.mentor.user.last_name|first }}
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h5 class="card-title mb-1">{{ session.title }}</h5>
+                                <p class="text-muted small mb-0">
+                                    par {{ session.mentor.user.get_full_name }}
+                                </p>
+                                <div class="mt-1">
+                                    <span class="badge bg-info">{{ session.mentor.expertise }}</span>
+                                    <span class="text-warning">
+                                        ⭐ {{ session.mentor.rating|floatformat:1 }}/5
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="card-text text-muted small mb-3">
+                            {{ session.description|truncatewords:15 }}
+                        </p>
+                        
+                        <div class="session-details mb-3">
+                            <div class="d-flex align-items-center mb-2">
+                                <span class="me-2">📅</span>
+                                <strong>{{ session.date|date:"l d M Y" }}</strong>
+                            </div>
+                            <div class="d-flex align-items-center mb-2">
+                                <span class="me-2">🕐</span>
+                                {{ session.start_time|time:"H:i" }} - {{ session.end_time|time:"H:i" }}
+                                <small class="ms-2">({{ session.duration|floatformat:0 }} min)</small>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="me-2">💰</span>
+                                <strong class="text-success">{{ session.mentor.hourly_rate }}€/h</strong>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <form method="post" action="{% url 'mentoring:book_session' session.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-primary w-100">
+                                    ✅ Réserver cette session
+                                </button>
+                            </form>
+                            <a href="{% url 'mentoring:mentor_detail' session.mentor.id %}" 
+                               class="btn btn-outline-secondary btn-sm">
+                                👤 Voir le profil
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- Pagination -->
+        {% if is_paginated %}
+        <nav>
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Précédent</a>
+                </li>
+                {% endif %}
+                
+                <li class="page-item active">
+                    <span class="page-link">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+                </li>
+                
+                {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Suivant</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    {% else %}
+        <div class="alert alert-info text-center">
+            <h4>😔 Aucune session disponible pour le moment</h4>
+            <p>Revenez plus tard ou <a href="{% url 'mentoring:mentor_list' %}">recherchez un mentor</a> pour demander une session personnalisée.</p>
+        </div>
+    {% endif %}
+</div>
+
+<style>
+.session-available-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 2px solid #e0e0e0;
+}
+
+.session-available-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-color: var(--primary-color, #007bff);
+}
+
+.session-details {
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 8px;
+}
+</style>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% load static %}
+<div class="course-create">
+    <div class="page-header">
+        <h1>Créer un nouveau cours</h1>
+    </div>
+    
+    <form method="post" action="{% url 'dashboard:course_create' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_title">Titre du cours *</label>
+            {{ form.title }}
+            {% if form.title.errors %}
+            <div class="error-message">{{ form.title.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_description">Description *</label>
+            {{ form.description }}
+            {% if form.description.errors %}
+            <div class="error-message">{{ form.description.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="id_difficulty">Niveau de difficulté</label>
+                {{ form.difficulty }}
+                {% if form.difficulty.errors %}
+                <div class="error-message">{{ form.difficulty.errors }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label for="id_thumbnail">Image de couverture</label>
+                {{ form.thumbnail }}
+                {% if form.thumbnail.errors %}
+                <div class="error-message">{{ form.thumbnail.errors }}</div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label>
+                {{ form.is_published }} Publier immédiatement
+            </label>
+        </div>
+        
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i> Créer le cours
+            </button>
+            <a href="{% url 'dashboard:courses_list' %}" class="btn btn-secondary">Annuler</a>
+        </div>
+    </form>
+</div>
+

@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}MentorXHub - Votre Plateforme de Mentorat Nouvelle Génération{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'core/css/home_full.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="hero-modern-light">
+    <div class="hero-container">
+        <div class="hero-content">
+            <div class="hero-badge">
+                ✨ Plateforme de mentorat nouvelle génération
+            </div>
+
+            <h1 class="hero-title">
+                Apprenez des <span class="hero-accent">meilleurs</span>, devenez meilleur
+            </h1>
+
+            <p class="hero-description">
+                Connectez-vous avec des mentors experts qui transformeront votre parcours professionnel grâce à un
+                accompagnement personnalisé et des sessions de qualité.
+            </p>
+
+            <div class="hero-cta">
+                <a href="{% url 'accounts:signup' %}?role=student" class="btn-primary-light">
+                    Commencer gratuitement
+                </a>
+                <a href="{% url 'mentoring:mentor_list' %}" class="btn-secondary-light">
+                    Explorer les mentors
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="hero-image-container">
+                <div class="hero-icon">👨‍🏫</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- STATS SECTION -->
+<section class="stats-section">
+    <div class="stats-container">
+        <div class="stat-item">
+            <span class="stat-number" data-target="{{ stats.mentors_count|default:150 }}">0</span>
+            <div class="stat-label">Mentors experts</div>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number" data-target="{{ stats.students_count|default:500 }}">0</span>
+            <div class="stat-label">Étudiants actifs</div>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number" data-target="{{ stats.sessions_count|default:850 }}">0</span>
+            <div class="stat-label">Sessions réalisées</div>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number" data-target="{{ stats.satisfaction_rate|default:98 }}">0</span>%
+            <div class="stat-label">Satisfaction</div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES SECTION -->
+<section class="features-section" id="features">
+    <div class="section-header-center">
+        <span class="section-label">Pourquoi nous choisir</span>
+        <h2 class="section-title">Tout pour réussir votre apprentissage</h2>
+        <p class="section-description">
+            Une plateforme pensée pour maximiser votre progression avec les meilleurs outils et mentors
+        </p>
+    </div>
+
+    <div class="features-grid">
+        <div class="feature-card-light">
+            <span class="feature-icon-light">🎯</span>
+            <h3 class="feature-title-light">Matching intelligent</h3>
+            <p class="feature-description-light">
+                Trouvez le mentor parfait grâce à notre algorithme qui analyse vos objectifs et votre style
+                d'apprentissage.
+            </p>
+        </div>
+
+        <div class="feature-card-light">
+            <span class="feature-icon-light">⚡</span>
+            <h3 class="feature-title-light">Sessions flexibles</h3>
+            <p class="feature-description-light">
+                Réservez quand vous voulez, où vous voulez. Apprentissage adapté à votre emploi du temps.
+            </p>
+        </div>
+
+        <div class="feature-card-light">
+            <span class="feature-icon-light">💎</span>
+            <h3 class="feature-title-light">Qualité garantie</h3>
+            <p class="feature-description-light">
+                Tous nos mentors sont vérifiés et évalués pour garantir une expertise reconnue.
+            </p>
+        </div>
+
+        <div class="feature-card-light">
+            <span class="feature-icon-light">📊</span>
+            <h3 class="feature-title-light">Suivi de progression</h3>
+            <p class="feature-description-light">
+                Mesurez vos progrès avec des outils de tracking avancés et des objectifs clairs.
+            </p>
+        </div>
+
+        <div class="feature-card-light">
+            <span class="feature-icon-light">🌟</span>
+            <h3 class="feature-title-light">Communauté active</h3>
+            <p class="feature-description-light">
+                Rejoignez une communauté d'apprenants passionnés et échangez avec vos pairs.
+            </p>
+        </div>
+
+        <div class="feature-card-light">
+            <span class="feature-icon-light">💰</span>
+            <h3 class="feature-title-light">Prix transparents</h3>
+            <p class="feature-description-light">
+                Pas de frais cachés. Choisissez votre budget et payez uniquement ce que vous consommez.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works">
+    <div class="section-header-center">
+        <span class="section-label">Simple et efficace</span>
+        <h2 class="section-title">Comment ça fonctionne</h2>
+        <p class="section-description">
+            Trois étapes simples pour commencer votre parcours d'apprentissage
+        </p>
+    </div>
+
+    <div class="steps-container">
+        <div class="step-item">
+            <div class="step-number-circle">1</div>
+            <div class="step-content">
+                <h3 class="step-title-light">Trouvez votre mentor</h3>
+                <p class="step-description-light">
+                    Parcourez notre catalogue de mentors experts dans différents domaines et sélectionnez celui qui
+                    correspond parfaitement à vos objectifs.
+                </p>
+            </div>
+        </div>
+
+        <div class="step-item">
+            <div class="step-number-circle">2</div>
+            <div class="step-content">
+                <h3 class="step-title-light">Réservez une session</h3>
+                <p class="step-description-light">
+                    Choisissez un créneau horaire qui vous convient dans le calendrier du mentor et réservez votre
+                    première session en quelques clics.
+                </p>
+            </div>
+        </div>
+
+        <div class="step-item">
+            <div class="step-number-circle">3</div>
+            <div class="step-content">
+                <h3 class="step-title-light">Progressez ensemble</h3>
+                <p class="step-description-light">
+                    Participez à des sessions personnalisées, suivez vos progrès et atteignez vos objectifs avec
+                    l'accompagnement de votre mentor.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-section">
+    <div class="cta-content">
+        <h2 class="cta-title-light">Prêt à transformer votre carrière ?</h2>
+        <p class="cta-description-light">
+            Rejoignez des milliers de professionnels qui accélèrent leur croissance avec MentorXHub
+        </p>
+        <a href="{% url 'accounts:signup' %}?role=student" class="btn-white">
+            Créer un compte gratuit
+        </a>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'core/js/home_full.js' %}"></script>
+{% endblock %}

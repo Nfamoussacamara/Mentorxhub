@@ -1,0 +1,27 @@
+{% load static %}
+<!-- Fragment pour navigation AJAX -->
+<div class="dashboard-home">
+    <!-- Header de Bienvenue -->
+    <div class="welcome-header">
+        <div>
+            <h1>Bonjour, {{ user.get_full_name|default:user.email }} 👋</h1>
+            <p class="welcome-subtitle">
+                {% now "l d F Y" %}
+                {% if user.role == 'mentor' %}
+                    - Voici un résumé de votre activité de mentorat
+                {% else %}
+                    - Voici votre tableau de bord
+                {% endif %}
+            </p>
+        </div>
+    </div>
+
+    {% if user.role == 'mentor' %}
+        <!-- Dashboard Mentor -->
+        {% include 'dashboard/fragments/mentor_dashboard.html' %}
+    {% elif user.role == 'student' %}
+        <!-- Dashboard Étudiant -->
+        {% include 'dashboard/fragments/student_dashboard.html' %}
+    {% endif %}
+</div>
+

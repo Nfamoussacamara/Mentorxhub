@@ -1,0 +1,128 @@
+{% load static %}
+{% load custom_filters %}
+
+<!-- Popup d'onboarding pour les mentorés -->
+<div id="onboarding-page" role="dialog" aria-modal="true" aria-labelledby="onboarding-title" aria-label="Formulaire d'onboarding mentoré">
+    <div class="onboarding-container">
+        <!-- En-tête fixe du popup -->
+        <div class="onboarding-header">
+            <button type="button" class="close-button" aria-label="Fermer">
+                ×
+            </button>
+            
+            <!-- Indicateur de progression -->
+            <div class="progress-indicator">
+                <div class="progress-step active"></div>
+                <div class="progress-step"></div>
+                <div class="progress-step"></div>
+            </div>
+
+            <div class="login-header">
+                <div class="logo-wrapper">
+                    <div class="logo-icon" aria-hidden="true">M</div>
+                    <span class="logo-text">MentorXHub</span>
+                </div>
+                <h2 id="onboarding-title">Parlez-nous de vous</h2>
+                <div class="tagline-wrapper">
+                    <p id="tagline-text">Aidez-nous à vous trouver les meilleurs mentors (toutes les informations sont optionnelles).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Zone de contenu scrollable -->
+        <div class="onboarding-content">
+            <form method="post" action="{% url 'mentoring:mentee_onboarding' %}" novalidate aria-label="Formulaire d'onboarding" id="onboardingForm">
+                {% csrf_token %}
+
+                <!-- Conteneur pour les messages d'erreur -->
+                <div id="error-message">
+                    {% if messages %}
+                    {% for message in messages %}
+                    {% if message.tags == 'error' %}
+                    <div class="error-box" role="alert" aria-live="polite">
+                        {{ message }}
+                    </div>
+                    {% elif message.tags == 'success' %}
+                    <div class="success-box" role="alert" aria-live="polite">
+                        {{ message }}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                </div>
+
+                <!-- Ligne 1 : Niveau et Centres d'intérêt -->
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="{{ onboarding_form.level.id_for_label }}">Votre niveau</label>
+                        {{ onboarding_form.level }}
+                        {% if onboarding_form.level.errors %}
+                        <span class="error-text" role="alert">{{ onboarding_form.level.errors.0 }}</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="input-group">
+                        <label for="{{ onboarding_form.interests.id_for_label }}">Centres d'intérêt</label>
+                        {{ onboarding_form.interests }}
+                        {% if onboarding_form.interests.errors %}
+                        <span class="error-text" role="alert">{{ onboarding_form.interests.errors.0 }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Ligne 2 : Langues préférées et Profil GitHub -->
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="{{ onboarding_form.preferred_languages.id_for_label }}">Langues préférées</label>
+                        {{ onboarding_form.preferred_languages }}
+                        {% if onboarding_form.preferred_languages.errors %}
+                        <span class="error-text" role="alert">{{ onboarding_form.preferred_languages.errors.0 }}</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="input-group">
+                        <label for="{{ onboarding_form.github_profile.id_for_label }}">Profil GitHub</label>
+                        {{ onboarding_form.github_profile }}
+                        {% if onboarding_form.github_profile.errors %}
+                        <span class="error-text" role="alert">{{ onboarding_form.github_profile.errors.0 }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Objectifs d'apprentissage - Pleine largeur -->
+                <div class="input-group full">
+                    <label for="{{ onboarding_form.learning_goals.id_for_label }}">Objectifs d'apprentissage</label>
+                    {{ onboarding_form.learning_goals }}
+                    <div class="char-counter" id="learning-goals-counter">
+                        <span id="char-count">0</span> / 500 caractères
+                    </div>
+                    {% if onboarding_form.learning_goals.errors %}
+                    <span class="error-text" role="alert">{{ onboarding_form.learning_goals.errors.0 }}</span>
+                    {% endif %}
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn" aria-label="Sauvegarder et continuer">
+                    <span>Sauvegarder et continuer</span>
+                </button>
+            </form>
+
+            <!-- Formulaire pour passer l'étape -->
+            <form method="post" action="{% url 'mentoring:skip_mentee_onboarding' %}" style="margin-top: 1rem;">
+                {% csrf_token %}
+                <button type="submit" class="skip-button" aria-label="Passer cette étape">
+                    Passer cette étape
+                </button>
+            </form>
+
+            <p class="info-message">
+                Vous pourrez compléter ces informations plus tard depuis votre profil.
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Annonce pour les lecteurs d'écran -->
+<div class="sr-only" role="status" aria-live="polite" aria-atomic="true" id="formStatus"></div>
+
+<!-- JavaScript pour le popup d'onboarding -->
+<script src="{% static 'mentoring/js/mentee_onboarding.js' %}" defer></script>

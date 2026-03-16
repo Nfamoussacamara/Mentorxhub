@@ -1,0 +1,13 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Créer un cours - Dashboard{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'dashboard/css/courses.css' %}?v=1.0">
+{% endblock %}
+
+{% block content %}
+{% include 'dashboard/fragments/course_create.html' %}
+{% endblock %}
+

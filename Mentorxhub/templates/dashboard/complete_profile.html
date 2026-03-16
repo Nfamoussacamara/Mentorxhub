@@ -1,0 +1,233 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compléter votre profil - MentorXHub</title>
+    <link rel="stylesheet" href="{% static 'dashboard/css/complete_profile.css' %}">
+</head>
+<body>
+    <header class="page-header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">▲</span>
+                <span class="logo-text">MentorXHub</span>
+            </div>
+        </div>
+        <div class="header-divider"></div>
+    </header>
+
+    <div class="complete-profile-container">
+        <div class="profile-card">
+            <div class="progress-section">
+                <div class="progress-bar-wrapper">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div class="progress-steps">
+                    <div class="step-indicator active" data-step="1">
+                        <span class="step-number">1</span>
+                        <span class="step-label">Personnel</span>
+                    </div>
+                    <div class="step-indicator" data-step="2">
+                        <span class="step-number">2</span>
+                        <span class="step-label">Profil</span>
+                    </div>
+                    <div class="step-indicator" data-step="3">
+                        <span class="step-number">3</span>
+                        <span class="step-label">Réseaux</span>
+                    </div>
+                    <div class="step-indicator" data-step="4">
+                        <span class="step-number">4</span>
+                        <span class="step-label">Confirmation</span>
+                    </div>
+                </div>
+            </div>
+
+            <form method="post" enctype="multipart/form-data" id="completeProfileForm" action="{% url 'dashboard:complete_profile' %}">
+                {% csrf_token %}
+                
+                <div class="step-content active" data-step="1">
+                    <h2 class="step-title">Informations personnelles</h2>
+                    <p class="step-description">Commençons par vos informations de base</p>
+                    
+                    <div class="form-group">
+                        <label for="first_name">Prénom</label>
+                        <input type="text" id="first_name" name="first_name" value="{{ user.first_name }}" placeholder="Votre prénom">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="last_name">Nom</label>
+                        <input type="text" id="last_name" name="last_name" value="{{ user.last_name }}" placeholder="Votre nom">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bio">Biographie</label>
+                        <textarea id="bio" name="bio" rows="4" placeholder="Parlez-nous de vous...">{{ user.bio }}</textarea>
+                        <div class="char-counter"><span id="bioCount">0</span> / 500</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="profile_picture">Photo de profil</label>
+                        <div class="file-upload">
+                            <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
+                            <label for="profile_picture" class="file-label">
+                                <span class="file-icon">📷</span>
+                                <span class="file-text">Choisir une photo</span>
+                            </label>
+                            <div class="file-preview" id="profilePreview"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="banner_image">Image de bannière</label>
+                        <div class="file-upload">
+                            <input type="file" id="banner_image" name="banner_image" accept="image/*">
+                            <label for="banner_image" class="file-label">
+                                <span class="file-icon">🖼️</span>
+                                <span class="file-text">Choisir une bannière</span>
+                            </label>
+                            <div class="file-preview" id="bannerPreview"></div>
+                        </div>
+                    </div>
+                </div>
+
+                {% if user.role == 'mentor' %}
+                <div class="step-content" data-step="2">
+                    <h2 class="step-title">Votre expertise</h2>
+                    <p class="step-description">Décrivez votre profil de mentor</p>
+                    
+                    <div class="form-group">
+                        <label for="expertise">Domaine d'expertise</label>
+                        <input type="text" id="expertise" name="expertise" value="{% if user.mentor_profile %}{{ user.mentor_profile.expertise }}{% endif %}" placeholder="Ex: Développement Web, Data Science">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="years_of_experience">Années d'expérience</label>
+                            <input type="number" id="years_of_experience" name="years_of_experience" min="0" value="{% if user.mentor_profile %}{{ user.mentor_profile.years_of_experience }}{% endif %}" placeholder="0">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="hourly_rate">Tarif horaire (€)</label>
+                            <input type="number" id="hourly_rate" name="hourly_rate" min="0" step="0.01" value="{% if user.mentor_profile %}{{ user.mentor_profile.hourly_rate }}{% endif %}" placeholder="0.00">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="languages">Langues et technologies</label>
+                        <input type="text" id="languages" name="languages" value="{% if user.mentor_profile %}{{ user.mentor_profile.languages }}{% endif %}" placeholder="Ex: Français, Anglais, Python, JavaScript">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="certifications">Certifications</label>
+                        <textarea id="certifications" name="certifications" rows="4" placeholder="Listez vos certifications">{% if user.mentor_profile %}{{ user.mentor_profile.certifications }}{% endif %}</textarea>
+                    </div>
+                </div>
+                {% else %}
+                <div class="step-content" data-step="2">
+                    <h2 class="step-title">Quels sont vos centres d'intérêt ?</h2>
+                    <p class="step-description">Sélectionnez les matières qui vous intéressent</p>
+                    
+                    <div class="form-group">
+                        <div class="search-wrapper">
+                            <input type="text" id="interestSearch" class="search-input" placeholder="Rechercher une matière">
+                            <span class="search-icon">🔍</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <h3 class="section-subtitle">Apprécié des apprenants comme vous</h3>
+                        <div class="interests-grid">
+                            {% for subject in subjects %}
+                            <label class="interest-item" data-name="{{ subject.name|lower }}">
+                                <input type="checkbox" name="interests" value="{{ subject.id }}" {% if user.student_profile and subject in user.student_profile.interests.all %}checked{% endif %}>
+                                <div class="interest-content">
+                                    <div class="interest-name">{{ subject.name }}</div>
+                                    {% if subject.description %}
+                                    <div class="interest-description">{{ subject.description }}</div>
+                                    {% else %}
+                                    <div class="interest-description">Matière d'apprentissage</div>
+                                    {% endif %}
+                                </div>
+                                {% if subject.icon %}
+                                <div class="interest-badge">{{ subject.icon }}</div>
+                                {% endif %}
+                            </label>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="level">Niveau</label>
+                        <select id="level" name="level">
+                            <option value="">Sélectionnez votre niveau</option>
+                            <option value="débutant" {% if user.student_profile and user.student_profile.level == 'débutant' %}selected{% endif %}>Débutant</option>
+                            <option value="intermédiaire" {% if user.student_profile and user.student_profile.level == 'intermédiaire' %}selected{% endif %}>Intermédiaire</option>
+                            <option value="avancé" {% if user.student_profile and user.student_profile.level == 'avancé' %}selected{% endif %}>Avancé</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="learning_goals">Objectifs d'apprentissage</label>
+                        <textarea id="learning_goals" name="learning_goals" rows="4" placeholder="Quels sont vos objectifs d'apprentissage ?">{% if user.student_profile %}{{ user.student_profile.learning_goals }}{% endif %}</textarea>
+                        <div class="char-counter"><span id="goalsCount">0</span> / 500</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="preferred_languages">Langue(s) de formation</label>
+                        <input type="text" id="preferred_languages" name="preferred_languages" value="{% if user.student_profile %}{{ user.student_profile.preferred_languages }}{% endif %}" placeholder="Ex : Français, Anglais">
+                    </div>
+                </div>
+                {% endif %}
+
+                <div class="step-content" data-step="3">
+                    <h2 class="step-title">Réseaux sociaux</h2>
+                    <p class="step-description">Connectez vos profils (optionnel)</p>
+                    
+                    {% if user.role == 'mentor' %}
+                    <div class="form-group">
+                        <label for="linkedin_profile">LinkedIn</label>
+                        <input type="url" id="linkedin_profile" name="linkedin_profile" value="{% if user.mentor_profile %}{{ user.mentor_profile.linkedin_profile }}{% endif %}" placeholder="https://linkedin.com/in/votre-profil">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="github_profile">GitHub</label>
+                        <input type="url" id="github_profile" name="github_profile" value="{% if user.mentor_profile %}{{ user.mentor_profile.github_profile }}{% endif %}" placeholder="https://github.com/votre-profil">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="website">Site web</label>
+                        <input type="url" id="website" name="website" value="{% if user.mentor_profile %}{{ user.mentor_profile.website }}{% endif %}" placeholder="https://votre-site.com">
+                    </div>
+                    {% else %}
+                    <div class="form-group">
+                        <label for="github_profile">GitHub</label>
+                        <input type="url" id="github_profile" name="github_profile" value="{% if user.student_profile %}{{ user.student_profile.github_profile }}{% endif %}" placeholder="https://github.com/votre-profil">
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="step-content" data-step="4">
+                    <h2 class="step-title">Confirmation</h2>
+                    <p class="step-description">Vérifiez vos informations avant de finaliser</p>
+                    
+                    <div class="confirmation-summary" id="confirmationSummary"></div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <footer class="page-footer">
+        <div class="footer-content">
+            <button type="button" class="footer-link" id="prevBtn" style="display: none;">Retour</button>
+            <div class="footer-spacer"></div>
+            <button type="button" class="btn btn-primary" id="nextBtn">Suivant</button>
+            <button type="submit" form="completeProfileForm" class="btn btn-primary" id="submitBtn" style="display: none;">Soumettre</button>
+        </div>
+    </footer>
+
+    <script src="{% static 'dashboard/js/complete_profile.js' %}"></script>
+</body>
+</html>

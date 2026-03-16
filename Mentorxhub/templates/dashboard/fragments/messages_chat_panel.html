@@ -1,0 +1,106 @@
+{% load custom_filters %}
+<!-- Panneau de chat pour une conversation -->
+<div class="messages-chat-panel">
+    <!-- Header du chat -->
+    <div class="messages-chat-header">
+        <div class="messages-chat-header-left">
+            <h2 class="messages-chat-title">
+                {% if is_group %}
+                    {{ conversation.subject|default:"Groupe" }}
+                {% else %}
+                    {{ other_participant.get_full_name|default:other_participant.email }}
+                {% endif %}
+            </h2>
+        </div>
+        <div class="messages-chat-header-right">
+            {% if is_group %}
+            <a href="#" class="messages-chat-action-link">Share group</a>
+            <a href="#" class="messages-chat-action-link">Add people</a>
+            {% endif %}
+            <button class="messages-chat-menu-btn" id="chat-menu-btn">
+                <i class="fas fa-ellipsis-v"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Liste des messages -->
+    <div class="messages-chat-messages" id="messages-list">
+        <!-- Message de bienvenue (pour les groupes) -->
+        {% if is_group and messages %}
+        <div class="messages-chat-welcome">
+            <div class="messages-chat-welcome-icon">✨</div>
+            <div class="messages-chat-welcome-text">Welcome to {{ conversation.subject|default:"this group" }}</div>
+            <div class="messages-chat-welcome-time">2 min ago</div>
+        </div>
+        {% endif %}
+        
+        {% for message in messages %}
+        <div class="messages-chat-message {% if message.sender == user %}messages-chat-message-sent{% else %}messages-chat-message-received{% endif %}">
+            {% if message.sender != user %}
+            <div class="messages-chat-message-avatar">
+                {% if message.sender.profile_picture %}
+                    <img src="{{ message.sender.profile_picture.url }}" alt="{{ message.sender.get_full_name }}">
+                {% else %}
+                    <span>{{ message.sender.first_name|first }}{{ message.sender.last_name|first }}</span>
+                {% endif %}
+            </div>
+            {% endif %}
+            <div class="messages-chat-message-content">
+                {% if message.sender != user %}
+                <div class="messages-chat-message-sender">{{ message.sender.get_full_name|default:message.sender.email }}</div>
+                {% endif %}
+                <div class="messages-chat-message-bubble">
+                    {{ message.content|linebreaks }}
+                </div>
+                <div class="messages-chat-message-time">
+                    {{ message.created_at|message_time }}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="messages-chat-welcome">
+            <div class="messages-chat-welcome-icon">✨</div>
+            <div class="messages-chat-welcome-text">Welcome to {% if is_group %}{{ conversation.subject|default:"this group" }}{% else %}{{ other_participant.get_full_name|default:other_participant.email }}{% endif %}</div>
+            <div class="messages-chat-welcome-time">2 min ago</div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Input pour écrire un message avec HTMX -->
+    <div class="messages-chat-input-container">
+        <form id="message-form" 
+              class="messages-chat-form" 
+              hx-post="{% url 'dashboard:message_send' conversation.id %}"
+              hx-target="#messages-list"
+              hx-swap="beforeend"
+              hx-on::after-request="if(event.detail.xhr.status === 200) { this.querySelector('#message-input').value=''; }"
+              hx-indicator="#loading-overlay">
+            {% csrf_token %}
+            <button type="button" class="messages-chat-emoji-btn" id="emoji-btn">
+                <i class="far fa-smile"></i>
+            </button>
+            <input type="text" 
+                   name="content" 
+                   id="message-input" 
+                   class="messages-chat-input" 
+                   placeholder="Write your messages...">
+            <button type="button" class="messages-chat-attachment-btn" id="attachment-btn">
+                <i class="fas fa-paperclip"></i>
+            </button>
+            <input type="file" id="attachment-input" name="attachment" style="display: none;">
+        </form>
+    </div>
+    
+    <!-- Polling HTMX pour nouveaux messages (arrêt si page non visible) -->
+    <div hx-get="{% url 'dashboard:messages_poll' %}"
+         hx-trigger="every 5s"
+         hx-target="#messages-list"
+         hx-swap="beforeend"
+         hx-vals='{"conversation_id": "{{ conversation.id }}"}'
+         hx-indicator="#loading-overlay"
+         hx-disabled-elt="[hx-disabled='true']"
+         style="display: none;"
+         id="messages-polling">
+    </div>
+</div>
+

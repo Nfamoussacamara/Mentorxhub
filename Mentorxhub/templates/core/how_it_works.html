@@ -1,0 +1,238 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ page_title }} - MentorXHub{% endblock %}
+
+{% block extra_css %}
+<style>
+    .how-it-works-page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+        background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+        min-height: 100vh;
+    }
+
+    .page-header {
+        text-align: center;
+        margin-bottom: 4rem;
+        animation: fadeInDown 0.6s ease-out;
+    }
+
+    .page-header h1 {
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        font-weight: 800;
+        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 1rem;
+        letter-spacing: -0.02em;
+    }
+
+    .page-header p {
+        font-size: 1.25rem;
+        color: #64748b;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .section-title {
+        text-align: center;
+        font-size: 2rem;
+        color: #1e293b;
+        margin: 3rem 0 2rem;
+        font-weight: 700;
+    }
+
+    .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .step-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 20px;
+        text-align: center;
+        border: 1px solid rgba(59, 130, 246, 0.1);
+        transition: all 0.3s ease;
+        position: relative;
+        animation: fadeInUp 0.6s ease-out backwards;
+    }
+
+    .step-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(30, 58, 138, 0.15);
+        border-color: rgba(59, 130, 246, 0.3);
+    }
+
+    .step-number {
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.25rem;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    }
+
+    .step-icon {
+        font-size: 3rem;
+        margin: 1rem 0;
+    }
+
+    .step-title {
+        font-size: 1.25rem;
+        color: #1e293b;
+        margin-bottom: 0.75rem;
+        font-weight: 700;
+    }
+
+    .step-description {
+        font-size: 0.95rem;
+        color: #64748b;
+        line-height: 1.6;
+    }
+
+    .cta-section {
+        background: white;
+        padding: 3rem;
+        border-radius: 20px;
+        text-align: center;
+        margin-top: 3rem;
+        border: 1px solid rgba(59, 130, 246, 0.1);
+        animation: fadeInUp 0.6s ease-out 0.4s backwards;
+    }
+
+    .cta-section h2 {
+        font-size: 2rem;
+        color: #1e293b;
+        margin-bottom: 1rem;
+        font-weight: 700;
+    }
+
+    .cta-section p {
+        font-size: 1.125rem;
+        color: #64748b;
+        margin-bottom: 2rem;
+    }
+
+    .cta-button {
+        display: inline-block;
+        padding: 1rem 3rem;
+        background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+        color: white;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 1.125rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    }
+
+    .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4);
+    }
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .step-card:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+
+    .step-card:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .step-card:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+
+    .step-card:nth-child(4) {
+        animation-delay: 0.4s;
+    }
+
+    @media (max-width: 768px) {
+        .how-it-works-page {
+            padding: 2rem 1rem;
+        }
+
+        .cta-section {
+            padding: 2rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="how-it-works-page">
+    <div class="page-header">
+        <h1>💡 {{ page_title }}</h1>
+        <p>Découvrez comment MentorXHub facilite votre parcours d'apprentissage</p>
+    </div>
+
+    <h2 class="section-title">Pour les Étudiants</h2>
+    <div class="steps-grid">
+        {% for step in steps_student %}
+        <div class="step-card">
+            <div class="step-number">{{ step.number }}</div>
+            <div class="step-icon">{{ step.icon }}</div>
+            <div class="step-title">{{ step.title }}</div>
+            <div class="step-description">{{ step.description }}</div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h2 class="section-title">Pour les Mentors</h2>
+    <div class="steps-grid">
+        {% for step in steps_mentor %}
+        <div class="step-card">
+            <div class="step-number">{{ step.number }}</div>
+            <div class="step-icon">{{ step.icon }}</div>
+            <div class="step-title">{{ step.title }}</div>
+            <div class="step-description">{{ step.description }}</div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="cta-section">
+        <h2>Prêt à commencer ?</h2>
+        <p>Rejoignez MentorXHub aujourd'hui et transformez votre parcours d'apprentissage</p>
+        <a href="{% url 'accounts:signup' %}" class="cta-button">Créer un compte gratuitement</a>
+    </div>
+</div>
+{% endblock %}

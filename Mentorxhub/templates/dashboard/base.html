@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Dashboard - MentorXHub{% endblock %}</title>
+
+    <!-- Preconnect pour améliorer les performances -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+    <!-- Preload Chart.js pour téléchargement parallèle optimisé -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" as="script">
+
+    <!-- HTMX - Remplace AJAX par des attributs HTML simples -->
+    <script src="https://unpkg.com/htmx.org@1.9.10"
+        integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+        crossorigin="anonymous"></script>
+
+    <!-- Chart.js - Toujours chargé pour les graphiques du dashboard -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <!-- Font Awesome (chargement asynchrone) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
+
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="{% static 'dashboard/css/variables.css' %}?v=1.1">
+    <link rel="stylesheet" href="{% static 'dashboard/css/components.css' %}?v=1.1">
+    <link rel="stylesheet" href="{% static 'dashboard/css/base.css' %}?v=1.1">
+    <link rel="stylesheet" href="{% static 'dashboard/css/modules.css' %}?v=1.1">
+    <link rel="stylesheet" href="{% static 'dashboard/css/premium-cards.css' %}?v=1.1">
+    <link rel="stylesheet" href="{% static 'dashboard/css/premium-components.css' %}?v=1.1">
+    <link rel="stylesheet" href="{% static 'dashboard/css/dashboard-overview.css' %}?v=1.1">
+    <link rel="stylesheet" href="{% static 'dashboard/css/sessions.css' %}?v=1.1">
+    <link rel="stylesheet" href="{% static 'dashboard/css/messages.css' %}?v=2.0">
+    <link rel="stylesheet" href="{% static 'mentoring/css/mentors_public.css' %}?v=1.1">
+
+    <!-- CSS pour le popup d'onboarding -->
+    {% if user.role == 'student' %}
+    <link rel="stylesheet" href="{% static 'mentoring/css/mentee_onboarding.css' %}">
+    {% endif %}
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body class="dashboard-body">
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        {% include 'dashboard/partials/sidebar.html' %}
+
+        <!-- Main Content Area -->
+        <div class="dashboard-main">
+            <!-- Navbar -->
+            {% include 'dashboard/partials/navbar.html' %}
+
+            <!-- Content -->
+            <main class="dashboard-content" id="dashboard-content">
+                {% if messages %}
+                <div class="messages-container">
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                {% block content %}{% endblock %}
+            </main>
+        </div>
+    </div>
+
+    <!-- Loading Overlay (pour HTMX) -->
+    <div class="loading-overlay htmx-indicator" id="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Utilitaires et Configuration Globale -->
+    <script src="{% static 'dashboard/js/utils.js' %}?v=1.0" defer></script>
+    <script src="{% static 'dashboard/js/htmx-init.js' %}?v=1.2" defer></script>
+
+    <!-- Modules Applicatifs (Chargement Différé) -->
+    <script src="{% static 'dashboard/js/messages.js' %}?v=2.0" defer></script>
+    <script src="{% static 'dashboard/js/analytics.js' %}?v=1.0" defer></script>
+    <script src="{% static 'dashboard/js/sessions.js' %}?v=1.0" defer></script>
+    <script src="{% static 'dashboard/js/dashboard-overview.js' %}?v=2.0" defer></script>
+
+    <!-- Main JavaScript Entry Point -->
+    <script src="{% static 'dashboard/js/main.js' %}?v=1.1" defer></script>
+
+    <!-- Popup d'onboarding - Affichage automatique à chaque rafraîchissement -->
+    {% if user.role == 'student' and onboarding_form %}
+    {% include 'mentoring/onboarding/mentee_popup.html' %}
+    {% endif %}
+
+    {% block extra_js %}{% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+{% load static %}
+
+<div class="availability-form-page">
+    <div class="page-header">
+        <h1 class="page-title">
+            {% if form.instance.pk %}Modifier la Disponibilité{% else %}Nouvelle Disponibilité{% endif %}
+        </h1>
+        <a href="{% url 'mentoring:availability_list' %}" 
+           class="btn btn-secondary"
+           hx-get="{% url 'mentoring:availability_list' %}"
+           hx-target="#dashboard-content">
+            <i class="fas fa-arrow-left"></i> Retour
+        </a>
+    </div>
+
+    <div class="premium-card max-w-2xl mx-auto">
+        <form method="post" hx-post="{{ request.path }}" hx-target="#dashboard-content">
+            {% csrf_token %}
+            
+            <div class="form-grid">
+                <div class="form-group slide-up">
+                    <label for="{{ form.day_of_week.id_for_label }}">Jour de la semaine</label>
+                    {{ form.day_of_week }}
+                    {% if form.day_of_week.errors %}
+                        <div class="error-text">{{ form.day_of_week.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-row split">
+                    <div class="form-group slide-up delay-100">
+                        <label for="{{ form.start_time.id_for_label }}">Heure de début</label>
+                        {{ form.start_time }}
+                        {% if form.start_time.errors %}
+                            <div class="error-text">{{ form.start_time.errors }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group slide-up delay-100">
+                        <label for="{{ form.end_time.id_for_label }}">Heure de fin</label>
+                        {{ form.end_time }}
+                        {% if form.end_time.errors %}
+                            <div class="error-text">{{ form.end_time.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="form-group checkbox-group slide-up delay-200">
+                    <label class="checkbox-container">
+                        Recurrence hebdomadaire
+                        {{ form.is_recurring }}
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-actions mt-8">
+                <button type="submit" class="btn btn-primary w-full">
+                    <i class="fas fa-save"></i> Enregistrer la disponibilité
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .form-grid { display: flex; flex-direction: column; gap: 1.5rem; }
+    .form-row.split { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .checkbox-container {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        cursor: pointer;
+        font-weight: 500;
+        user-select: none;
+    }
+    .error-text { color: #dc2626; font-size: 0.875rem; margin-top: 0.25rem; }
+</style>

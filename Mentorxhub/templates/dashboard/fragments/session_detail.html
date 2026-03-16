@@ -1,0 +1,109 @@
+{% load static %}
+<div class="premium-session-detail slide-in">
+    <div class="session-detail-header">
+        <div class="session-main-info">
+            <h3 class="session-title-large">{{ session.title }}</h3>
+            <div class="session-meta-tags">
+                <span class="status-tag {{ session.status }}">
+                    {{ session.get_status_display }}
+                </span>
+                <span class="type-tag">
+                    <i class="fas fa-video"></i> Session en ligne
+                </span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="session-detail-grid">
+        <div class="detail-section">
+            <h4 class="detail-label"><i class="fas fa-calendar-alt"></i> Date & Heure</h4>
+            <div class="detail-content-box">
+                <div class="time-stat">
+                    <span class="val">{{ session.date|date:"d F Y" }}</span>
+                    <span class="lab">{{ session.start_time|time:"H:i" }} - {{ session.end_time|time:"H:i" }} ({{ session.duration|floatformat:0 }} min)</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail-section">
+            <h4 class="detail-label">
+                {% if user_role == 'mentor' %}
+                <i class="fas fa-user-graduate"></i> Étudiant
+                {% else %}
+                <i class="fas fa-chalkboard-teacher"></i> Mentor
+                {% endif %}
+            </h4>
+            <div class="detail-content-box user-preview-box">
+                <div class="m-avatar">
+                    {% if user_role == 'mentor' %}
+                    {{ session.student.user.first_name|first }}{{ session.student.user.last_name|first }}
+                    {% else %}
+                    {{ session.mentor.user.first_name|first }}{{ session.mentor.user.last_name|first }}
+                    {% endif %}
+                </div>
+                <div class="u-info">
+                    <span class="u-name">
+                        {% if user_role == 'mentor' %}
+                        {{ session.student.user.get_full_name }}
+                        {% else %}
+                        {{ session.mentor.user.get_full_name }}
+                        {% endif %}
+                    </span>
+                    <span class="u-role">
+                        {% if user_role == 'mentor' %}
+                        Étudiant MentorXHub
+                        {% else %}
+                        {{ session.mentor.expertise }}
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if session.description %}
+    <div class="detail-section full-width">
+        <h4 class="detail-label"><i class="fas fa-align-left"></i> Description</h4>
+        <div class="detail-content-box description-box">
+            {{ session.description|linebreaks }}
+        </div>
+    </div>
+    {% endif %}
+    
+    <div class="detail-actions">
+        {% if session.status == 'scheduled' or session.status == 'in_progress' %}
+        <a href="{% url 'dashboard:session_video_room' session.id %}" class="btn-premium-action join-now">
+            <i class="fas fa-video"></i> Rejoindre la session
+        </a>
+        {% endif %}
+        
+        {% if session.status == 'pending' and user_role == 'mentor' %}
+        <div class="approval-actions" style="display: flex; gap: 10px; margin-bottom: 0;">
+            <form action="{% url 'mentoring:session_approve' session.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn-premium-action confirm">
+                    <i class="fas fa-check"></i> Accepter
+                </button>
+            </form>
+            <form action="{% url 'mentoring:session_reject' session.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn-ghost-premium reject" style="color: #ef4444; border-color: #ef4444;">
+                    <i class="fas fa-times"></i> Refuser
+                </button>
+            </form>
+        </div>
+        {% endif %}
+        
+        <div class="secondary-actions">
+            {% if user_role == 'mentor' %}
+            <button class="btn-ghost-premium" hx-get="{% url 'mentoring:session_update' session.id %}" hx-target="#dashboard-content">
+                <i class="fas fa-edit"></i> Modifier
+            </button>
+            {% endif %}
+            <button class="btn-ghost-premium" onclick="document.getElementById('session-modal-overlay').style.display='none'">
+                Fermer
+            </button>
+        </div>
+    </div>
+</div>
+

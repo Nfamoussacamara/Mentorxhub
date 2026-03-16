@@ -1,0 +1,50 @@
+{% load static %}
+<div class="courses-list">
+    <div class="page-header">
+        <h1>{% if user_role == 'mentor' %}Mes Cours{% else %}Cours Disponibles{% endif %}</h1>
+        {% if user_role == 'mentor' %}
+        <a href="{% url 'dashboard:course_create' %}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Créer un cours
+        </a>
+        {% endif %}
+    </div>
+    
+    <div class="courses-grid">
+        {% for course in courses %}
+        <div class="course-card">
+            {% if course.thumbnail %}
+            <div class="course-thumbnail">
+                <img src="{{ course.thumbnail.url }}" alt="{{ course.title }}">
+            </div>
+            {% endif %}
+            <div class="course-content">
+                <h3><a href="{% url 'dashboard:course_detail' course.id %}">{{ course.title }}</a></h3>
+                <p class="course-mentor">Par {{ course.mentor.get_full_name }}</p>
+                <p class="course-description">{{ course.description|truncatewords:20 }}</p>
+                <div class="course-meta">
+                    <span class="badge badge-{{ course.difficulty }}">{{ course.get_difficulty_display }}</span>
+                    <span class="course-lessons">{{ course.lessons.count }} leçons</span>
+                </div>
+                {% if user_role == 'student' %}
+                <div class="course-actions">
+                    <a href="{% url 'dashboard:course_detail' course.id %}" class="btn btn-sm btn-primary">
+                        Voir le cours
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% empty %}
+        <div class="empty-state">
+            <i class="fas fa-book-open"></i>
+            <p>{% if user_role == 'mentor' %}Aucun cours créé pour le moment.{% else %}Aucun cours disponible.{% endif %}</p>
+            {% if user_role == 'mentor' %}
+            <a href="{% url 'dashboard:course_create' %}" class="btn btn-primary">
+                Créer votre premier cours
+            </a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+

@@ -1,0 +1,56 @@
+{% load static %}
+<div class="course-detail">
+    <div class="course-header">
+        {% if course.thumbnail %}
+        <div class="course-thumbnail-large">
+            <img src="{{ course.thumbnail.url }}" alt="{{ course.title }}">
+        </div>
+        {% endif %}
+        <div class="course-info">
+            <h1>{{ course.title }}</h1>
+            <p class="course-mentor">Par {{ course.mentor.get_full_name }}</p>
+            <p class="course-description">{{ course.description }}</p>
+            <div class="course-meta">
+                <span class="badge badge-{{ course.difficulty }}">{{ course.get_difficulty_display }}</span>
+                <span>{{ course.lessons.count }} leçons</span>
+                {% if progress %}
+                <span>Progression: {{ progress.progress_percentage }}%</span>
+                {% endif %}
+            </div>
+            {% if is_mentor %}
+            <div class="course-actions">
+                <a href="{% url 'dashboard:course_edit' course.id %}" class="btn btn-secondary">
+                    <i class="fas fa-edit"></i> Modifier
+                </a>
+                <a href="{% url 'dashboard:lesson_create' course.id %}" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Ajouter une leçon
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="lessons-section">
+        <h2>Leçons</h2>
+        <div class="lessons-list">
+            {% for lesson in lessons %}
+            <div class="lesson-item {% if progress and lesson in progress.completed_lessons.all %}lesson-completed{% endif %}">
+                <div class="lesson-number">{{ lesson.order }}</div>
+                <div class="lesson-content">
+                    <h3><a href="{% url 'dashboard:lesson_detail' course.id lesson.id %}">{{ lesson.title }}</a></h3>
+                    <p>{{ lesson.description|truncatewords:15 }}</p>
+                    <div class="lesson-meta">
+                        <span>{{ lesson.duration }} min</span>
+                        {% if progress and lesson in progress.completed_lessons.all %}
+                        <span class="badge badge-success">Complétée</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p class="text-muted">Aucune leçon pour le moment.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+

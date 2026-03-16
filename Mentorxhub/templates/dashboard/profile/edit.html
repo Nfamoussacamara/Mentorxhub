@@ -1,0 +1,403 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Modifier mon Profil - Dashboard{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'dashboard/css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-profile-page">
+    <!-- Bannière avec photo de profil -->
+    <div class="profile-banner" {% if user.banner_image %}style="background-image: url('{{ user.banner_image.url }}');"{% endif %}>
+        {% if not user.banner_image %}
+        <div class="profile-banner-gradient"></div>
+        {% endif %}
+        <div class="profile-banner-overlay"></div>
+        
+        <div class="profile-banner-content">
+            <div class="profile-avatar-large">
+                <img src="{{ user.get_avatar_url }}" alt="{{ user.get_full_name }}">
+            </div>
+            <div class="profile-banner-info">
+                <h1>{{ user.get_full_name|default:user.email }}</h1>
+                <p class="profile-role">
+                    {% if user.role == 'mentor' %}
+                        <i class="fas fa-chalkboard-teacher"></i> Mentor
+                    {% elif user.role == 'student' %}
+                        <i class="fas fa-graduation-cap"></i> Étudiant
+                    {% endif %}
+                </p>
+            </div>
+            <a href="{% url 'dashboard:profile' %}" class="btn-edit-profile">
+                <i class="fas fa-arrow-left"></i> Retour
+            </a>
+        </div>
+    </div>
+
+    <!-- Formulaire d'images -->
+    <div class="profile-edit-section">
+        <div class="profile-edit-card">
+            <h3 class="section-title">
+                <i class="fas fa-images"></i>
+                Images de profil
+            </h3>
+            <form method="post" enctype="multipart/form-data" class="profile-image-form" id="imageForm" action="{% url 'dashboard:profile_update' %}">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="{{ image_form.profile_picture.id_for_label }}" class="form-label">
+                            Photo de profil
+                        </label>
+                        <div class="image-upload-wrapper">
+                            {% if user.profile_picture %}
+                            <div class="current-image">
+                                <img src="{{ user.get_avatar_url }}" alt="Photo actuelle">
+                                <span>Photo actuelle</span>
+                            </div>
+                            {% else %}
+                            <div class="current-image">
+                                <img src="{{ user.get_avatar_url }}" alt="Avatar par défaut">
+                                <span>Avatar par défaut</span>
+                            </div>
+                            {% endif %}
+                            {{ image_form.profile_picture }}
+                            <label for="{{ image_form.profile_picture.id_for_label }}" class="image-upload-label">
+                                <i class="fas fa-upload"></i>
+                                Choisir une image
+                            </label>
+                        </div>
+                        {% if image_form.profile_picture.errors %}
+                        <span class="form-error">
+                            <i class="fas fa-exclamation-circle"></i>
+                            {{ image_form.profile_picture.errors.0 }}
+                        </span>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ image_form.banner_image.id_for_label }}" class="form-label">
+                            Image de bannière
+                        </label>
+                        <div class="image-upload-wrapper">
+                            {% if user.banner_image and user.banner_image.url %}
+                            <div class="current-image">
+                                <img src="{{ user.banner_image.url }}" alt="Bannière actuelle" class="banner-preview">
+                                <span>Bannière actuelle</span>
+                            </div>
+                            {% else %}
+                            <div class="current-image">
+                                <div class="banner-placeholder">
+                                    <i class="fas fa-image"></i>
+                                    <span>Aucune bannière</span>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {{ image_form.banner_image }}
+                            <label for="{{ image_form.banner_image.id_for_label }}" class="image-upload-label">
+                                <i class="fas fa-upload"></i>
+                                Choisir une bannière
+                            </label>
+                        </div>
+                        {% if image_form.banner_image.errors %}
+                        <span class="form-error">
+                            <i class="fas fa-exclamation-circle"></i>
+                            {{ image_form.banner_image.errors.0 }}
+                        </span>
+                        {% endif %}
+                    </div>
+                </div>
+                <button type="submit" name="save_images" class="btn-save-images">
+                    <i class="fas fa-save"></i>
+                    Enregistrer les images
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Formulaire principal -->
+    <div class="profile-edit-section">
+        <div class="profile-edit-card">
+            <h3 class="section-title">
+                <i class="fas fa-user-edit"></i>
+                Informations du profil
+            </h3>
+            <form method="post" novalidate class="profile-form" id="profileForm" action="{% url 'dashboard:profile_update' %}">
+                {% csrf_token %}
+
+                <!-- Messages -->
+                {% if messages %}
+                <div class="messages-container">
+                    {% for message in messages %}
+                    <div class="message-box {{ message.tags }}" role="alert">
+                        <i class="fas fa-{% if message.tags == 'error' %}exclamation-circle{% else %}check-circle{% endif %}"></i>
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                {% if form.non_field_errors %}
+                <div class="message-box error" role="alert">
+                    <i class="fas fa-exclamation-circle"></i>
+                    {{ form.non_field_errors.0 }}
+                </div>
+                {% endif %}
+
+                {% if user_role == 'student' %}
+                <!-- Formulaire étudiant -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="{{ form.level.id_for_label }}" class="form-label">
+                            Votre niveau
+                        </label>
+                        {{ form.level }}
+                        {% if form.level.errors %}
+                        <span class="form-error">
+                            <i class="fas fa-exclamation-circle"></i>
+                            {{ form.level.errors.0 }}
+                        </span>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.interests.id_for_label }}" class="form-label">
+                            Centres d'intérêt
+                        </label>
+                        {{ form.interests }}
+                        {% if form.interests.errors %}
+                        <span class="form-error">
+                            <i class="fas fa-exclamation-circle"></i>
+                            {{ form.interests.errors.0 }}
+                        </span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="{{ form.preferred_languages.id_for_label }}" class="form-label">
+                            Langues préférées
+                        </label>
+                        {{ form.preferred_languages }}
+                        <p class="form-help">Ex: Français, Anglais, Python, JavaScript</p>
+                        {% if form.preferred_languages.errors %}
+                        <span class="form-error">
+                            <i class="fas fa-exclamation-circle"></i>
+                            {{ form.preferred_languages.errors.0 }}
+                        </span>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.github_profile.id_for_label }}" class="form-label">
+                            Profil GitHub
+                        </label>
+                        {{ form.github_profile }}
+                        <p class="form-help">https://github.com/votre-profil</p>
+                        {% if form.github_profile.errors %}
+                        <span class="form-error">
+                            <i class="fas fa-exclamation-circle"></i>
+                            {{ form.github_profile.errors.0 }}
+                        </span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="form-group full">
+                    <label for="{{ form.learning_goals.id_for_label }}" class="form-label">
+                        Objectifs d'apprentissage
+                    </label>
+                    {{ form.learning_goals }}
+                    <div class="char-counter" id="learning-goals-counter">
+                        <span id="char-count">0</span> / 500 caractères
+                    </div>
+                    {% if form.learning_goals.errors %}
+                    <span class="form-error">
+                        <i class="fas fa-exclamation-circle"></i>
+                        {{ form.learning_goals.errors.0 }}
+                    </span>
+                    {% endif %}
+                </div>
+
+                {% elif user_role == 'mentor' %}
+                <!-- Formulaire mentor -->
+                <div class="form-group full">
+                    <label for="{{ form.expertise.id_for_label }}" class="form-label">
+                        Domaine d'expertise <span class="required">*</span>
+                    </label>
+                    {{ form.expertise }}
+                    {% if form.expertise.errors %}
+                    <span class="form-error">
+                        <i class="fas fa-exclamation-circle"></i>
+                        {{ form.expertise.errors.0 }}
+                    </span>
+                    {% endif %}
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="{{ form.years_of_experience.id_for_label }}" class="form-label">
+                            Années d'expérience <span class="required">*</span>
+                        </label>
+                        {{ form.years_of_experience }}
+                        {% if form.years_of_experience.errors %}
+                        <span class="form-error">
+                            <i class="fas fa-exclamation-circle"></i>
+                            {{ form.years_of_experience.errors.0 }}
+                        </span>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.hourly_rate.id_for_label }}" class="form-label">
+                            Tarif horaire (€) <span class="required">*</span>
+                        </label>
+                        {{ form.hourly_rate }}
+                        {% if form.hourly_rate.errors %}
+                        <span class="form-error">
+                            <i class="fas fa-exclamation-circle"></i>
+                            {{ form.hourly_rate.errors.0 }}
+                        </span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="form-group full">
+                    <label for="{{ form.languages.id_for_label }}" class="form-label">
+                        Langues et technologies <span class="required">*</span>
+                    </label>
+                    {{ form.languages }}
+                    <p class="form-help">Ex: Français, Anglais, Python, JavaScript, React</p>
+                    {% if form.languages.errors %}
+                    <span class="form-error">
+                        <i class="fas fa-exclamation-circle"></i>
+                        {{ form.languages.errors.0 }}
+                    </span>
+                    {% endif %}
+                </div>
+
+                <div class="form-group full">
+                    <label for="{{ form.linkedin_profile.id_for_label }}" class="form-label">
+                        Profil LinkedIn <span class="required">*</span>
+                    </label>
+                    {{ form.linkedin_profile }}
+                    <p class="form-help">https://linkedin.com/in/votre-profil</p>
+                    {% if form.linkedin_profile.errors %}
+                    <span class="form-error">
+                        <i class="fas fa-exclamation-circle"></i>
+                        {{ form.linkedin_profile.errors.0 }}
+                    </span>
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                <!-- Actions -->
+                <div class="profile-actions">
+                    <a href="{% url 'dashboard:profile' %}" class="btn-cancel">
+                        <i class="fas fa-arrow-left"></i>
+                        Annuler
+                    </a>
+                    <button type="submit" class="btn-save" id="submitBtn">
+                        <i class="fas fa-save"></i>
+                        Enregistrer
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Gestion du formulaire d'images via AJAX
+    const imageForm = document.getElementById('imageForm');
+    if (imageForm) {
+        imageForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            formData.append('save_images', 'true');
+            
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                },
+                credentials: 'same-origin'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Afficher un message de succès
+                    const messageBox = document.createElement('div');
+                    messageBox.className = 'message-box success';
+                    messageBox.innerHTML = '<i class="fas fa-check-circle"></i> ' + data.message;
+                    imageForm.insertBefore(messageBox, imageForm.firstChild);
+                    
+                    // Recharger la page après 1 seconde pour voir les nouvelles images
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1000);
+                } else {
+                    // Afficher les erreurs
+                    console.error('Erreurs:', data.errors);
+                }
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+            });
+        });
+    }
+
+    // Gestion du formulaire principal via AJAX
+    const profileForm = document.getElementById('profileForm');
+    if (profileForm) {
+        profileForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                },
+                credentials: 'same-origin'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Rediriger vers la page de profil
+                    window.location.href = "{% url 'dashboard:profile' %}";
+                } else {
+                    // Afficher les erreurs
+                    console.error('Erreurs:', data.errors);
+                    // Vous pouvez ajouter ici la logique pour afficher les erreurs dans le formulaire
+                }
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+            });
+        });
+    }
+
+    // Compteur de caractères pour learning_goals
+    const learningGoalsField = document.getElementById('{{ form.learning_goals.id_for_label }}');
+    const charCounter = document.getElementById('char-count');
+    if (learningGoalsField && charCounter) {
+        learningGoalsField.addEventListener('input', function() {
+            charCounter.textContent = this.value.length;
+        });
+        // Initialiser le compteur
+        if (learningGoalsField.value) {
+            charCounter.textContent = learningGoalsField.value.length;
+        }
+    }
+});
+</script>
+{% endblock %}
+

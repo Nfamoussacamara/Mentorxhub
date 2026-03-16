@@ -1,0 +1,111 @@
+{% load custom_filters %}
+<!-- Panneau central : Liste des messages -->
+<div class="messages-list-panel">
+    <!-- Barre de recherche -->
+    <div class="messages-search-header">
+        <div class="messages-search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search messages..." id="messages-search-input">
+        </div>
+        <button class="messages-filter-btn" id="messages-filter-btn">
+            <i class="fas fa-filter"></i>
+        </button>
+    </div>
+
+    <!-- Liste des conversations -->
+    <div class="messages-conversations-list">
+        <!-- Section GROUP -->
+        {% if groups %}
+        <div class="messages-section">
+            <div class="messages-section-title">
+                <span>GROUP</span>
+                <i class="fas fa-chevron-up messages-section-chevron"></i>
+            </div>
+            {% for group in groups %}
+            <a href="{% url 'dashboard:conversation_detail' group.id %}" 
+               class="messages-conversation-item {% if request.resolver_match.url_name == 'conversation_detail' %}{% if request.resolver_match.kwargs.conversation_id|stringformat:'s' == group.id|stringformat:'s' %}active{% elif conversation.id == group.id %}active{% endif %}{% endif %}"
+               data-conversation-id="{{ group.id }}">
+                <div class="messages-conversation-content">
+                    <div class="messages-conversation-name">{{ group.subject|default:"Groupe sans nom" }}</div>
+                    <div class="messages-conversation-preview">
+                        {% if group.last_message %}
+                            <span class="messages-conversation-sender">{{ group.last_message.sender.get_full_name|default:group.last_message.sender.email }}:</span>
+                            {{ group.last_message.content|truncatewords:10 }}
+                        {% else %}
+                            Aucun message
+                        {% endif %}
+                    </div>
+                    <div class="messages-conversation-time">
+                        {% if group.last_message %}
+                            {{ group.last_message.created_at|message_time }}
+                        {% else %}
+                            {{ group.updated_at|message_time }}
+                        {% endif %}
+                    </div>
+                </div>
+                {% if group.unread_count > 0 %}
+                <div class="messages-unread-badge">{{ group.unread_count }}</div>
+                {% endif %}
+            </a>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Section DIRECT MESSAGE -->
+        {% if direct_messages %}
+        <div class="messages-section">
+            <div class="messages-section-title">
+                <span>DIRECT MESSAGE</span>
+                <i class="fas fa-chevron-up messages-section-chevron"></i>
+            </div>
+            {% for dm in direct_messages %}
+            <a href="{% url 'dashboard:conversation_detail' dm.id %}" 
+               class="messages-conversation-item {% if request.resolver_match.url_name == 'conversation_detail' %}{% if request.resolver_match.kwargs.conversation_id|stringformat:'s' == dm.id|stringformat:'s' %}active{% elif conversation.id == dm.id %}active{% endif %}{% endif %}"
+               data-conversation-id="{{ dm.id }}">
+                <div class="messages-conversation-content">
+                    {% for participant in dm.participants.all %}
+                        {% if participant != user %}
+                        <div class="messages-conversation-name">{{ participant.get_full_name|default:participant.email }}</div>
+                        {% endif %}
+                    {% endfor %}
+                    <div class="messages-conversation-preview">
+                        {% if dm.last_message %}
+                            <span class="messages-conversation-sender">{{ dm.last_message.sender.get_full_name|default:dm.last_message.sender.email }}:</span>
+                            {{ dm.last_message.content|truncatewords:10 }}
+                        {% else %}
+                            Aucun message
+                        {% endif %}
+                    </div>
+                    <div class="messages-conversation-time">
+                        {% if dm.last_message %}
+                            {{ dm.last_message.created_at|message_time }}
+                        {% else %}
+                            {{ dm.updated_at|message_time }}
+                        {% endif %}
+                    </div>
+                </div>
+                {% if dm.unread_count > 0 %}
+                <div class="messages-unread-badge">{{ dm.unread_count }}</div>
+                {% endif %}
+            </a>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if not groups and not direct_messages %}
+        <div class="messages-empty-state">
+            <i class="fas fa-inbox"></i>
+            <p>Aucune conversation</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Bouton Add New -->
+    <div class="messages-add-new-container">
+        <button class="messages-add-new-btn" id="new-conversation-btn">
+            <i class="fas fa-plus"></i>
+            Add New
+        </button>
+    </div>
+</div>
+

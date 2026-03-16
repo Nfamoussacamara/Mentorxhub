@@ -1,0 +1,128 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}{{ course.title }} - Dashboard{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'dashboard/css/courses.css' %}?v=1.0">
+{% endblock %}
+
+{% block content %}
+<div class="course-detail-page">
+    <div class="course-header-section">
+        {% if course.thumbnail %}
+        <div class="course-hero-image">
+            <img src="{{ course.thumbnail.url }}" alt="{{ course.title }}">
+        </div>
+        {% endif %}
+        
+        <div class="course-header-content glass-card">
+            <div class="course-header-top">
+                <div>
+                    <span class="badge badge-primary">{{ course.get_difficulty_display }}</span>
+                    {% if course.is_free %}
+                    <span class="badge badge-success">Gratuit</span>
+                    {% endif %}
+                </div>
+                {% if is_mentor %}
+                <a href="{% url 'dashboard:course_edit' course.id %}" class="neu-button">
+                    <i class="fas fa-edit"></i>
+                    Modifier
+                </a>
+                {% endif %}
+            </div>
+            
+            <h1 class="course-title-large">{{ course.title }}</h1>
+            <p class="course-description-large">{{ course.description }}</p>
+            
+            <div class="course-meta-large">
+                <div class="meta-item">
+                    <i class="fas fa-user"></i>
+                    <span>Par {{ course.mentor.get_full_name }}</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>{{ course.duration_hours }} heures</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-users"></i>
+                    <span>{{ course.students_count }} étudiants</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-star"></i>
+                    <span>{{ course.average_rating|floatformat:1 }} / 5.0</span>
+                </div>
+            </div>
+            
+            {% if user_role == 'student' and not is_mentor %}
+            <div class="course-actions">
+                {% if progress %}
+                <div class="progress-indicator">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: {{ progress.progress_percentage }}%"></div>
+                    </div>
+                    <span class="progress-text">{{ progress.progress_percentage|floatformat:0 }}% complété</span>
+                </div>
+                {% else %}
+                <button class="neu-button neu-button-primary enroll-btn" data-course-id="{{ course.id }}">
+                    <i class="fas fa-play"></i>
+                    Commencer le cours
+                </button>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="course-content-section">
+        <div class="lessons-list glass-card">
+            <h2 class="section-title">
+                <i class="fas fa-list"></i>
+                Leçons ({{ lessons.count }})
+            </h2>
+            
+            {% if is_mentor %}
+            <a href="{% url 'dashboard:lesson_create' course.id %}" class="neu-button neu-button-primary" style="margin-bottom: var(--spacing-lg);">
+                <i class="fas fa-plus"></i>
+                Ajouter une leçon
+            </a>
+            {% endif %}
+            
+            <div class="lessons-container">
+                {% for lesson in lessons %}
+                <div class="lesson-item {% if progress and lesson in progress.completed_lessons.all %}lesson-completed{% endif %}">
+                    <div class="lesson-number">{{ forloop.counter }}</div>
+                    <div class="lesson-info">
+                        <h3 class="lesson-title">{{ lesson.title }}</h3>
+                        <p class="lesson-description">{{ lesson.description|truncatewords:15 }}</p>
+                        <div class="lesson-meta">
+                            <span><i class="fas fa-clock"></i> {{ lesson.duration_minutes }} min</span>
+                            {% if lesson.is_free %}
+                            <span class="badge badge-success">Gratuit</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="lesson-actions">
+                        {% if progress and lesson in progress.completed_lessons.all %}
+                        <span class="lesson-status completed">
+                            <i class="fas fa-check-circle"></i>
+                            Complétée
+                        </span>
+                        {% endif %}
+                        <a href="{% url 'dashboard:lesson_detail' course.id lesson.id %}" class="neu-button">
+                            {% if user_role == 'student' %}Commencer{% else %}Voir{% endif %}
+                        </a>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="empty-state">
+                    <i class="fas fa-book-open"></i>
+                    <p>Aucune leçon disponible</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

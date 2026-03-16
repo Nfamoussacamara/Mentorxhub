@@ -1,0 +1,35 @@
+{% load static %}
+
+<div class="settings-page">
+    <div class="page-header">
+        <h1>Paramètres</h1>
+    </div>
+    
+    <div class="settings-container">
+        <div class="settings-sidebar">
+            <nav class="settings-nav">
+                <a href="{% url 'dashboard:settings_general' %}" class="settings-nav-item active" data-section="general">
+                    <i class="fas fa-user"></i>
+                    <span>Général</span>
+                </a>
+                <a href="{% url 'dashboard:settings_security' %}" class="settings-nav-item" data-section="security">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Sécurité</span>
+                </a>
+                <a href="{% url 'dashboard:settings_notifications' %}" class="settings-nav-item" data-section="notifications">
+                    <i class="fas fa-bell"></i>
+                    <span>Notifications</span>
+                </a>
+            </nav>
+        </div>
+        
+        <div class="settings-content" id="settings-content">
+            <div class="loading">
+                <div class="spinner"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'dashboard/js/settings.js' %}?v=1.0"></script>
+

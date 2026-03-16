@@ -1,0 +1,86 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Créer une leçon - Dashboard{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'dashboard/css/courses.css' %}?v=1.0">
+{% endblock %}
+
+{% block content %}
+<div class="lesson-create">
+    <div class="page-header">
+        <h1>Créer une nouvelle leçon</h1>
+        <p class="text-muted">Pour le cours: {{ course.title }}</p>
+    </div>
+    
+    <form method="post" action="{% url 'dashboard:lesson_create' course.id %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_title">Titre de la leçon *</label>
+            {{ form.title }}
+            {% if form.title.errors %}
+            <div class="error-message">{{ form.title.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_description">Description</label>
+            {{ form.description }}
+            {% if form.description.errors %}
+            <div class="error-message">{{ form.description.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="id_order">Ordre *</label>
+                {{ form.order }}
+                {% if form.order.errors %}
+                <div class="error-message">{{ form.order.errors }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label for="id_duration">Durée (minutes) *</label>
+                {{ form.duration }}
+                {% if form.duration.errors %}
+                <div class="error-message">{{ form.duration.errors }}</div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="id_video_url">URL de la vidéo (optionnel)</label>
+            {{ form.video_url }}
+            {% if form.video_url.errors %}
+            <div class="error-message">{{ form.video_url.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_content">Contenu de la leçon</label>
+            {{ form.content }}
+            {% if form.content.errors %}
+            <div class="error-message">{{ form.content.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_resources">Ressources (optionnel)</label>
+            {{ form.resources }}
+            {% if form.resources.errors %}
+            <div class="error-message">{{ form.resources.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i> Créer la leçon
+            </button>
+            <a href="{% url 'dashboard:course_detail' course.id %}" class="btn btn-secondary">Annuler</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
+

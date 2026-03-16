@@ -1,0 +1,117 @@
+{% load static %}
+
+<div class="availability-page">
+    <div class="page-header">
+        <div class="header-content">
+            <h1 class="page-title">Mes Disponibilités</h1>
+            <p class="page-subtitle">Définissez vos créneaux horaires pour permettre aux étudiants de réserver des sessions.</p>
+        </div>
+        <div class="header-actions">
+            <a href="{% url 'mentoring:availability_create' %}" 
+               class="btn btn-primary"
+               hx-get="{% url 'mentoring:availability_create' %}"
+               hx-target="#dashboard-content"
+               hx-push-url="true">
+                <i class="fas fa-plus"></i> Nouveau Créneau
+            </a>
+        </div>
+    </div>
+
+    <div class="premium-card">
+        {% if availabilities %}
+        <div class="table-responsive">
+            <table class="premium-table">
+                <thead>
+                    <tr>
+                        <th>Jour</th>
+                        <th>Début</th>
+                        <th>Fin</th>
+                        <th>Récurrent</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for availability in availabilities %}
+                    <tr>
+                        <td>
+                            <span class="day-badge">{{ availability.get_day_of_week_display }}</span>
+                        </td>
+                        <td>{{ availability.start_time|time:"H:i" }}</td>
+                        <td>{{ availability.end_time|time:"H:i" }}</td>
+                        <td>
+                            {% if availability.is_recurring %}
+                            <span class="status-badge success">Oui</span>
+                            {% else %}
+                            <span class="status-badge warning">Non</span>
+                            {% endif %}
+                        </td>
+                        <td class="table-actions">
+                            <a href="{% url 'mentoring:availability_update' availability.pk %}" 
+                               class="btn-icon" 
+                               title="Modifier"
+                               hx-get="{% url 'mentoring:availability_update' availability.pk %}"
+                               hx-target="#dashboard-content">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="{% url 'mentoring:availability_delete' availability.pk %}" 
+                               class="btn-icon danger" 
+                               title="Supprimer"
+                               hx-get="{% url 'mentoring:availability_delete' availability.pk %}"
+                               hx-target="#dashboard-content">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <div class="empty-state-icon">
+                <i class="fas fa-clock"></i>
+            </div>
+            <h3>Aucune disponibilité définie</h3>
+            <p>Ajoutez vos premières disponibilités pour commencer à recevoir des demandes de sessions.</p>
+            <a href="{% url 'mentoring:availability_create' %}" class="btn btn-primary mt-4">
+                Ajouter une disponibilité
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+    .availability-page {
+        padding: 1rem;
+    }
+    .status-badge {
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+    }
+    .status-badge.success { background: #dcfce7; color: #166534; }
+    .status-badge.warning { background: #fef9c3; color: #854d0e; }
+    .day-badge {
+        font-weight: 600;
+        color: var(--primary-color, #4f46e5);
+    }
+    .table-actions {
+        display: flex;
+        gap: 0.5rem;
+    }
+    .btn-icon {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        transition: all 0.2s;
+        background: #f3f4f6;
+        color: #4b5563;
+    }
+    .btn-icon:hover { background: #e5e7eb; }
+    .btn-icon.danger:hover { background: #fee2e2; color: #dc2626; }
+</style>

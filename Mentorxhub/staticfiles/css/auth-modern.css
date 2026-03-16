@@ -1,0 +1,2335 @@
+/* ============================================
+   STYLES MODERNES POUR PAGES D'AUTHENTIFICATION
+   Design: Modern Blue Professional
+   ============================================ */
+
+/* Importation de la police Inter depuis Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ============================================
+   RÉINITIALISATION ET STYLES GLOBAUX
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ /* ============================================
+   STYLES MODERNES POUR PAGES D'AUTHENTIFICATION
+   Design: Modern Blue Professional
+   ============================================ */
+
+/* Importation de la police Inter depuis Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ============================================
+   RÉINITIALISATION ET STYLES GLOBAUX
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+   STYLES MODERNES POUR PAGES D'AUTHENTIFICATION
+   Design: Modern Blue Professional
+   ============================================ */
+
+/* Importation de la police Inter depuis Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ============================================
+   RÉINITIALISATION ET STYLES GLOBAUX
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ /* ============================================
+   STYLES MODERNES POUR PAGES D'AUTHENTIFICATION
+   Design: Modern Blue Professional
+   ============================================ */
+
+/* Importation de la police Inter depuis Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ============================================
+   RÉINITIALISATION ET STYLES GLOBAUX
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f9fafb;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* ============================================
+   ANIMATIONS D'ARRIÈRE-PLAN
+   ============================================ */
+
+/* Cercles flottants avec dégradés radiaux */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 15% 25%, rgba(96, 165, 250, 0.3) 0%, transparent 25%),
+        radial-gradient(circle at 85% 15%, rgba(147, 197, 253, 0.25) 0%, transparent 30%),
+        radial-gradient(circle at 70% 85%, rgba(59, 130, 246, 0.2) 0%, transparent 35%),
+        radial-gradient(circle at 30% 75%, rgba(191, 219, 254, 0.15) 0%, transparent 28%);
+    animation: float 25s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Motifs géométriques SVG */
+body::after {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-image:
+        url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 10 L90 90 L10 90 Z' fill='rgba(255,255,255,0.02)' /%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='40' r='30' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='2'/%3E%3C/svg%3E");
+    background-position: 0 0, 40px 40px;
+    background-size: 200px 200px, 160px 160px;
+    animation: backgroundMove 60s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Définition des animations */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(40px, -30px) scale(1.15);
+    }
+
+    66% {
+        transform: translate(-30px, 20px) scale(0.95);
+    }
+}
+
+@keyframes backgroundMove {
+    from {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    to {
+        transform: translate(50px, 50px) rotate(360deg);
+    }
+}
+
+/* ============================================
+   CONTENEUR PRINCIPAL
+   ============================================ */
+.signup-container,
+.login-container {
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(10px);
+}
+
+/* Conteneur de connexion (carte unique) */
+.login-container {
+    width: 100%;
+    max-width: 480px;
+    background: #eff6ff;
+    padding: 3rem;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Conteneur d'inscription (écran divisé) */
+.signup-container {
+    max-width: 1150px;
+    width: 100%;
+    display: flex;
+    gap: 0;
+    min-height: 650px;
+    height: auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   PANNEAU GAUCHE (SIGNUP)
+   ============================================ */
+.left-side {
+    flex: 0 0 45%;
+    background: linear-gradient(180deg, rgba(29, 78, 216, 0.95) 0%, rgba(30, 58, 138, 0.95) 50%, rgba(15, 23, 42, 0.98) 100%);
+    backdrop-filter: blur(20px);
+    color: #ffffff;
+    padding: 3rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.left-side::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(50%, -50%);
+}
+
+/* Zone du logo */
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 1;
+}
+
+.logo-area .logo-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.logo-area h1 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* Contenu principal */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.main-content h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.main-content .subtitle {
+    font-size: 18px;
+    opacity: 0.95;
+    margin-bottom: 3rem;
+    line-height: 1.5;
+}
+
+/* Boîte de connexion */
+.login-box {
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.login-box p {
+    margin-bottom: 1rem;
+    font-size: 16px;
+}
+
+.login-link {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: #ffffff;
+    color: #1D4ED8;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.login-link:hover {
+    background: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
+   PANNEAU DROIT (SIGNUP) ET FORMULAIRE
+   ============================================ */
+.right-side {
+    flex: 0 0 55%;
+    background: transparent;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-wrapper {
+    width: 100%;
+    height: 100%;
+    background: #eff6ff;
+    padding: 2.5rem;
+    border-radius: 0;
+    box-shadow: none;
+    backdrop-filter: blur(10px);
+}
+
+/* ============================================
+   EN-TÊTE DE CONNEXION
+   ============================================ */
+.login-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.logo-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.login-header .logo-icon {
+    width: 40px;
+    height: 40px;
+    background: #2563EB;
+    color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1E3A8A;
+}
+
+.login-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.5rem;
+}
+
+.login-header p {
+    color: #6B7280;
+    font-size: 15px;
+}
+
+/* ============================================
+   STYLES DES FORMULAIRES
+   ============================================ */
+
+/* Grille pour champs côte à côte */
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Groupe de champ */
+.input-group {
+    margin-bottom: 1.25rem;
+}
+
+.input-group.full {
+    grid-column: 1 / -1;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 14px;
+    color: #374151;
+}
+
+/* Champs de saisie */
+.input-group input[type="text"],
+.input-group input[type="email"],
+.input-group input[type="password"] {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+    background-color: #ffffff;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #2563EB;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+/* ============================================
+   CHAMP MOT DE PASSE AVEC TOGGLE
+   ============================================ */
+.password-field {
+    position: relative;
+    display: flex;
+}
+
+.password-field input {
+    padding-right: 3.5rem;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 3rem;
+    background: #2563EB;
+    border: 1px solid #2563EB;
+    border-radius: 0 12px 12px 0;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+.password-toggle:hover {
+    background: #1D4ED8;
+}
+
+/* ============================================
+   SÉLECTEUR DE RÔLE
+   ============================================ */
+.role-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.role-option {
+    position: relative;
+    padding: 1.25rem;
+    border: 2px solid #E5E7EB;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+}
+
+.role-option:hover {
+    border-color: #60A5FA;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+}
+
+.role-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.role-option input[type="radio"]:checked~.role-text {
+    color: #2563EB;
+}
+
+.role-option:has(input:checked) {
+    border-color: #2563EB;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(96, 165, 250, 0.12) 100%);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.role-text {
+    font-weight: 500;
+    font-size: 15px;
+    color: #111827;
+    pointer-events: none;
+}
+
+/* ============================================
+   OPTIONS DE FORMULAIRE (LOGIN)
+   ============================================ */
+.form-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    font-size: 14px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #4B5563;
+    cursor: pointer;
+}
+
+.forgot-link {
+    color: #2563EB;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   BOUTONS
+   ============================================ */
+.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background: #2563EB;
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    margin-top: 1.5rem;
+}
+
+.submit-btn:hover {
+    background: #1D4ED8;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+}
+
+/* ============================================
+   PIED DE PAGE AUTH (LOGIN)
+   ============================================ */
+.auth-footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #E5E7EB;
+    color: #6B7280;
+    font-size: 15px;
+}
+
+.auth-footer a {
+    color: #2563EB;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 0.25rem;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   MESSAGES D'ERREUR
+   ============================================ */
+.error-text {
+    display: block;
+    color: #EF4444;
+    font-size: 13px;
+    margin-top: 0.25rem;
+}
+
+.error-box {
+    padding: 1rem;
+    background: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 12px;
+    color: #991B1B;
+    margin-bottom: 1.5rem;
+    font-size: 14px;
+}
+
+/* ============================================
+   RESPONSIVE (MOBILE)
+   ============================================ */
+@media (max-width: 968px) {
+    body {
+        padding: 1rem;
+    }
+
+    .signup-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .left-side {
+        flex: 0 0 auto;
+        padding: 2rem;
+    }
+
+    .main-content h2 {
+        font-size: 28px;
+    }
+
+    .input-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   BOUTON GOOGLE
+   ============================================ */
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.875rem 1rem;
+    background: #ffffff;
+    border: 2px solid #E5E7EB;
+    border-radius: 12px;
+    color: #374151;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+}
+
+.google-btn:hover {
+    border-color: #2563EB;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+    background: #ffffff;
+    transform: translateY(-1px);
+}
+
+.google-btn:active {
+    transform: translateY(0);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* ============================================
+   ANIMATIONS D'ARRIÈRE-PLAN
+   ============================================ */
+
+/* Cercles flottants avec dégradés radiaux */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 15% 25%, rgba(96, 165, 250, 0.3) 0%, transparent 25%),
+        radial-gradient(circle at 85% 15%, rgba(147, 197, 253, 0.25) 0%, transparent 30%),
+        radial-gradient(circle at 70% 85%, rgba(59, 130, 246, 0.2) 0%, transparent 35%),
+        radial-gradient(circle at 30% 75%, rgba(191, 219, 254, 0.15) 0%, transparent 28%);
+    animation: float 25s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Motifs géométriques SVG */
+body::after {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-image:
+        url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 10 L90 90 L10 90 Z' fill='rgba(255,255,255,0.02)' /%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='40' r='30' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='2'/%3E%3C/svg%3E");
+    background-position: 0 0, 40px 40px;
+    background-size: 200px 200px, 160px 160px;
+    animation: backgroundMove 60s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Définition des animations */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(40px, -30px) scale(1.15);
+    }
+
+    66% {
+        transform: translate(-30px, 20px) scale(0.95);
+    }
+}
+
+@keyframes backgroundMove {
+    from {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    to {
+        transform: translate(50px, 50px) rotate(360deg);
+    }
+}
+
+/* ============================================
+   CONTENEUR PRINCIPAL
+   ============================================ */
+.signup-container,
+.login-container {
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(10px);
+}
+
+/* Conteneur de connexion (carte unique) */
+.login-container {
+    width: 100%;
+    max-width: 480px;
+    background: #eff6ff;
+    padding: 3rem;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Conteneur d'inscription (écran divisé) */
+.signup-container {
+    max-width: 1150px;
+    width: 100%;
+    display: flex;
+    gap: 0;
+    min-height: 650px;
+    height: auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   PANNEAU GAUCHE (SIGNUP)
+   ============================================ */
+.left-side {
+    flex: 0 0 45%;
+    background: linear-gradient(180deg, rgba(29, 78, 216, 0.95) 0%, rgba(30, 58, 138, 0.95) 50%, rgba(15, 23, 42, 0.98) 100%);
+    backdrop-filter: blur(20px);
+    color: #ffffff;
+    padding: 3rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.left-side::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(50%, -50%);
+}
+
+/* Zone du logo */
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 1;
+}
+
+.logo-area .logo-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.logo-area h1 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* Contenu principal */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.main-content h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.main-content .subtitle {
+    font-size: 18px;
+    opacity: 0.95;
+    margin-bottom: 3rem;
+    line-height: 1.5;
+}
+
+/* Boîte de connexion */
+.login-box {
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.login-box p {
+    margin-bottom: 1rem;
+    font-size: 16px;
+}
+
+.login-link {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: #ffffff;
+    color: #1D4ED8;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.login-link:hover {
+    background: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
+   PANNEAU DROIT (SIGNUP) ET FORMULAIRE
+   ============================================ */
+.right-side {
+    flex: 0 0 55%;
+    background: transparent;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-wrapper {
+    width: 100%;
+    height: 100%;
+    background: #eff6ff;
+    padding: 2.5rem;
+    border-radius: 0;
+    box-shadow: none;
+    backdrop-filter: blur(10px);
+}
+
+/* ============================================
+   EN-TÊTE DE CONNEXION
+   ============================================ */
+.login-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.logo-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.login-header .logo-icon {
+    width: 40px;
+    height: 40px;
+    background: #2563EB;
+    color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1E3A8A;
+}
+
+.login-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.5rem;
+}
+
+.login-header p {
+    color: #6B7280;
+    font-size: 15px;
+}
+
+/* ============================================
+   STYLES DES FORMULAIRES
+   ============================================ */
+
+/* Grille pour champs côte à côte */
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Groupe de champ */
+.input-group {
+    margin-bottom: 1.25rem;
+}
+
+.input-group.full {
+    grid-column: 1 / -1;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 14px;
+    color: #374151;
+}
+
+/* Champs de saisie */
+.input-group input[type="text"],
+.input-group input[type="email"],
+.input-group input[type="password"] {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+    background-color: #ffffff;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #2563EB;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+/* ============================================
+   CHAMP MOT DE PASSE AVEC TOGGLE
+   ============================================ */
+.password-field {
+    position: relative;
+    display: flex;
+}
+
+.password-field input {
+    padding-right: 3.5rem;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 3rem;
+    background: #2563EB;
+    border: 1px solid #2563EB;
+    border-radius: 0 12px 12px 0;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+.password-toggle:hover {
+    background: #1D4ED8;
+}
+
+/* ============================================
+   SÉLECTEUR DE RÔLE
+   ============================================ */
+.role-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.role-option {
+    position: relative;
+    padding: 1.25rem;
+    border: 2px solid #E5E7EB;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+}
+
+.role-option:hover {
+    border-color: #60A5FA;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+}
+
+.role-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.role-option input[type="radio"]:checked~.role-text {
+    color: #2563EB;
+}
+
+.role-option:has(input:checked) {
+    border-color: #2563EB;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(96, 165, 250, 0.12) 100%);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.role-text {
+    font-weight: 500;
+    font-size: 15px;
+    color: #111827;
+    pointer-events: none;
+}
+
+/* ============================================
+   OPTIONS DE FORMULAIRE (LOGIN)
+   ============================================ */
+.form-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    font-size: 14px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #4B5563;
+    cursor: pointer;
+}
+
+.forgot-link {
+    color: #2563EB;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   BOUTONS
+   ============================================ */
+.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background: #2563EB;
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    margin-top: 1.5rem;
+}
+
+.submit-btn:hover {
+    background: #1D4ED8;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+}
+
+/* ============================================
+   PIED DE PAGE AUTH (LOGIN)
+   ============================================ */
+.auth-footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #E5E7EB;
+    color: #6B7280;
+    font-size: 15px;
+}
+
+.auth-footer a {
+    color: #2563EB;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 0.25rem;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   MESSAGES D'ERREUR
+   ============================================ */
+.error-text {
+    display: block;
+    color: #EF4444;
+    font-size: 13px;
+    margin-top: 0.25rem;
+}
+
+.error-box {
+    padding: 1rem;
+    background: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 12px;
+    color: #991B1B;
+    margin-bottom: 1.5rem;
+    font-size: 14px;
+}
+
+/* ============================================
+   RESPONSIVE (MOBILE)
+   ============================================ */
+@media (max-width: 968px) {
+    body {
+        padding: 1rem;
+    }
+
+    .signup-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .left-side {
+        flex: 0 0 auto;
+        padding: 2rem;
+    }
+
+    .main-content h2 {
+        font-size: 28px;
+    }
+
+    .input-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   BOUTON GOOGLE
+   ============================================ */
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.875rem 1rem;
+    background: #ffffff;
+    border: 2px solid #E5E7EB;
+    border-radius: 12px;
+    color: #374151;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+}
+
+.google-btn:hover {
+    border-color: #2563EB;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+    background: #ffffff;
+    transform: translateY(-1px);
+}
+
+.google-btn:active {
+    transform: translateY(0);
+
+/* ============================================
+   ANIMATIONS D'ARRIÈRE-PLAN
+   ============================================ */
+
+/* Cercles flottants avec dégradés radiaux */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 15% 25%, rgba(96, 165, 250, 0.3) 0%, transparent 25%),
+        radial-gradient(circle at 85% 15%, rgba(147, 197, 253, 0.25) 0%, transparent 30%),
+        radial-gradient(circle at 70% 85%, rgba(59, 130, 246, 0.2) 0%, transparent 35%),
+        radial-gradient(circle at 30% 75%, rgba(191, 219, 254, 0.15) 0%, transparent 28%);
+    animation: float 25s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Motifs géométriques SVG */
+body::after {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-image:
+        url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 10 L90 90 L10 90 Z' fill='rgba(255,255,255,0.02)' /%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='40' r='30' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='2'/%3E%3C/svg%3E");
+    background-position: 0 0, 40px 40px;
+    background-size: 200px 200px, 160px 160px;
+    animation: backgroundMove 60s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Définition des animations */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(40px, -30px) scale(1.15);
+    }
+
+    66% {
+        transform: translate(-30px, 20px) scale(0.95);
+    }
+}
+
+@keyframes backgroundMove {
+    from {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    to {
+        transform: translate(50px, 50px) rotate(360deg);
+    }
+}
+
+/* ============================================
+   CONTENEUR PRINCIPAL
+   ============================================ */
+.signup-container,
+.login-container {
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(10px);
+}
+
+/* Conteneur de connexion (carte unique) */
+.login-container {
+    width: 100%;
+    max-width: 480px;
+    background: #eff6ff;
+    padding: 3rem;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Conteneur d'inscription (écran divisé) */
+.signup-container {
+    max-width: 1150px;
+    width: 100%;
+    display: flex;
+    gap: 0;
+    min-height: 650px;
+    height: auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   PANNEAU GAUCHE (SIGNUP)
+   ============================================ */
+.left-side {
+    flex: 0 0 45%;
+    background: linear-gradient(180deg, rgba(29, 78, 216, 0.95) 0%, rgba(30, 58, 138, 0.95) 50%, rgba(15, 23, 42, 0.98) 100%);
+    backdrop-filter: blur(20px);
+    color: #ffffff;
+    padding: 3rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.left-side::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(50%, -50%);
+}
+
+/* Zone du logo */
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 1;
+}
+
+.logo-area .logo-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.logo-area h1 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* Contenu principal */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.main-content h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.main-content .subtitle {
+    font-size: 18px;
+    opacity: 0.95;
+    margin-bottom: 3rem;
+    line-height: 1.5;
+}
+
+/* Boîte de connexion */
+.login-box {
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.login-box p {
+    margin-bottom: 1rem;
+    font-size: 16px;
+}
+
+.login-link {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: #ffffff;
+    color: #1D4ED8;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.login-link:hover {
+    background: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
+   PANNEAU DROIT (SIGNUP) ET FORMULAIRE
+   ============================================ */
+.right-side {
+    flex: 0 0 55%;
+    background: transparent;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-wrapper {
+    width: 100%;
+    height: 100%;
+    background: #eff6ff;
+    padding: 2.5rem;
+    border-radius: 0;
+    box-shadow: none;
+    backdrop-filter: blur(10px);
+}
+
+/* ============================================
+   EN-TÊTE DE CONNEXION
+   ============================================ */
+.login-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.logo-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.login-header .logo-icon {
+    width: 40px;
+    height: 40px;
+    background: #2563EB;
+    color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1E3A8A;
+}
+
+.login-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.5rem;
+}
+
+.login-header p {
+    color: #6B7280;
+    font-size: 15px;
+}
+
+/* ============================================
+   STYLES DES FORMULAIRES
+   ============================================ */
+
+/* Grille pour champs côte à côte */
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Groupe de champ */
+.input-group {
+    margin-bottom: 1.25rem;
+}
+
+.input-group.full {
+    grid-column: 1 / -1;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 14px;
+    color: #374151;
+}
+
+/* Champs de saisie */
+.input-group input[type="text"],
+.input-group input[type="email"],
+.input-group input[type="password"] {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+    background-color: #ffffff;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #2563EB;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+/* ============================================
+   CHAMP MOT DE PASSE AVEC TOGGLE
+   ============================================ */
+.password-field {
+    position: relative;
+    display: flex;
+}
+
+.password-field input {
+    padding-right: 3.5rem;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 3rem;
+    background: #2563EB;
+    border: 1px solid #2563EB;
+    border-radius: 0 12px 12px 0;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+.password-toggle:hover {
+    background: #1D4ED8;
+}
+
+/* ============================================
+   SÉLECTEUR DE RÔLE
+   ============================================ */
+.role-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.role-option {
+    position: relative;
+    padding: 1.25rem;
+    border: 2px solid #E5E7EB;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+}
+
+.role-option:hover {
+    border-color: #60A5FA;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+}
+
+.role-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.role-option input[type="radio"]:checked~.role-text {
+    color: #2563EB;
+}
+
+.role-option:has(input:checked) {
+    border-color: #2563EB;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(96, 165, 250, 0.12) 100%);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.role-text {
+    font-weight: 500;
+    font-size: 15px;
+    color: #111827;
+    pointer-events: none;
+}
+
+/* ============================================
+   OPTIONS DE FORMULAIRE (LOGIN)
+   ============================================ */
+.form-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    font-size: 14px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #4B5563;
+    cursor: pointer;
+}
+
+.forgot-link {
+    color: #2563EB;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   BOUTONS
+   ============================================ */
+.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background: #2563EB;
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    margin-top: 1.5rem;
+}
+
+.submit-btn:hover {
+    background: #1D4ED8;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+}
+
+/* ============================================
+   PIED DE PAGE AUTH (LOGIN)
+   ============================================ */
+.auth-footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #E5E7EB;
+    color: #6B7280;
+    font-size: 15px;
+}
+
+.auth-footer a {
+    color: #2563EB;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 0.25rem;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   MESSAGES D'ERREUR
+   ============================================ */
+.error-text {
+    display: block;
+    color: #EF4444;
+    font-size: 13px;
+    margin-top: 0.25rem;
+}
+
+.error-box {
+    padding: 1rem;
+    background: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 12px;
+    color: #991B1B;
+    margin-bottom: 1.5rem;
+    font-size: 14px;
+}
+
+/* ============================================
+   RESPONSIVE (MOBILE)
+   ============================================ */
+@media (max-width: 968px) {
+    body {
+        padding: 1rem;
+    }
+
+    .signup-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .left-side {
+        flex: 0 0 auto;
+        padding: 2rem;
+    }
+
+    .main-content h2 {
+        font-size: 28px;
+    }
+
+    .input-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   BOUTON GOOGLE
+   ============================================ */
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.875rem 1rem;
+    background: #ffffff;
+    border: 2px solid #E5E7EB;
+    border-radius: 12px;
+    color: #374151;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+}
+
+.google-btn:hover {
+    border-color: #2563EB;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+    background: #ffffff;
+    transform: translateY(-1px);
+}
+
+.google-btn:active {
+    transform: translateY(0);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* ============================================
+   ANIMATIONS D'ARRIÈRE-PLAN
+   ============================================ */
+
+/* Cercles flottants avec dégradés radiaux */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 15% 25%, rgba(96, 165, 250, 0.3) 0%, transparent 25%),
+        radial-gradient(circle at 85% 15%, rgba(147, 197, 253, 0.25) 0%, transparent 30%),
+        radial-gradient(circle at 70% 85%, rgba(59, 130, 246, 0.2) 0%, transparent 35%),
+        radial-gradient(circle at 30% 75%, rgba(191, 219, 254, 0.15) 0%, transparent 28%);
+    animation: float 25s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Motifs géométriques SVG */
+body::after {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-image:
+        url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 10 L90 90 L10 90 Z' fill='rgba(255,255,255,0.02)' /%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='40' r='30' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='2'/%3E%3C/svg%3E");
+    background-position: 0 0, 40px 40px;
+    background-size: 200px 200px, 160px 160px;
+    animation: backgroundMove 60s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Définition des animations */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(40px, -30px) scale(1.15);
+    }
+
+    66% {
+        transform: translate(-30px, 20px) scale(0.95);
+    }
+}
+
+@keyframes backgroundMove {
+    from {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    to {
+        transform: translate(50px, 50px) rotate(360deg);
+    }
+}
+
+/* ============================================
+   CONTENEUR PRINCIPAL
+   ============================================ */
+.signup-container,
+.login-container {
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(10px);
+}
+
+/* Conteneur de connexion (carte unique) */
+.login-container {
+    width: 100%;
+    max-width: 480px;
+    background: #eff6ff;
+    padding: 3rem;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Conteneur d'inscription (écran divisé) */
+.signup-container {
+    max-width: 1150px;
+    width: 100%;
+    display: flex;
+    gap: 0;
+    min-height: 650px;
+    height: auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   PANNEAU GAUCHE (SIGNUP)
+   ============================================ */
+.left-side {
+    flex: 0 0 45%;
+    background: linear-gradient(180deg, rgba(29, 78, 216, 0.95) 0%, rgba(30, 58, 138, 0.95) 50%, rgba(15, 23, 42, 0.98) 100%);
+    backdrop-filter: blur(20px);
+    color: #ffffff;
+    padding: 3rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.left-side::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(50%, -50%);
+}
+
+/* Zone du logo */
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 1;
+}
+
+.logo-area .logo-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.logo-area h1 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* Contenu principal */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.main-content h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.main-content .subtitle {
+    font-size: 18px;
+    opacity: 0.95;
+    margin-bottom: 3rem;
+    line-height: 1.5;
+}
+
+/* Boîte de connexion */
+.login-box {
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.login-box p {
+    margin-bottom: 1rem;
+    font-size: 16px;
+}
+
+.login-link {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: #ffffff;
+    color: #1D4ED8;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.login-link:hover {
+    background: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
+   PANNEAU DROIT (SIGNUP) ET FORMULAIRE
+   ============================================ */
+.right-side {
+    flex: 0 0 55%;
+    background: transparent;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-wrapper {
+    width: 100%;
+    height: 100%;
+    background: #eff6ff;
+    padding: 2.5rem;
+    border-radius: 0;
+    box-shadow: none;
+    backdrop-filter: blur(10px);
+}
+
+/* ============================================
+   EN-TÊTE DE CONNEXION
+   ============================================ */
+.login-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.logo-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.login-header .logo-icon {
+    width: 40px;
+    height: 40px;
+    background: #2563EB;
+    color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1E3A8A;
+}
+
+.login-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.5rem;
+}
+
+.login-header p {
+    color: #6B7280;
+    font-size: 15px;
+}
+
+/* ============================================
+   STYLES DES FORMULAIRES
+   ============================================ */
+
+/* Grille pour champs côte à côte */
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Groupe de champ */
+.input-group {
+    margin-bottom: 1.25rem;
+}
+
+.input-group.full {
+    grid-column: 1 / -1;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 14px;
+    color: #374151;
+}
+
+/* Champs de saisie */
+.input-group input[type="text"],
+.input-group input[type="email"],
+.input-group input[type="password"] {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+    background-color: #ffffff;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #2563EB;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+/* ============================================
+   CHAMP MOT DE PASSE AVEC TOGGLE
+   ============================================ */
+.password-field {
+    position: relative;
+    display: flex;
+}
+
+.password-field input {
+    padding-right: 3.5rem;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 3rem;
+    background: #2563EB;
+    border: 1px solid #2563EB;
+    border-radius: 0 12px 12px 0;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+.password-toggle:hover {
+    background: #1D4ED8;
+}
+
+/* ============================================
+   SÉLECTEUR DE RÔLE
+   ============================================ */
+.role-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.role-option {
+    position: relative;
+    padding: 1.25rem;
+    border: 2px solid #E5E7EB;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+}
+
+.role-option:hover {
+    border-color: #60A5FA;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+}
+
+.role-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.role-option input[type="radio"]:checked~.role-text {
+    color: #2563EB;
+}
+
+.role-option:has(input:checked) {
+    border-color: #2563EB;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(96, 165, 250, 0.12) 100%);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.role-text {
+    font-weight: 500;
+    font-size: 15px;
+    color: #111827;
+    pointer-events: none;
+}
+
+/* ============================================
+   OPTIONS DE FORMULAIRE (LOGIN)
+   ============================================ */
+.form-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    font-size: 14px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #4B5563;
+    cursor: pointer;
+}
+
+.forgot-link {
+    color: #2563EB;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   BOUTONS
+   ============================================ */
+.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background: #2563EB;
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    margin-top: 1.5rem;
+}
+
+.submit-btn:hover {
+    background: #1D4ED8;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+}
+
+/* ============================================
+   PIED DE PAGE AUTH (LOGIN)
+   ============================================ */
+.auth-footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #E5E7EB;
+    color: #6B7280;
+    font-size: 15px;
+}
+
+.auth-footer a {
+    color: #2563EB;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 0.25rem;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   MESSAGES D'ERREUR
+   ============================================ */
+.error-text {
+    display: block;
+    color: #EF4444;
+    font-size: 13px;
+    margin-top: 0.25rem;
+}
+
+.error-box {
+    padding: 1rem;
+    background: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 12px;
+    color: #991B1B;
+    margin-bottom: 1.5rem;
+    font-size: 14px;
+}
+
+/* ============================================
+   RESPONSIVE (MOBILE)
+   ============================================ */
+@media (max-width: 968px) {
+    body {
+        padding: 1rem;
+    }
+
+    .signup-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .left-side {
+        flex: 0 0 auto;
+        padding: 2rem;
+    }
+
+    .main-content h2 {
+        font-size: 28px;
+    }
+
+    .input-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   BOUTON GOOGLE
+   ============================================ */
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.875rem 1rem;
+    background: #ffffff;
+    border: 2px solid #E5E7EB;
+    border-radius: 12px;
+    color: #374151;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+}
+
+.google-btn:hover {
+    border-color: #2563EB;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+    background: #ffffff;
+    transform: translateY(-1px);
+}
+
+.google-btn:active {
+    transform: translateY(0);
+}

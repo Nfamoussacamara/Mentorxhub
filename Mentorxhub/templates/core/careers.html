@@ -1,0 +1,206 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ page_title }} - MentorXHub{% endblock %}
+
+{% block extra_css %}
+<style>
+    .careers-page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+        background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+        min-height: 100vh;
+    }
+
+    .page-header {
+        text-align: center;
+        margin-bottom: 3rem;
+        animation: fadeInDown 0.6s ease-out;
+    }
+
+    .page-header h1 {
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        font-weight: 800;
+        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 1rem;
+        letter-spacing: -0.02em;
+    }
+
+    .page-header p {
+        font-size: 1.25rem;
+        color: #64748b;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .positions-list {
+        display: grid;
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .position-card {
+        background: white;
+        padding: 2.5rem;
+        border-radius: 20px;
+        border: 1px solid rgba(59, 130, 246, 0.1);
+        transition: all 0.3s ease;
+        animation: fadeInUp 0.6s ease-out backwards;
+    }
+
+    .position-card:hover {
+        transform: translateX(8px);
+        box-shadow: 0 20px 40px rgba(30, 58, 138, 0.15);
+        border-color: rgba(59, 130, 246, 0.3);
+    }
+
+    .position-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .position-title {
+        font-size: 1.5rem;
+        color: #1e293b;
+        font-weight: 700;
+    }
+
+    .position-meta {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .position-badge {
+        padding: 0.5rem 1rem;
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(30, 58, 138, 0.05));
+        border: 1px solid rgba(59, 130, 246, 0.2);
+        border-radius: 100px;
+        font-size: 0.875rem;
+        color: #1e40af;
+        font-weight: 600;
+    }
+
+    .position-description {
+        color: #64748b;
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+
+    .apply-button {
+        display: inline-block;
+        padding: 0.875rem 2rem;
+        background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+        color: white;
+        border-radius: 12px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .apply-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+    }
+
+    .no-positions {
+        background: white;
+        padding: 4rem 2rem;
+        border-radius: 20px;
+        text-align: center;
+    }
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .position-card:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+
+    .position-card:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .position-card:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+
+    @media (max-width: 768px) {
+        .careers-page {
+            padding: 2rem 1rem;
+        }
+
+        .position-card {
+            padding: 1.5rem;
+        }
+
+        .position-header {
+            flex-direction: column;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="careers-page">
+    <div class="page-header">
+        <h1>💼 {{ page_title }}</h1>
+        <p>Rejoignez notre équipe et contribuez à révolutionner le mentorat en ligne</p>
+    </div>
+
+    {% if positions %}
+    <div class="positions-list">
+        {% for position in positions %}
+        <div class="position-card">
+            <div class="position-header">
+                <h2 class="position-title">{{ position.title }}</h2>
+                <div class="position-meta">
+                    <span class="position-badge">{{ position.type }}</span>
+                    <span class="position-badge">📍 {{ position.location }}</span>
+                </div>
+            </div>
+            <p class="position-description">{{ position.description }}</p>
+            <a href="mailto:careers@mentorxhub.com?subject=Candidature%20-%20{{ position.title }}" class="apply-button">
+                Postuler maintenant
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="no-positions">
+        <h3>Aucun poste disponible pour le moment</h3>
+        <p>Revenez bientôt ou envoyez-nous une candidature spontanée !</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

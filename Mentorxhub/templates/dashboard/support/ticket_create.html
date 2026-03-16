@@ -1,0 +1,13 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Créer un ticket - Dashboard{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'dashboard/css/support.css' %}?v=1.0">
+{% endblock %}
+
+{% block content %}
+{% include 'dashboard/fragments/support_ticket_create.html' %}
+{% endblock %}
+
